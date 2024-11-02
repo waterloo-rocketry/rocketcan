@@ -1,0 +1,138 @@
+messages:
+  - name: ACTUATOR_COMMAND
+    desc: Set actuator commanded state
+    id: 0x12
+    timestamp: 3
+    field:
+      - name: ACTUATOR_ID
+        desc: Acturator ID
+        width: 1
+        enum: ACTUATOR_ID
+      - name: ACTUATOR_STATE
+        desc: Actuator State
+        width: 1
+        enum: ACTUATOR_STATE
+
+  - name: ALT_ARM_CMD
+    desc: Command to arm altimeter
+    id: 0x13
+    timestamp: 3
+    field:
+      - name: ALT_ARM_STATE
+        desc: Altimeter set arm state
+        width: 1
+        enum: ARM_STATE
+
+boards:
+  - name: ANY
+    desc: Any Board
+    id: 0x00
+  - name: ROCKET_POWER
+    desc: Rocket Power Board
+    id: 0x01
+  - name: CAMERA
+    desc: Flight Camera
+    id: 0x02
+    inst:
+      - name: INJ_A
+        desc: Injector Section Camera A
+      - name: INJ_B
+        desc: Injector Section Camera B
+      - name: VENT_A
+        desc: Vent Section Camera A
+      - name: VENT_B
+        desc: Vent Section Camera B
+      - name: VENT_C
+        desc: Vent Section Camera C
+      - name: VENT_D
+        desc: Vent Section Camera D
+      - name: RECOVERY_BULKHEAD
+        desc: Recovery Bulkhead Camera
+  - name: RLCS_GLS
+    desc: RLCS v4 Ground Launch Sequencer
+    id: 0x80
+  - name: DAQ
+    desc: DAQ CAN Support
+    id: 0x81
+  - name: THERMOCOUPLE
+    desc: Thermocouple Board
+    id: 0x82
+    inst:
+      - name: 1
+        desc: Thermocouple board 1, reads channel 1 to 4
+      - name: 2
+        desc: Thermocouple board 2, reads channel 5 to 8
+
+enums:
+  - name: ACTUATOR_STATE
+    value:
+      - name: ACTUATOR_ON
+        desc: Actuator is in ON state
+      - name: ACTUATOR_OFF
+        desc: Actuator is in OFF state
+      - name: ACTUATOR_UNK
+      - name: ACTUATOR_ILLEGAL
+
+  - name: ARM_STATE
+    value:
+      - name: DISARMED
+        desc: Disarmed
+      - name: ARMED
+        desc: Armed
+
+  - name: SENSOR_ID
+    value:
+      - name: SENSOR_5V_CURR
+      - name: SENSOR_BATT_CURR
+      - name: SENSOR_BATT_VOLT
+      - name: SENSOR_CHARGE_CURR
+      - name: SENSOR_13V_CURR
+      - name: SENSOR_MOTOR_CURR
+      - name: SENSOR_GROUND_VOLT
+      - name: SENSOR_PRESSURE_OX
+      - name: SENSOR_PRESSURE_CC
+      - name: SENSOR_PRESSURE_PNEUMATICS
+      - name: SENSOR_BARO
+      - name: SENSOR_ARM_BATT_1
+      - name: SENSOR_ARM_BATT_2
+      - name: SENSOR_MAG_1
+      - name: SENSOR_MAG_2
+      - name: SENSOR_VELOCITY
+      - name: SENSOR_VENT_TEMP
+      - name: SENSOR_RADIO_CURR
+      - name: SENSOR_PAYLOAD_TEMP_1
+      - name: SENSOR_PAYLOAD_TEMP_2
+
+  - name: ACTUATOR_ID
+    value:
+      - name: ACTUATOR_VENT_VALVE
+      - name: ACTUATOR_INJECTOR_VALVE
+      - name: ACTUATOR_CAMERA_1
+      - name: ACTUATOR_CAMERA_2
+      - name: ACTUATOR_CANBUS
+      - name: ACTUATOR_CHARGE
+      - name: ACTUATOR_RADIO
+      - name: ACTUATOR_PAYLOAD_SERVO
+      - name: ACTUATOR_AIRBRAKES_SERVO
+      - name: ACTUATOR_AIRBRAKES_ENABLE
+
+  - name: STATE_ID
+    value:
+      - name: STATE_POS_X
+        desc: State position X
+      - name: STATE_POS_Y
+        desc: State Position Y
+      - name: STATE_POS_Z
+        desc: State Position Z
+      - name: STATE_VEL_X
+      - name: STATE_VEL_Y
+      - name: STATE_VEL_Z
+      - name: STATE_ACC_X
+      - name: STATE_ACC_Y
+      - name: STATE_ACC_Z
+      - name: STATE_ANGLE_YAW
+      - name: STATE_ANGLE_PITCH
+      - name: STATE_ANGLE_ROLL
+      - name: STATE_RATE_YAW
+      - name: STATE_RATE_PITCH
+      - name: STATE_RATE_ROLL

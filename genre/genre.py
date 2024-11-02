@@ -54,23 +54,25 @@ def main():
             print('// Auto generated file, do not edit directly\n')
 
             print('#ifndef _CANLIB_MESSAGE_TYPES_H\n#define _CANLIB_MESSAGE_TYPES_H\n')
+
+            print('enum MSG_TYPE_ID {')
             for msg in rocketcan['messages']:
-                print("#define MSG_" + msg['name'].data + " " + hex(msg['id'].data))
+                print("    MSG_" + msg['name'].data + " = " + hex(msg['id'].data) + ',')
+            print('}\n')
 
-            print('')
-
+            print('enum BOARD_TYPE_ID {')
             for board in rocketcan['boards']:
-                print('#define BOARD_TYPE_ID_' + board['name'].data + ' ' + hex(board['id'].data))
-
-            print('')
+                print('    BOARD_TYPE_ID_' + board['name'].data + ' = ' + hex(board['id'].data) + ',')
+            print('}\n')
 
             for board in rocketcan['boards']:
                 if "inst" in board:
                     inst_id = 1
+                    print('enum BOARD_INST_ID_' + board['name'].data + ' {')
                     for inst in board['inst']:
-                        print('#define BOARD_INST_ID_' + board['name'].data + '_' + inst['name'].data + ' ' + hex(inst_id))
+                        print('    BOARD_INST_ID_' + board['name'].data + '_' + inst['name'].data + ' = ' + hex(inst_id) + ',')
                         inst_id += 1
-                    print('')
+                    print('}\n')
 
             for enum in rocketcan['enums']:
                 first = True

@@ -1,36 +1,59 @@
+message_types_h_header = """// Auto generated file, do not edit directly
+
+#ifndef _CANLIB_MESSAGE_TYPES_H
+#define _CANLIB_MESSAGE_TYPES_H
+
+// Message Priority
+typedef enum {
+    PRIO_HIGHEST = 0x0,
+    PRIO_HIGH = 0x1,
+    PRIO_MEDIUM = 0x2,
+    PRIO_LOW = 0x3,
+} can_msg_prio_t;
+"""
+
+message_types_h_board_inst_generic = """// Board Instance IDs
+typedef enum {
+    BOARD_INST_ID_ANY = 0x00,
+    BOARD_INST_ID_GENERIC = 0x01,
+} can_board_inst_id_t;
+"""
+
 def gen_message_types_h(rocketcan):
-    print('// Auto generated file, do not edit directly\n')
+    print(message_types_h_header)
 
-    print('#ifndef _CANLIB_MESSAGE_TYPES_H\n#define _CANLIB_MESSAGE_TYPES_H\n')
-
-    print('enum MSG_TYPE_ID {')
+    print('// Message Types')
+    print('typedef enum {')
     for msg in rocketcan['messages']:
-        print("    MSG_" + msg['name'].data + " = " + hex(msg['id'].data) + ',')
-    print('}\n')
+        print("    MSG_" + msg['name'].data + ' = 0x' + '{:03X}'.format(msg['id'].data) + ',')
+    print('} can_msg_type_t;\n')
 
-    print('enum BOARD_TYPE_ID {')
+    print('// Board Type IDs')
+    print('typedef enum {')
     for board in rocketcan['boards']:
-        print('    BOARD_TYPE_ID_' + board['name'].data + ' = ' + hex(board['id'].data) + ',')
-    print('}\n')
+        print('    BOARD_TYPE_ID_' + board['name'].data + ' = 0x' + '{:02X}'.format(board['id'].data) + ',')
+    print('} can_board_type_id_t;\n')
 
+    print(message_types_h_board_inst_generic)
+
+    inst_id = 2
     for board in rocketcan['boards']:
         if "inst" in board:
-            inst_id = 1
-            print('enum BOARD_INST_ID_' + board['name'].data + ' {')
+            print('typedef enum {')
             for inst in board['inst']:
-                print('    BOARD_INST_ID_' + board['name'].data + '_' + inst['name'].data + ' = ' + hex(inst_id) + ',')
+                print('    BOARD_INST_ID_' + board['name'].data + '_' + inst['name'].data + ' = 0x' + '{:02X}'.format(inst_id) + ',')
                 inst_id += 1
-            print('}\n')
+            print('} can_board_inst_id_' + board['name'].data.lower() + '_t\n')
 
     for enum in rocketcan['enums']:
         first = True
         print('enum ' + enum['name'].data + ' {')
         for val in enum['value']:
             if(first):
-                print('   ' + val['name'].data + ' = 0,')
+                print('    ' + val['name'].data + ' = 0,')
             else:
-                print('   ' + val['name'].data + ',')
-                first = False
+                print('    ' + val['name'].data + ',')
+            first = False
         print('};\n')
 
     print('#endif')

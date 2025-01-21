@@ -18,7 +18,7 @@ def main():
             Optional("desc"):Str(),
             "id":HexInt(),
             "timestamp":Int(),
-            "field":Seq(Map({
+            Optional("field"):Seq(Map({
                 "name":Str(),
                 "width":Int(),
                 Optional("desc"):Str(),

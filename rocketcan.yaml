@@ -130,12 +130,15 @@ boards:
   - name: INJ_SENSOR
     desc: Injector Sensor Hub Board
     id: 0x01
+    doc-link: /avionics/injector-sensor-hub/index
   - name: CANARD_MOTOR
     desc: Canard Motor Control Board
     id: 0x02
+    doc-link: /controls/motor-control-board/index
   - name: CAMERA
     desc: Flight Camera Board
     id: 0x03
+    doc-link: /avionics/camera-board/index
     inst:
       - name: INJ_A
         desc: Injector Section Camera A
@@ -154,6 +157,7 @@ boards:
   - name: POWER
     desc: Power Board
     id: 0x04
+    doc-link: /avionics/rocket-power-board/index
     inst:
       - name: ROCKET
         desc: Rocket Power Board
@@ -165,21 +169,27 @@ boards:
   - name: PROCESSOR
     desc: Canard Processor Board
     id: 0x06
+    doc-link: /controls/processor-board/index
   - name: TELEMETRY
     desc: Live Telemetry Board
     id: 0x07
+    doc-link: /avionics/live-telemetry/index
   - name: GPS
     desc: COTS GPS Receiver Board
     id: 0x08
+    doc-link: /avionics/gps-board/index
   - name: SRAD_GNSS
     desc: SRAD GNSS Receiver Board
     id: 0x09
+    doc-link: /avionics/srad-gnss-receiver/index
   - name: ALTIMETER
     desc: SRAD Altimeter
     id: 0x0A
+    doc-link: /avionics/srad-altimeter/index
   - name: ARMING
     desc: Remote Arming Board
     id: 0x0B
+    doc-link: /avionics/remote-arming/index
   - name: PAY_SENSOR
     desc: Payload Sensor Board
     id: 0x40
@@ -189,21 +199,25 @@ boards:
   - name: RLCS_GLS
     desc: RLCS v4 Ground Launch Sequencer
     id: 0x80
+    doc-link: /electrical-gse/rlcs-v4/ground-launch-sequencer-board
   - name: RLCS_RELAY
     desc: RLCS v4 Relay Board (Valve and Ignition)
     id: 0x81
+    doc-link: /electrical-gse/rlcs-v4/towerside-relay-board
   - name: RLCS_HEATING
     desc: RLCS v4 Tank Heating Relay Board
     id: 0x82
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
     id: 0x83
+    doc-link: /electrical-gse/daq/index
   - name: CHARGING
     desc: Ground Side LiPo Charging Board
     id: 0x84
   - name: THERMOCOUPLE
     desc: Thermocouple Board (K-type)
     id: 0x85
+    doc-link: /electrical-gse/daq/thermocouple-board
     inst:
       - name: 1
         desc: Thermocouple board 1, reads channel 1 to 4
@@ -216,6 +230,7 @@ boards:
   - name: USB
     desc: USB Debug
     id: 0x86
+    doc-link: /electrical-tools/usb-debug/index
   - name: FYDP25_TVCA
     desc: FYDP 25 TVC Actuator Board
     id: 0xC0

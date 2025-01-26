@@ -1,7 +1,12 @@
 messages:
   - name: GENERAL_CMD
+    desc: General Command
     id: 0x001
     timestamp: 3
+    field:
+      - name: CMD_TYPE
+        desc: Command Type
+        width: 1
 
   - name: ACTUATOR_CMD
     desc: Set actuator commanded state
@@ -237,15 +242,17 @@ boards:
 
 enums:
   - name: ACTUATOR_STATE
+    prefix: ACTUATOR
     value:
-      - name: ACTUATOR_ON
+      - name: ON
         desc: Actuator is in ON state
-      - name: ACTUATOR_OFF
+      - name: OFF
         desc: Actuator is in OFF state
-      - name: ACTUATOR_UNK
-      - name: ACTUATOR_ILLEGAL
+      - name: UNK
+      - name: ILLEGAL
 
   - name: ARM_STATE
+    prefix: ARM_STATE
     value:
       - name: DISARMED
         desc: Disarmed
@@ -253,58 +260,61 @@ enums:
         desc: Armed
 
   - name: SENSOR_ID
+    prefix: SENSOR
     value:
-      - name: SENSOR_5V_CURR
-      - name: SENSOR_BATT_CURR
-      - name: SENSOR_BATT_VOLT
-      - name: SENSOR_CHARGE_CURR
-      - name: SENSOR_13V_CURR
-      - name: SENSOR_MOTOR_CURR
-      - name: SENSOR_GROUND_VOLT
-      - name: SENSOR_PRESSURE_OX
-      - name: SENSOR_PRESSURE_CC
-      - name: SENSOR_PRESSURE_PNEUMATICS
-      - name: SENSOR_BARO
-      - name: SENSOR_ARM_BATT_1
-      - name: SENSOR_ARM_BATT_2
-      - name: SENSOR_MAG_1
-      - name: SENSOR_MAG_2
-      - name: SENSOR_VELOCITY
-      - name: SENSOR_VENT_TEMP
-      - name: SENSOR_RADIO_CURR
-      - name: SENSOR_PAYLOAD_TEMP_1
-      - name: SENSOR_PAYLOAD_TEMP_2
+      - name: 5V_CURR
+      - name: BATT_CURR
+      - name: BATT_VOLT
+      - name: CHARGE_CURR
+      - name: 13V_CURR
+      - name: MOTOR_CURR
+      - name: GROUND_VOLT
+      - name: PRESSURE_OX
+      - name: PRESSURE_CC
+      - name: PRESSURE_PNEUMATICS
+      - name: BARO
+      - name: ARM_BATT_1
+      - name: ARM_BATT_2
+      - name: MAG_1
+      - name: MAG_2
+      - name: VELOCITY
+      - name: VENT_TEMP
+      - name: RADIO_CURR
+      - name: PAYLOAD_TEMP_1
+      - name: PAYLOAD_TEMP_2
 
   - name: ACTUATOR_ID
+    prefix: ACTUATOR
     value:
-      - name: ACTUATOR_VENT_VALVE
-      - name: ACTUATOR_INJECTOR_VALVE
-      - name: ACTUATOR_CAMERA_1
-      - name: ACTUATOR_CAMERA_2
-      - name: ACTUATOR_CANBUS
-      - name: ACTUATOR_CHARGE
-      - name: ACTUATOR_RADIO
-      - name: ACTUATOR_PAYLOAD_SERVO
-      - name: ACTUATOR_AIRBRAKES_SERVO
-      - name: ACTUATOR_AIRBRAKES_ENABLE
+      - name: VENT_VALVE
+      - name: INJECTOR_VALVE
+      - name: CAMERA_1
+      - name: CAMERA_2
+      - name: CANBUS
+      - name: CHARGE
+      - name: RADIO
+      - name: PAYLOAD_SERVO
+      - name: AIRBRAKES_SERVO
+      - name: AIRBRAKES_ENABLE
 
   - name: STATE_ID
+    prefix: STATE
     value:
-      - name: STATE_POS_X
+      - name: POS_X
         desc: State position X
-      - name: STATE_POS_Y
+      - name: POS_Y
         desc: State Position Y
-      - name: STATE_POS_Z
+      - name: POS_Z
         desc: State Position Z
-      - name: STATE_VEL_X
-      - name: STATE_VEL_Y
-      - name: STATE_VEL_Z
-      - name: STATE_ACC_X
-      - name: STATE_ACC_Y
-      - name: STATE_ACC_Z
-      - name: STATE_ANGLE_YAW
-      - name: STATE_ANGLE_PITCH
-      - name: STATE_ANGLE_ROLL
-      - name: STATE_RATE_YAW
-      - name: STATE_RATE_PITCH
-      - name: STATE_RATE_ROLL
+      - name: VEL_X
+      - name: VEL_Y
+      - name: VEL_Z
+      - name: ACC_X
+      - name: ACC_Y
+      - name: ACC_Z
+      - name: ANGLE_YAW
+      - name: ANGLE_PITCH
+      - name: ANGLE_ROLL
+      - name: RATE_YAW
+      - name: RATE_PITCH
+      - name: RATE_ROLL

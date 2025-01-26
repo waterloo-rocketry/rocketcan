@@ -50,9 +50,9 @@ def gen_message_types_h(rocketcan):
         print('enum ' + enum['name'].data + ' {')
         for val in enum['value']:
             if(first):
-                print('    ' + val['name'].data + ' = 0,')
+                print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0,')
             else:
-                print('    ' + val['name'].data + ',')
+                print('    ' + enum['prefix'].data + '_' + val['name'].data + ',')
             first = False
         print('};\n')
 

@@ -50,10 +50,12 @@ def gen_board_id_rst(rocketcan):
                 inst_id += 1
 
 def gen_packet_format_rst(rocketcan):
-    print('Message Packet Format\n#####################')
+    print('Packet Format\n#####################\n')
+    print('Message Packet Format Definition\n********************************\n')
+    
     for msg in rocketcan['messages']:
         print(msg['name'].data + ' (0x' + '{:03X}'.format(msg['id'].data) + ')')
-        print('*' * (len(msg['name'].data) + 8))
+        print('=' * (len(msg['name'].data) + 8))
         if 'desc' in msg:
             print(msg['desc'].data + '\n')
 
@@ -109,3 +111,22 @@ def gen_packet_format_rst(rocketcan):
             for field in msg['field']:
                 print('| **' + field['name'].data + ':** ' + field['desc'].data)
             print('')
+
+    print('Enums Definition\n****************\n')
+    for enum in rocketcan['enums']:
+        print(enum['name'].data)
+        print('=' * len(enum['name'].data) + '\n')
+        print(enum['desc'].data + '\n')
+        print('.. list-table:: ' + enum['name'].data + ' Enum Values')
+        print('   :widths: 25 60 15\n   :header-rows: 1\n')
+        print('   * - Enum Name\n     - Description\n     - ID')
+        enum_value_id = 0
+        for value in enum['value']:
+            print('   * - ' + value['name'].data)
+            if 'desc' in value:
+                print('     - ' + value['desc'].data)
+            else:
+                print('     - No Description')
+            print('     - 0x' + '{:02X}'.format(enum_value_id))
+            enum_value_id += 1
+        print('')

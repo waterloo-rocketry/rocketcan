@@ -45,6 +45,7 @@ def main():
         })),
         "enums" : Seq(Map({
             "name":Str(),
+            "desc":Str(),
             "prefix":Str(),
             "value":Seq(Map({
                 "name":Str(),

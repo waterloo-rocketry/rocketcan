@@ -242,6 +242,7 @@ boards:
 
 enums:
   - name: ACTUATOR_STATE
+    desc: Actuator State
     prefix: ACTUATOR
     value:
       - name: ON
@@ -252,6 +253,7 @@ enums:
       - name: ILLEGAL
 
   - name: ARM_STATE
+    desc: Altimiter Arm State
     prefix: ARM_STATE
     value:
       - name: DISARMED
@@ -260,17 +262,22 @@ enums:
         desc: Armed
 
   - name: SENSOR_ID
+    desc: Sensor ID for Sensor Messages
     prefix: SENSOR
     value:
       - name: 5V_CURR
+        desc: Current of 5V line in mA
       - name: BATT_CURR
       - name: BATT_VOLT
       - name: CHARGE_CURR
+        desc: LiPo charging current in mA
       - name: 13V_CURR
       - name: MOTOR_CURR
       - name: GROUND_VOLT
       - name: PRESSURE_OX
+        desc: Oxidizer Tank pressure in psi
       - name: PRESSURE_CC
+        desc: Combustion Chamber pressure in psi
       - name: PRESSURE_PNEUMATICS
       - name: BARO
       - name: ARM_BATT_1
@@ -284,6 +291,7 @@ enums:
       - name: PAYLOAD_TEMP_2
 
   - name: ACTUATOR_ID
+    desc: Actuator ID for Actuator Command and Status Messages
     prefix: ACTUATOR
     value:
       - name: VENT_VALVE
@@ -298,6 +306,7 @@ enums:
       - name: AIRBRAKES_ENABLE
 
   - name: STATE_ID
+    desc: State Estimation data field indentifier
     prefix: STATE
     value:
       - name: POS_X

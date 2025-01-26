@@ -3,7 +3,7 @@ from strictyaml import load,Map,Str,HexInt,Int,Seq,YAMLError,Optional
 
 from message_types_h import gen_message_types_h
 from message_types_py import gen_message_types_py
-from rst import gen_board_id_rst
+from rst import gen_board_id_rst, gen_packet_format_rst
 
 def main():
     argparser = argparse.ArgumentParser(prog = 'Waterloo Rockery CAN message generator',
@@ -61,6 +61,8 @@ def main():
             gen_message_types_py(rocketcan)
         elif(args.format == 'board-id-rst'):
             gen_board_id_rst(rocketcan)
+        elif(args.format == 'packet-format-rst'):
+            gen_packet_format_rst(rocketcan)
         else:
             print("Incorrect output format")
 

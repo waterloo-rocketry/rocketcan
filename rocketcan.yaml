@@ -2,7 +2,7 @@ messages:
   - name: GENERAL_CMD
     desc: General Command
     id: 0x001
-    timestamp: 3
+    timestamp: 2
     field:
       - name: CMD_TYPE
         desc: Command Type
@@ -11,7 +11,7 @@ messages:
   - name: ACTUATOR_CMD
     desc: Set actuator commanded state
     id: 0x002
-    timestamp: 3
+    timestamp: 2
     field:
       - name: ACTUATOR_ID
         desc: Acturator ID
@@ -25,7 +25,7 @@ messages:
   - name: ALT_ARM_CMD
     desc: Command to arm altimeter
     id: 0x003
-    timestamp: 3
+    timestamp: 2
     field:
       - name: ALT_ARM_STATE
         desc: Altimeter set arm state
@@ -34,11 +34,11 @@ messages:
 
   - name: RESET_CMD
     id: 0x004
-    timestamp: 3
+    timestamp: 2
 
   - name: DEBUG_MSG
     id: 0x005
-    timestamp: 3
+    timestamp: 2
 
   - name: DEBUG_PRINTF
     id: 0x006
@@ -50,27 +50,27 @@ messages:
 
   - name: ACT_ANALOG_CMD
     id: 0x008
-    timestamp: 3
+    timestamp: 2
 
   - name: ALT_ARM_STATUS
     id: 0x009
-    timestamp: 3
+    timestamp: 2
 
   - name: ACTUATOR_STATUS
     id: 0x00A
-    timestamp: 3
+    timestamp: 2
 
   - name: GENERAL_BOARD_STATUS
     id: 0x00B
-    timestamp: 3
+    timestamp: 2
 
   - name: SENSOR_TEMP
     id: 0x00C
-    timestamp: 3
+    timestamp: 2
 
   - name: SENSOR_ALTITUDE
     id: 0x00D
-    timestamp: 3
+    timestamp: 2
 
   - name: SENSOR_ACC
     id: 0x00E
@@ -86,7 +86,7 @@ messages:
 
   - name: STATE_EST_CALIB
     id: 0x011
-    timestamp: 3
+    timestamp: 2
 
   - name: SENSOR_MAG
     id: 0x012
@@ -94,31 +94,31 @@ messages:
 
   - name: SENSOR_ANALOG
     id: 0x013
-    timestamp: 3
+    timestamp: 2
 
   - name: GPS_TIMESTAMP
     id: 0x014
-    timestamp: 3
+    timestamp: 2
 
   - name: GPS_LATITUDE
     id: 0x015
-    timestamp: 3
+    timestamp: 2
 
   - name: GPS_LONGITUDE
     id: 0x016
-    timestamp: 3
+    timestamp: 2
 
   - name: GPS_ALTITUDE
     id: 0x017
-    timestamp: 3
+    timestamp: 2
 
   - name: GPS_INFO
     id: 0x018
-    timestamp: 3
+    timestamp: 2
 
   - name: STATE_EST_DATA
     id: 0x01A
-    timestamp: 3
+    timestamp: 2
 
   - name: LEDS_ON
     id: 0x01B
@@ -241,7 +241,13 @@ boards:
     id: 0xC0
 
 enums:
-  - name: ACTUATOR_STATE
+  - name: board_status
+    desc: Board Status Code
+    prefix: E
+    value:
+      - name: NOMINAL
+
+  - name: actuator_state
     desc: Actuator State
     prefix: ACTUATOR
     value:
@@ -252,7 +258,7 @@ enums:
       - name: UNK
       - name: ILLEGAL
 
-  - name: ARM_STATE
+  - name: arm_state
     desc: Altimiter Arm State
     prefix: ARM_STATE
     value:
@@ -261,7 +267,7 @@ enums:
       - name: ARMED
         desc: Armed
 
-  - name: SENSOR_ID
+  - name: sensor_id
     desc: Sensor ID for Sensor Messages
     prefix: SENSOR
     value:
@@ -290,7 +296,7 @@ enums:
       - name: PAYLOAD_TEMP_1
       - name: PAYLOAD_TEMP_2
 
-  - name: ACTUATOR_ID
+  - name: actuator_id
     desc: Actuator ID for Actuator Command and Status Messages
     prefix: ACTUATOR
     value:
@@ -301,11 +307,8 @@ enums:
       - name: CANBUS
       - name: CHARGE
       - name: RADIO
-      - name: PAYLOAD_SERVO
-      - name: AIRBRAKES_SERVO
-      - name: AIRBRAKES_ENABLE
 
-  - name: STATE_ID
+  - name: state_est_id
     desc: State Estimation data field indentifier
     prefix: STATE
     value:

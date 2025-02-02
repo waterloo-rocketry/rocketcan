@@ -74,11 +74,11 @@ def gen_packet_format_rst(rocketcan):
                 line_5 += '--------------------------+'
                 next_byte += 3
             elif(msg['timestamp'] == 2):
-                line_1 += '------------------+----------------+'
-                line_2 += ' Byte 0           | Byte 1         |'
-                line_3 += '==================+================+'
-                line_4 += ' 2 byte timestamp (MED/LO)         |'
-                line_5 += '------------------+----------------+'
+                line_1 += '--------+---------+'
+                line_2 += ' Byte 0 | Byte 1  |'
+                line_3 += '========+=========+'
+                line_4 += ' 2 byte timestamp |'
+                line_5 += '--------+---------+'
                 next_byte += 2
             for field in msg['field']:
                 byte_str = 'Byte '

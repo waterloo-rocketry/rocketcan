@@ -1,16 +1,61 @@
 messages:
-  - name: GENERAL_CMD
-    desc: General Command
+  - name: GENERAL_BOARD_STATUS
+    desc: Board status broadcast
     id: 0x001
     timestamp: 2
     field:
-      - name: CMD_TYPE
-        desc: Command Type
+      - name: ERROR_CODE_BITFIELD
+        desc: Error code bitfield
+        width: 4
+
+  - name: RESET_CMD
+    desc: Command to reset boards
+    id: 0x002
+    timestamp: 2
+    field:
+      - name: BOARD_TYPE_ID
+        desc: Board Type ID of board to reset, set to 0 to reset all boards on bus
         width: 1
+      - name: BOARD_INST_ID
+        desc: Board Inst ID of board to reset, set to 0 to reset all board of specific type
+        width: 1
+
+  - name: DEBUG_RAW
+    desc: 6-bytes of raw data
+    id: 0x003
+    timestamp: 2
+    field:
+      - name: RAW_DATA
+        desc: Raw data, 6 bytes
+        width: 6
+
+  - name: CONFIG_SET
+    desc: Set board specific configuration
+    id: 0x004
+    timestamp: 2
+    field:
+      - name: CONFIG_ID
+        desc: Configuration ID, Board Specific
+        width: 2
+      - name: CONFIG_VALUE
+        desc: Configuration Value, Board and Config ID specific
+        width: 4
+
+  - name: CONFIG_STATUS
+    desc: Broadcast board specific configuration, for verify CONFIG_SET success
+    id: 0x005
+    timestamp: 2
+    field:
+      - name: CONFIG_ID
+        desc: Configuration ID, Board Specific
+        width: 2
+      - name: CONFIG_VALUE
+        desc: Configuration Value, Board and Config ID specific
+        width: 4
 
   - name: ACTUATOR_CMD
     desc: Set actuator commanded state
-    id: 0x002
+    id: 0x006
     timestamp: 2
     field:
       - name: ACTUATOR_ID
@@ -22,111 +67,169 @@ messages:
         width: 1
         enum: ACTUATOR_STATE
 
-  - name: ALT_ARM_CMD
-    desc: Command to arm altimeter
-    id: 0x003
+  - name: ACTUATOR_ANALOG_CMD
+    desc: Analog Actuator Command
+    id: 0x007
     timestamp: 2
     field:
+      - name: ACTUATOR_ID
+        desc: Acturator ID
+        width: 1
+        enum: ACTUATOR_ID
+      - name: ACTUATOR_ANALOG_STATE
+        desc: Actuator State (16 bit analog, Board/Actuator specific)
+        width: 2
+
+  - name: ACTUATOR_STATUS
+    desc: Actuator Status Message
+    id: 0x008
+    timestamp: 2
+    field:
+      - name: ACTUATOR_ID
+        desc: Acturator ID
+        width: 1
+        enum: ACTUATOR_ID
+      - name: ACTUATOR_CURR_STATE
+        desc: Actuator Current State
+        width: 1
+        enum: ACTUATOR_STATE
+      - name: ACTUATOR_REQ_STATE
+        desc: Actuator Requested State
+        width: 1
+        enum: ACTUATOR_STATE
+
+  - name: ALT_ARM_CMD
+    desc: Command to arm altimeter
+    id: 0x009
+    timestamp: 2
+    field:
+      - name: ALT_ID
+        desc: Altimeter ID
+        width: 1
+        enum: altimeter_id
       - name: ALT_ARM_STATE
         desc: Altimeter set arm state
         width: 1
-        enum: ARM_STATE
-
-  - name: RESET_CMD
-    id: 0x004
-    timestamp: 2
-
-  - name: DEBUG_MSG
-    id: 0x005
-    timestamp: 2
-
-  - name: DEBUG_PRINTF
-    id: 0x006
-    timestamp: 0
-
-  - name: DEBUG_RADIO_CMD
-    id: 0x007
-    timestamp: 0
-
-  - name: ACT_ANALOG_CMD
-    id: 0x008
-    timestamp: 2
+        enum: arm_state
 
   - name: ALT_ARM_STATUS
-    id: 0x009
-    timestamp: 2
-
-  - name: ACTUATOR_STATUS
+    desc: Altimeter Arm Status
     id: 0x00A
     timestamp: 2
+    field:
+      - name: ALT_ID
+        desc: Altimeter ID
+        width: 1
+        enum: altimeter_id
+      - name: ALT_ARM_STATE
+        desc: Altimeter current arm state
+        width: 1
+        enum: arm_state
+      - name: DROGUE_V
+        desc: Drogue Pyro Voltage
+        width: 2
+      - name: MAIN_V
+        desc: Main Pyro Voltage
+        width: 2
 
-  - name: GENERAL_BOARD_STATUS
+  - name: SENSOR_TEMP
+    desc: Temperature Sensor
     id: 0x00B
     timestamp: 2
 
-  - name: SENSOR_TEMP
+  - name: SENSOR_ALTITUDE
+    desc: Altitude sensor message(exclude GPS with have a specific message)
     id: 0x00C
     timestamp: 2
+    field:
+      - name: ALT
+        desc: Altitude in ft
+        width: 4
 
-  - name: SENSOR_ALTITUDE
+  - name: SENSOR_IMU_X
     id: 0x00D
     timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: LINEAR_ACCEL
+        desc: Linear Acceleration
+        width: 2
+      - name: ANGULAR_VELOITY
+        desc: Angular Velocity
+        width: 2
 
-  - name: SENSOR_ACC
+  - name: SENSOR_IMU_Y
     id: 0x00E
     timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: LINEAR_ACCEL
+        desc: Linear Acceleration
+        width: 2
+      - name: ANGULAR_VELOITY
+        desc: Angular Velocity
+        width: 2
 
-  - name: SENSOR_ACC2
+  - name: SENSOR_IMU_Z
     id: 0x00F
     timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: LINEAR_ACCEL
+        desc: Linear Acceleration
+        width: 2
+      - name: ANGULAR_VELOITY
+        desc: Angular Velocity
+        width: 2
 
-  - name: SENSOR_GYRO
-    id: 0x010
+  - name: SENSOR_MAG
+    id: 0x10
     timestamp: 2
-
-  - name: STATE_EST_CALIB
+    
+  - name: SENSOR_ANALOG
     id: 0x011
     timestamp: 2
 
-  - name: SENSOR_MAG
+  - name: GPS_TIMESTAMP
     id: 0x012
     timestamp: 2
 
-  - name: SENSOR_ANALOG
+  - name: GPS_LATITUDE
     id: 0x013
     timestamp: 2
 
-  - name: GPS_TIMESTAMP
+  - name: GPS_LONGITUDE
     id: 0x014
     timestamp: 2
 
-  - name: GPS_LATITUDE
+  - name: GPS_ALTITUDE
     id: 0x015
     timestamp: 2
 
-  - name: GPS_LONGITUDE
+  - name: GPS_INFO
     id: 0x016
     timestamp: 2
 
-  - name: GPS_ALTITUDE
+  - name: STATE_EST_DATA
     id: 0x017
     timestamp: 2
 
-  - name: GPS_INFO
+  - name: LEDS_ON
     id: 0x018
     timestamp: 2
 
-  - name: STATE_EST_DATA
-    id: 0x01A
-    timestamp: 2
-
-  - name: LEDS_ON
-    id: 0x01B
-    timestamp: 0
-
   - name: LEDS_OFF
-    id: 0x01C
-    timestamp: 0
+    id: 0x019
+    timestamp: 2
 
 boards:
   - name: ANY
@@ -247,6 +350,18 @@ enums:
     value:
       - name: NOMINAL
 
+  - name: actuator_id
+    desc: Actuator ID for Actuator Command and Status Messages
+    prefix: ACTUATOR
+    value:
+      - name: VENT_VALVE
+      - name: INJECTOR_VALVE
+      - name: CAMERA_1
+      - name: CAMERA_2
+      - name: CANBUS
+      - name: CHARGE
+      - name: RADIO
+
   - name: actuator_state
     desc: Actuator State
     prefix: ACTUATOR
@@ -258,16 +373,40 @@ enums:
       - name: UNK
       - name: ILLEGAL
 
-  - name: arm_state
+  - name: altimeter_id
+    desc: Altimeter ID for uniquely indentify each altimeter
+    prefix: ALTIMETER
+    value:
+      - name: RAVEN
+        desc: Raven4 Altimeter (COTS)
+      - name: STRATOLOGGER
+        desc: StratoLoggerCF Altimeter (COTS)
+      - name: SRAD
+        desc: SRAD Altimeter
+
+  - name: alt_arm_state
     desc: Altimiter Arm State
-    prefix: ARM_STATE
+    prefix: ALT_ARM_STATE
     value:
       - name: DISARMED
         desc: Disarmed
       - name: ARMED
         desc: Armed
 
-  - name: sensor_id
+  - name: imu_id
+    desc: IMU Unique Indentifier
+    prefix: IMU
+    value:
+      - name: PROC_POLULU_ALTIMU10
+        desc: Polulo AltIMU-10 Connected to Processor Board
+      - name: PROC_MOVELLA_MTI630
+        desc: Movella MTI-630 Connected to Processor Board
+      - name: PROC_ST
+        desc: ST LSM6DSO32 Soldered on Processor Board
+      - name: SRAD_ALT_POLULU_ALTIMU10
+        desc: Polulo AltIMU-10 Connected to SRAD Altimeter
+
+  - name: analog_sensor_id
     desc: Sensor ID for Sensor Messages
     prefix: SENSOR
     value:
@@ -296,21 +435,9 @@ enums:
       - name: PAYLOAD_TEMP_1
       - name: PAYLOAD_TEMP_2
 
-  - name: actuator_id
-    desc: Actuator ID for Actuator Command and Status Messages
-    prefix: ACTUATOR
-    value:
-      - name: VENT_VALVE
-      - name: INJECTOR_VALVE
-      - name: CAMERA_1
-      - name: CAMERA_2
-      - name: CANBUS
-      - name: CHARGE
-      - name: RADIO
-
   - name: state_est_id
     desc: State Estimation data field indentifier
-    prefix: STATE
+    prefix: STATE_ID
     value:
       - name: POS_X
         desc: State position X

@@ -43,17 +43,17 @@ def gen_message_types_h(rocketcan):
             for inst in board['inst']:
                 print('    BOARD_INST_ID_' + board['name'].data + '_' + inst['name'].data + ' = 0x' + '{:02X}'.format(inst_id) + ',')
                 inst_id += 1
-            print('} can_board_inst_id_' + board['name'].data.lower() + '_t\n')
+            print('} can_board_inst_id_' + board['name'].data.lower() + '_t;\n')
 
     for enum in rocketcan['enums']:
         first = True
-        print('enum ' + enum['name'].data + ' {')
+        print('typedef enum {')
         for val in enum['value']:
             if(first):
                 print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0,')
             else:
                 print('    ' + enum['prefix'].data + '_' + val['name'].data + ',')
             first = False
-        print('};\n')
+        print('} can_' + enum['name'].data + '_t;\n')
 
     print('#endif')

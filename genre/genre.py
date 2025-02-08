@@ -49,6 +49,7 @@ def main():
             "prefix":Str(),
             "value":Seq(Map({
                 "name":Str(),
+                Optional("value"):Int(),
                 Optional("desc"):Str()
             }))
         }))

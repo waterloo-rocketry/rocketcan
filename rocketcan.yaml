@@ -4,9 +4,13 @@ messages:
     id: 0x001
     timestamp: 2
     field:
-      - name: ERROR_CODE_BITFIELD
-        desc: Error code bitfield
+      - name: GENERAL_ERROR_BITFIELD
+        desc: General error code bitfield
         width: 4
+        enum: general_board_status
+      - name: BOARD_ERROR_BITFIELD
+        desc: Board specific error code bitfield
+        width: 2
 
   - name: RESET_CMD
     desc: Command to reset boards
@@ -61,11 +65,11 @@ messages:
       - name: ACTUATOR_ID
         desc: Acturator ID
         width: 1
-        enum: ACTUATOR_ID
+        enum: actuator_id
       - name: ACTUATOR_STATE
         desc: Actuator State
         width: 1
-        enum: ACTUATOR_STATE
+        enum: actuator_state
 
   - name: ACTUATOR_ANALOG_CMD
     desc: Analog Actuator Command
@@ -75,7 +79,7 @@ messages:
       - name: ACTUATOR_ID
         desc: Acturator ID
         width: 1
-        enum: ACTUATOR_ID
+        enum: actuator_id
       - name: ACTUATOR_ANALOG_STATE
         desc: Actuator State (16 bit analog, Board/Actuator specific)
         width: 2
@@ -88,15 +92,15 @@ messages:
       - name: ACTUATOR_ID
         desc: Acturator ID
         width: 1
-        enum: ACTUATOR_ID
+        enum: actuator_id
       - name: ACTUATOR_CURR_STATE
         desc: Actuator Current State
         width: 1
-        enum: ACTUATOR_STATE
+        enum: actuator_state
       - name: ACTUATOR_REQ_STATE
         desc: Actuator Requested State
         width: 1
-        enum: ACTUATOR_STATE
+        enum: actuator_state
 
   - name: ALT_ARM_CMD
     desc: Command to arm altimeter
@@ -136,6 +140,13 @@ messages:
     desc: Temperature Sensor
     id: 0x00B
     timestamp: 2
+    field:
+      - name: TEMP_SENSOR_NUM
+        desc: Tempterature sensor ID
+        width: 1
+      - name: TEMP
+        desc: Temperature
+        width: 4
 
   - name: SENSOR_ALTITUDE
     desc: Altitude sensor message(exclude GPS with have a specific message)
@@ -445,23 +456,44 @@ boards:
     id: 0xC0
 
 enums:
-  - name: board_status
-    desc: Board Status Code
+  - name: general_board_status
+    desc: General board status bitfield
     prefix: E
     value:
       - name: NOMINAL
+        value: 0
+      - name: 5V_OVER_CURRENT
+        value: 1
+      - name: 5V_OVER_VOLTAGE
+        value: 2
+      - name: 5V_UNDER_VOLTAGE
+        value: 4
+      - name: 12V_OVER_CURRENT
+        value: 8
+      - name: 12V_OVER_VOLTAGE
+        value: 16
+      - name: 12V_UNDER_VOLTAGE
+        value: 32
+      - name: IO_ERROR
+        value: 64
+      - name: FS_ERROR
+        value: 128
 
   - name: actuator_id
     desc: Actuator ID for Actuator Command and Status Messages
     prefix: ACTUATOR
     value:
-      - name: VENT_VALVE
-      - name: INJECTOR_VALVE
-      - name: CAMERA_1
-      - name: CAMERA_2
-      - name: CANBUS
-      - name: CHARGE
-      - name: RADIO
+      - name: CAMERA_INJ_A
+      - name: CAMERA_INJ_B
+      - name: CAMERA_VENT_A
+      - name: CAMERA_VENT_B
+      - name: CAMERA_VENT_C
+      - name: CAMERA_VENT_D
+      - name: CAMERA_RECOVERY
+      - name: 5V_RAIL_ROCKET
+      - name: 5V_RAIL_PAYLOAD
+      - name: TELEMETRY
+      - name: PROC_ESTIMATOR_INIT
 
   - name: actuator_state
     desc: Actuator State
@@ -472,7 +504,9 @@ enums:
       - name: OFF
         desc: Actuator is in OFF state
       - name: UNK
+        desc: Unknown state, for example when ball valve is turning
       - name: ILLEGAL
+        desc: Illegal state, for example when limit switch of both state being triggered
 
   - name: altimeter_id
     desc: Altimeter ID for uniquely indentify each altimeter

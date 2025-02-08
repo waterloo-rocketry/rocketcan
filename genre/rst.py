@@ -125,6 +125,8 @@ def gen_packet_format_rst(rocketcan):
         print('   * - Enum Name\n     - Description\n     - ID')
         enum_value_id = 0
         for value in enum['value']:
+            if 'value' in value:
+                enum_value_id = value['value'].data
             print('   * - ' + value['name'].data)
             if 'desc' in value:
                 print('     - ' + value['desc'].data)

@@ -110,7 +110,7 @@ messages:
       - name: ALT_ARM_STATE
         desc: Altimeter set arm state
         width: 1
-        enum: arm_state
+        enum: alt_arm_state
 
   - name: ALT_ARM_STATUS
     desc: Altimeter Arm Status
@@ -124,7 +124,7 @@ messages:
       - name: ALT_ARM_STATE
         desc: Altimeter current arm state
         width: 1
-        enum: arm_state
+        enum: alt_arm_state
       - name: DROGUE_V
         desc: Drogue Pyro Voltage
         width: 2
@@ -155,10 +155,10 @@ messages:
         width: 1
         enum: imu_id
       - name: LINEAR_ACCEL
-        desc: Linear Acceleration
+        desc: Linear Acceleration on X axis
         width: 2
       - name: ANGULAR_VELOITY
-        desc: Angular Velocity
+        desc: Angular Velocity around X axis
         width: 2
 
   - name: SENSOR_IMU_Y
@@ -170,10 +170,10 @@ messages:
         width: 1
         enum: imu_id
       - name: LINEAR_ACCEL
-        desc: Linear Acceleration
+        desc: Linear Acceleration on Y axis
         width: 2
       - name: ANGULAR_VELOITY
-        desc: Angular Velocity
+        desc: Angular Velocity around Y axis
         width: 2
 
   - name: SENSOR_IMU_Z
@@ -185,50 +185,151 @@ messages:
         width: 1
         enum: imu_id
       - name: LINEAR_ACCEL
-        desc: Linear Acceleration
+        desc: Linear Acceleration on Z axis
         width: 2
       - name: ANGULAR_VELOITY
-        desc: Angular Velocity
+        desc: Angular Velocity around Z axis
         width: 2
 
-  - name: SENSOR_MAG
-    id: 0x10
+  - name: SENSOR_MAG_X
+    id: 0x010
     timestamp: 2
-    
-  - name: SENSOR_ANALOG
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: MAG
+        desc: magnetometer X value
+        width: 2
+
+  - name: SENSOR_MAG_Y
     id: 0x011
     timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: MAG
+        desc: magnetometer Y value
+        width: 2
 
-  - name: GPS_TIMESTAMP
+  - name: SENSOR_MAG_Z
     id: 0x012
     timestamp: 2
-
-  - name: GPS_LATITUDE
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: MAG
+        desc: magnetometer Z value
+        width: 2
+    
+  - name: SENSOR_ANALOG
     id: 0x013
     timestamp: 2
+    field:
+      - name: SENSOR_ID
+        desc: Sensor ID
+        width: 1
+        enum: analog_sensor_id
+      - name: VALUE
+        desc: Analog sensor value
+        width: 2
 
-  - name: GPS_LONGITUDE
+  - name: GPS_TIMESTAMP
     id: 0x014
     timestamp: 2
+    field:
+      - name: UTC_HOURS
+        desc: Hour
+        width: 1
+      - name: UTC_MINUTES
+        desc: Minutes
+        width: 1
+      - name: UTC_SECONDS
+        desc: Seconds
+        width: 1
+      - name: UTC_DSECONDS
+        desc: Decisecond
+        width: 1
 
-  - name: GPS_ALTITUDE
+  - name: GPS_LATITUDE
     id: 0x015
     timestamp: 2
+    field:
+      - name: DEGREES
+        desc: Degrees
+        width: 1
+      - name: MINUTES
+        desc: Minutes
+        width: 1
+      - name: DMINUTES_H
+        desc: No description
+        width: 2
+      - name: DIR_NS
+        desc: North/South
+        width: 1
 
-  - name: GPS_INFO
+  - name: GPS_LONGITUDE
     id: 0x016
     timestamp: 2
+    field:
+      - name: DEGREES
+        desc: Degrees
+        width: 1
+      - name: MINUTES
+        desc: Minutes
+        width: 1
+      - name: DMINUTES_H
+        desc: No description
+        width: 2
+      - name: DIR_EW
+        desc: East/West
+        width: 1
 
-  - name: STATE_EST_DATA
+  - name: GPS_ALTITUDE
     id: 0x017
     timestamp: 2
+    field:
+      - name: ALT
+        desc: Altitude in ft
+        width: 4
+      - name: DALT
+        desc: No description
+        width: 1
+
+  - name: GPS_INFO
+    id: 0x018
+    timestamp: 2
+    field:
+      - name: NUM_SAT
+        desc: Number of satellite
+        width: 1
+      - name: QUALITY
+        desc: Quality
+        width: 1
+
+  - name: STATE_EST_DATA
+    id: 0x019
+    timestamp: 2
+    field:
+      - name: STATE_EST_ID
+        desc: State ID
+        width: 1
+        enum: state_est_id
+      - name: DATA
+        desc: State data
+        width: 4
 
   - name: LEDS_ON
-    id: 0x018
+    id: 0x01A
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x019
+    id: 0x01B
     timestamp: 2
 
 boards:
@@ -440,11 +541,8 @@ enums:
     prefix: STATE_ID
     value:
       - name: POS_X
-        desc: State position X
       - name: POS_Y
-        desc: State Position Y
       - name: POS_Z
-        desc: State Position Z
       - name: VEL_X
       - name: VEL_Y
       - name: VEL_Z

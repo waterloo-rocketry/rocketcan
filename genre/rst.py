@@ -109,7 +109,10 @@ def gen_packet_format_rst(rocketcan):
             print(line_5 + '\n')
 
             for field in msg['field']:
-                print('| **' + field['name'].data + ':** ' + field['desc'].data)
+                if 'enum' in field:
+                    print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['enum'].data + '`_')
+                else:
+                    print('| **' + field['name'].data + ':** ' + field['desc'].data)
             print('')
 
     print('Enums Definition\n****************\n')

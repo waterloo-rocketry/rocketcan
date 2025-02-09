@@ -427,6 +427,7 @@ boards:
   - name: RLCS_HEATING
     desc: RLCS v4 Tank Heating Relay Board
     id: 0x82
+    doc-link: /electrical-gse/rlcs-v4/tank-heating-relay-board
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
     id: 0x83

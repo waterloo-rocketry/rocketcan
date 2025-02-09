@@ -9,8 +9,8 @@ msg_prio = {
 """
 
 message_type_py_board_inst_header = """board_inst_id = {
-    'ANY':        0x00,
-    'GENERIC':    0x01,"""
+    'ANY':         0x00,
+    'GENERIC':     0x01,"""
 
 def gen_message_types_py(rocketcan):
     print(message_types_py_header)
@@ -38,6 +38,8 @@ def gen_message_types_py(rocketcan):
         enum_val_count = 0
         for val in enum['value']:
             val_real_name = enum['prefix'].data + '_' + val['name'].data
-            print('    \'' + val_real_name + '\':' + ' ' * (26 - len(val_real_name)) + '0x' + '{:02X}'.format(enum_val_count) + ',')
+            if 'value' in val:
+                enum_val_count = val['value'].data
+            print('    \'' + val_real_name + '\':' + ' ' * (30 - len(val_real_name)) + '0x' + '{:02X}'.format(enum_val_count) + ',')
             enum_val_count += 1
         print('}\n')

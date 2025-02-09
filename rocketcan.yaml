@@ -483,6 +483,15 @@ enums:
     desc: Actuator ID for Actuator Command and Status Messages
     prefix: ACTUATOR
     value:
+      - name: OX_INJECTOR_VALVE
+        desc: Oxidizer Injector Valve, for hall-effect sensor state feedback and Canard activation
+      - name: FUEL_INJECTOR_VALVE
+        desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
+      - name: CHARGE_ENABLE
+        desc: Ground side charging board charging enable
+      - name: 5V_RAIL_ROCKET
+      - name: 5V_RAIL_PAYLOAD
+      - name: TELEMETRY
       - name: CAMERA_INJ_A
       - name: CAMERA_INJ_B
       - name: CAMERA_VENT_A
@@ -490,19 +499,21 @@ enums:
       - name: CAMERA_VENT_C
       - name: CAMERA_VENT_D
       - name: CAMERA_RECOVERY
-      - name: 5V_RAIL_ROCKET
-      - name: 5V_RAIL_PAYLOAD
-      - name: TELEMETRY
       - name: PROC_ESTIMATOR_INIT
+        desc: Actuator command to start processor board state estimation
+      - name: CANARD_ENABLE
+        desc: Power on Canard motor control board servo
+      - name: CANARD_ANGLE
+        desc: Canard Angle Command (from Processor board to Motor Control board)
 
   - name: actuator_state
     desc: Actuator State
     prefix: ACTUATOR
     value:
       - name: ON
-        desc: Actuator is in ON state
+        desc: Actuator is in ON state, or Open
       - name: OFF
-        desc: Actuator is in OFF state
+        desc: Actuator is in OFF state, or Close
       - name: UNK
         desc: Unknown state, for example when ball valve is turning
       - name: ILLEGAL
@@ -545,47 +556,64 @@ enums:
     desc: Sensor ID for Sensor Messages
     prefix: SENSOR
     value:
+      - name: 5V_VOLT
+        desc: Voltage of 5V rail in mV
       - name: 5V_CURR
-        desc: Current of 5V line in mA
-      - name: BATT_CURR
-      - name: BATT_VOLT
+        desc: Current of 5V rail in mA
+      - name: 12V_VOLT
+        desc: Voltage of 12V rail in mV
+      - name: 12V_CURR
+        desc: Current of 12V rail in mA
+      - name: CHARGE_VOLT
+        desc: LiPo charging voltage in mV
       - name: CHARGE_CURR
-        desc: LiPo charging current in mA
-      - name: 13V_CURR
+        desc: LiPo charging current in mA  
+      - name: BATT_VOLT
+        desc: Battery Voltage in mV
+      - name: BATT_CURR
+        desc: Battery Current in mA
       - name: MOTOR_CURR
-      - name: GROUND_VOLT
+        desc: Motor current in mA
       - name: PRESSURE_OX
         desc: Oxidizer Tank pressure in psi
+      - name: PRESSURE_FUEL
+        desc: Fuel Tank pressure in psi
       - name: PRESSURE_CC
         desc: Combustion Chamber pressure in psi
-      - name: PRESSURE_PNEUMATICS
-      - name: BARO
-      - name: ARM_BATT_1
-      - name: ARM_BATT_2
-      - name: MAG_1
-      - name: MAG_2
-      - name: VELOCITY
-      - name: VENT_TEMP
-      - name: RADIO_CURR
-      - name: PAYLOAD_TEMP_1
-      - name: PAYLOAD_TEMP_2
+      - name: BARO_PRESSURE
+        desc: Barometer pressure measurement
+      - name: BARO_TEMP
+        desc: Barometer temperature measurement
+      - name: RA_BATT_VOLT_1
+      - name: RA_BATT_VOLT_2
+      - name: RA_BATT_CURR_1
+      - name: RA_BATT_CURR_2
+      - name: RA_MAG_VOLT_1
+      - name: RA_MAG_VOLT_2
+      - name: FPS
+        desc: Camera framerate
+      - name: CANARD_ENCODER_1
+      - name: CANARD_ENCODER_2
 
   - name: state_est_id
     desc: State Estimation data field indentifier
     prefix: STATE_ID
     value:
-      - name: POS_X
-      - name: POS_Y
-      - name: POS_Z
-      - name: VEL_X
-      - name: VEL_Y
-      - name: VEL_Z
-      - name: ACC_X
-      - name: ACC_Y
-      - name: ACC_Z
+      - name: ALT_Q0
+      - name: ALT_Q1
+      - name: ALT_Q2
+      - name: RATE_WX
+      - name: RATE_WY
+      - name: RATE_WZ
+      - name: VEL_VX
+      - name: VEL_VY
+      - name: VEL_VZ
+      - name: ALT
+      - name: COEFF_CL
       - name: ANGLE_YAW
       - name: ANGLE_PITCH
       - name: ANGLE_ROLL
       - name: RATE_YAW
       - name: RATE_PITCH
       - name: RATE_ROLL
+      - name: CANARD_ANGLE

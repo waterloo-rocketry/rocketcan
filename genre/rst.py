@@ -51,6 +51,7 @@ def gen_board_id_rst(rocketcan):
 
 def gen_packet_format_rst(rocketcan):
     print('Packet Format\n#####################\n')
+    print('**Note:** All multi-byte data field are big-endian\n')
     print('Message Packet Format Definition\n********************************\n')
     
     for msg in rocketcan['messages']:
@@ -66,20 +67,15 @@ def gen_packet_format_rst(rocketcan):
             line_4 = '|'
             line_5 = '+'
             next_byte = 0
-            if(msg['timestamp'] == 3):
-                line_1 += '--------+--------+--------+'
-                line_2 += ' Byte 0 | Byte 1 | Byte 2 |'
-                line_3 += '========+========+========+'
-                line_4 += ' 3 byte timestamp         |'
-                line_5 += '--------------------------+'
-                next_byte += 3
-            elif(msg['timestamp'] == 2):
+
+            if(msg['timestamp'] == 2):
                 line_1 += '--------+---------+'
                 line_2 += ' Byte 0 | Byte 1  |'
                 line_3 += '========+=========+'
                 line_4 += ' 2 byte timestamp |'
                 line_5 += '--------+---------+'
                 next_byte += 2
+
             for field in msg['field']:
                 byte_str = 'Byte '
                 if(field['width'].data == 1):

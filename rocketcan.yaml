@@ -168,7 +168,7 @@ messages:
       - name: LINEAR_ACCEL
         desc: Linear Acceleration on X axis
         width: 2
-      - name: ANGULAR_VELOITY
+      - name: ANGULAR_VELOCITY
         desc: Angular Velocity around X axis
         width: 2
 
@@ -183,7 +183,7 @@ messages:
       - name: LINEAR_ACCEL
         desc: Linear Acceleration on Y axis
         width: 2
-      - name: ANGULAR_VELOITY
+      - name: ANGULAR_VELOCITY
         desc: Angular Velocity around Y axis
         width: 2
 
@@ -198,7 +198,7 @@ messages:
       - name: LINEAR_ACCEL
         desc: Linear Acceleration on Z axis
         width: 2
-      - name: ANGULAR_VELOITY
+      - name: ANGULAR_VELOCITY
         desc: Angular Velocity around Z axis
         width: 2
 
@@ -544,13 +544,13 @@ enums:
     desc: IMU Unique Indentifier
     prefix: IMU
     value:
-      - name: PROC_POLULU_ALTIMU10
+      - name: PROC_ALTIMU10
         desc: Polulo AltIMU-10 Connected to Processor Board
-      - name: PROC_MOVELLA_MTI630
+      - name: PROC_MTI630
         desc: Movella MTI-630 Connected to Processor Board
-      - name: PROC_ST
+      - name: PROC_LSM6DSO32
         desc: ST LSM6DSO32 Soldered on Processor Board
-      - name: SRAD_ALT_POLULU_ALTIMU10
+      - name: SRAD_ALT_ALTIMU10
         desc: Polulo AltIMU-10 Connected to SRAD Altimeter
 
   - name: analog_sensor_id

@@ -595,14 +595,16 @@ enums:
         desc: Camera framerate
       - name: CANARD_ENCODER_1
       - name: CANARD_ENCODER_2
+      - name: PROC_FLIGHT_PHASE_STATUS
 
   - name: state_est_id
     desc: State Estimation data field indentifier
     prefix: STATE_ID
     value:
-      - name: ALT_Q0
-      - name: ALT_Q1
-      - name: ALT_Q2
+      - name: ATT_Q0
+      - name: ATT_Q1
+      - name: ATT_Q2
+      - name: ATT_Q3
       - name: RATE_WX
       - name: RATE_WY
       - name: RATE_WZ
@@ -611,10 +613,4 @@ enums:
       - name: VEL_VZ
       - name: ALT
       - name: COEFF_CL
-      - name: ANGLE_YAW
-      - name: ANGLE_PITCH
-      - name: ANGLE_ROLL
-      - name: RATE_YAW
-      - name: RATE_PITCH
-      - name: RATE_ROLL
       - name: CANARD_ANGLE

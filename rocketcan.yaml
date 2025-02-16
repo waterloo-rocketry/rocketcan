@@ -72,8 +72,8 @@ messages:
         desc: Acturator ID
         width: 1
         enum: actuator_id
-      - name: ACTUATOR_STATE
-        desc: Actuator State
+      - name: ACTUATOR_CMD_STATE
+        desc: Actuator Commanded State
         width: 1
         enum: actuator_state
 
@@ -86,8 +86,8 @@ messages:
         desc: Acturator ID
         width: 1
         enum: actuator_id
-      - name: ACTUATOR_ANALOG_STATE
-        desc: Actuator State (16 bit analog, Board/Actuator specific)
+      - name: ACTUATOR_ANALOG_CMD_STATE
+        desc: Actuator Analog Commanded State (16 bit analog, Definition Board/Actuator specific)
         width: 2
 
   - name: ACTUATOR_STATUS
@@ -103,8 +103,8 @@ messages:
         desc: Actuator Current State
         width: 1
         enum: actuator_state
-      - name: ACTUATOR_REQ_STATE
-        desc: Actuator Requested State
+      - name: ACTUATOR_CMD_STATE
+        desc: Actuator Commanded State
         width: 1
         enum: actuator_state
 
@@ -147,7 +147,7 @@ messages:
     id: 0x00B
     timestamp: 2
     field:
-      - name: TEMP_SENSOR_NUM
+      - name: TEMP_SENSOR_ID
         desc: Tempterature sensor ID
         width: 1
       - name: TEMP
@@ -338,7 +338,7 @@ messages:
         width: 1
         enum: state_est_id
       - name: DATA
-        desc: State data
+        desc: State data (IEEE 754 floating point)
         width: 4
 
   - name: LEDS_ON

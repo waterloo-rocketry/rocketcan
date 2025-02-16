@@ -38,12 +38,18 @@ messages:
     id: 0x004
     timestamp: 2
     field:
+      - name: BOARD_TYPE_ID
+        desc: Board Type ID of target board, cannot be zero
+        width: 1
+      - name: BOARD_INST_ID
+        desc: Board Inst ID of target board, set to 0 to set all board of specific type
+        width: 1
       - name: CONFIG_ID
         desc: Configuration ID, Board Specific
         width: 2
       - name: CONFIG_VALUE
         desc: Configuration Value, Board and Config ID specific
-        width: 4
+        width: 2
 
   - name: CONFIG_STATUS
     desc: Broadcast board specific configuration, for verify CONFIG_SET success
@@ -55,7 +61,7 @@ messages:
         width: 2
       - name: CONFIG_VALUE
         desc: Configuration Value, Board and Config ID specific
-        width: 4
+        width: 2
 
   - name: ACTUATOR_CMD
     desc: Set actuator commanded state

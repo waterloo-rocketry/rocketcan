@@ -84,18 +84,18 @@ def gen_packet_format_rst(rocketcan):
                     byte_str = byte_str + str(next_byte) + '-' + str(next_byte + field['width'].data - 1)
                 if(len(byte_str) > len(field['name'].data)):
                     box_width = len(byte_str)
-                    line_1 = line_1 + '-' * box_width + '+'
-                    line_2 = line_2 + byte_str + '|'
-                    line_3 = line_3 + '=' * box_width + '+'
-                    line_4 = line_4 + field['name'].data + ' ' * (box_width - len(field['name'].data)) + '|'
-                    line_5 = line_5 + '-' * box_width + '+'
+                    line_1 = line_1 + '-' * (box_width + 2) + '+'
+                    line_2 = line_2 + ' ' + byte_str + ' |'
+                    line_3 = line_3 + '=' * (box_width + 2) + '+'
+                    line_4 = line_4 + ' ' + field['name'].data + ' ' * (box_width - len(field['name'].data)) + ' |'
+                    line_5 = line_5 + '-' * (box_width + 2) + '+'
                 else:
                     box_width = len(field['name'].data)
-                    line_1 = line_1 + '-' * box_width + '+'
-                    line_2 = line_2 + byte_str + ' ' * (box_width - len(byte_str)) + '|'
-                    line_3 = line_3 + '=' * box_width + '+'
-                    line_4 = line_4 + field['name'].data + '|'
-                    line_5 = line_5 + '-' * box_width + '+'
+                    line_1 = line_1 + '-' * (box_width + 2) + '+'
+                    line_2 = line_2 + ' ' + byte_str + ' ' * (box_width - len(byte_str)) + ' |'
+                    line_3 = line_3 + '=' * (box_width + 2) + '+'
+                    line_4 = line_4 + ' ' + field['name'].data + ' |'
+                    line_5 = line_5 + '-' * (box_width + 2) + '+'
                     next_byte += field['width'].data
 
             print(line_1)

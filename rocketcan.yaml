@@ -361,6 +361,11 @@ boards:
     desc: Canard Motor Control Board
     id: 0x02
     doc-link: /controls/motor-control-board/index
+    inst:
+      - name: PRIMARY
+        desc: Canard Motor Control Board Primary MCU
+      - name: FAILSAFE
+        desc: Canard Motor Control Board Failsafe MCU
   - name: CAMERA
     desc: Flight Camera Board
     id: 0x03

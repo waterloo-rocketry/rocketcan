@@ -1,0 +1,627 @@
+messages:
+  - name: GENERAL_BOARD_STATUS
+    desc: Board status broadcast
+    id: 0x001
+    timestamp: 2
+    field:
+      - name: GENERAL_ERROR_BITFIELD
+        desc: General error code bitfield
+        width: 4
+        enum: general_board_status
+      - name: BOARD_ERROR_BITFIELD
+        desc: Board specific error code bitfield
+        width: 2
+
+  - name: RESET_CMD
+    desc: Command to reset boards
+    id: 0x002
+    timestamp: 2
+    field:
+      - name: BOARD_TYPE_ID
+        desc: Board Type ID of board to reset, set to 0 to reset all boards on bus
+        width: 1
+      - name: BOARD_INST_ID
+        desc: Board Inst ID of board to reset, set to 0 to reset all board of specific type
+        width: 1
+
+  - name: DEBUG_RAW
+    desc: 6-bytes of raw data
+    id: 0x003
+    timestamp: 2
+    field:
+      - name: RAW_DATA
+        desc: Raw data, 6 bytes
+        width: 6
+
+  - name: CONFIG_SET
+    desc: Set board specific configuration
+    id: 0x004
+    timestamp: 2
+    field:
+      - name: BOARD_TYPE_ID
+        desc: Board Type ID of target board, cannot be zero
+        width: 1
+      - name: BOARD_INST_ID
+        desc: Board Inst ID of target board, set to 0 to set all board of specific type
+        width: 1
+      - name: CONFIG_ID
+        desc: Configuration ID, Board Specific
+        width: 2
+      - name: CONFIG_VALUE
+        desc: Configuration Value, Board and Config ID specific
+        width: 2
+
+  - name: CONFIG_STATUS
+    desc: Broadcast board specific configuration, for verify CONFIG_SET success
+    id: 0x005
+    timestamp: 2
+    field:
+      - name: CONFIG_ID
+        desc: Configuration ID, Board Specific
+        width: 2
+      - name: CONFIG_VALUE
+        desc: Configuration Value, Board and Config ID specific
+        width: 2
+
+  - name: ACTUATOR_CMD
+    desc: Set actuator commanded state
+    id: 0x006
+    timestamp: 2
+    field:
+      - name: ACTUATOR_ID
+        desc: Acturator ID
+        width: 1
+        enum: actuator_id
+      - name: ACTUATOR_CMD_STATE
+        desc: Actuator Commanded State
+        width: 1
+        enum: actuator_state
+
+  - name: ACTUATOR_ANALOG_CMD
+    desc: Analog Actuator Command
+    id: 0x007
+    timestamp: 2
+    field:
+      - name: ACTUATOR_ID
+        desc: Acturator ID
+        width: 1
+        enum: actuator_id
+      - name: ACTUATOR_ANALOG_CMD_STATE
+        desc: Actuator Analog Commanded State (16 bit analog, Definition Board/Actuator specific)
+        width: 2
+
+  - name: ACTUATOR_STATUS
+    desc: Actuator Status Message
+    id: 0x008
+    timestamp: 2
+    field:
+      - name: ACTUATOR_ID
+        desc: Acturator ID
+        width: 1
+        enum: actuator_id
+      - name: ACTUATOR_CURR_STATE
+        desc: Actuator Current State
+        width: 1
+        enum: actuator_state
+      - name: ACTUATOR_CMD_STATE
+        desc: Actuator Commanded State
+        width: 1
+        enum: actuator_state
+
+  - name: ALT_ARM_CMD
+    desc: Command to arm altimeter
+    id: 0x009
+    timestamp: 2
+    field:
+      - name: ALT_ID
+        desc: Altimeter ID
+        width: 1
+        enum: altimeter_id
+      - name: ALT_ARM_STATE
+        desc: Altimeter set arm state
+        width: 1
+        enum: alt_arm_state
+
+  - name: ALT_ARM_STATUS
+    desc: Altimeter Arm Status
+    id: 0x00A
+    timestamp: 2
+    field:
+      - name: ALT_ID
+        desc: Altimeter ID
+        width: 1
+        enum: altimeter_id
+      - name: ALT_ARM_STATE
+        desc: Altimeter current arm state
+        width: 1
+        enum: alt_arm_state
+      - name: DROGUE_V
+        desc: Drogue Pyro Voltage
+        width: 2
+      - name: MAIN_V
+        desc: Main Pyro Voltage
+        width: 2
+
+  - name: SENSOR_TEMP
+    desc: Temperature Sensor
+    id: 0x00B
+    timestamp: 2
+    field:
+      - name: TEMP_SENSOR_ID
+        desc: Tempterature sensor ID
+        width: 1
+      - name: TEMP
+        desc: Temperature
+        width: 4
+
+  - name: SENSOR_ALTITUDE
+    desc: Altitude sensor message(exclude GPS with have a specific message)
+    id: 0x00C
+    timestamp: 2
+    field:
+      - name: ALT
+        desc: Altitude in ft
+        width: 4
+
+  - name: SENSOR_IMU_X
+    id: 0x00D
+    timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: LINEAR_ACCEL
+        desc: Linear Acceleration on X axis
+        width: 2
+      - name: ANGULAR_VELOCITY
+        desc: Angular Velocity around X axis
+        width: 2
+
+  - name: SENSOR_IMU_Y
+    id: 0x00E
+    timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: LINEAR_ACCEL
+        desc: Linear Acceleration on Y axis
+        width: 2
+      - name: ANGULAR_VELOCITY
+        desc: Angular Velocity around Y axis
+        width: 2
+
+  - name: SENSOR_IMU_Z
+    id: 0x00F
+    timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: LINEAR_ACCEL
+        desc: Linear Acceleration on Z axis
+        width: 2
+      - name: ANGULAR_VELOCITY
+        desc: Angular Velocity around Z axis
+        width: 2
+
+  - name: SENSOR_MAG_X
+    id: 0x010
+    timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: MAG
+        desc: magnetometer X value
+        width: 2
+
+  - name: SENSOR_MAG_Y
+    id: 0x011
+    timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: MAG
+        desc: magnetometer Y value
+        width: 2
+
+  - name: SENSOR_MAG_Z
+    id: 0x012
+    timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: MAG
+        desc: magnetometer Z value
+        width: 2
+    
+  - name: SENSOR_ANALOG
+    id: 0x013
+    timestamp: 2
+    field:
+      - name: SENSOR_ID
+        desc: Sensor ID
+        width: 1
+        enum: analog_sensor_id
+      - name: VALUE
+        desc: Analog sensor value
+        width: 2
+
+  - name: GPS_TIMESTAMP
+    id: 0x014
+    timestamp: 2
+    field:
+      - name: UTC_HOURS
+        desc: Hour
+        width: 1
+      - name: UTC_MINUTES
+        desc: Minutes
+        width: 1
+      - name: UTC_SECONDS
+        desc: Seconds
+        width: 1
+      - name: UTC_DSECONDS
+        desc: Decisecond
+        width: 1
+
+  - name: GPS_LATITUDE
+    id: 0x015
+    timestamp: 2
+    field:
+      - name: DEGREES
+        desc: Degrees
+        width: 1
+      - name: MINUTES
+        desc: Minutes
+        width: 1
+      - name: DMINUTES_H
+        desc: No description
+        width: 2
+      - name: DIR_NS
+        desc: North/South
+        width: 1
+
+  - name: GPS_LONGITUDE
+    id: 0x016
+    timestamp: 2
+    field:
+      - name: DEGREES
+        desc: Degrees
+        width: 1
+      - name: MINUTES
+        desc: Minutes
+        width: 1
+      - name: DMINUTES_H
+        desc: No description
+        width: 2
+      - name: DIR_EW
+        desc: East/West
+        width: 1
+
+  - name: GPS_ALTITUDE
+    id: 0x017
+    timestamp: 2
+    field:
+      - name: ALT
+        desc: Altitude in ft
+        width: 4
+      - name: DALT
+        desc: No description
+        width: 1
+
+  - name: GPS_INFO
+    id: 0x018
+    timestamp: 2
+    field:
+      - name: NUM_SAT
+        desc: Number of satellite
+        width: 1
+      - name: QUALITY
+        desc: Quality
+        width: 1
+
+  - name: STATE_EST_DATA
+    id: 0x019
+    timestamp: 2
+    field:
+      - name: STATE_EST_ID
+        desc: State ID
+        width: 1
+        enum: state_est_id
+      - name: DATA
+        desc: State data (IEEE 754 floating point)
+        width: 4
+
+  - name: LEDS_ON
+    id: 0x01A
+    timestamp: 2
+
+  - name: LEDS_OFF
+    id: 0x01B
+    timestamp: 2
+
+boards:
+  - name: ANY
+    desc: Any Board
+    id: 0x00
+  - name: INJ_SENSOR
+    desc: Injector Sensor Hub Board
+    id: 0x01
+    doc-link: /avionics/injector-sensor-hub/index
+  - name: CANARD_MOTOR
+    desc: Canard Motor Control Board
+    id: 0x02
+    doc-link: /controls/motor-control-board/index
+    inst:
+      - name: PRIMARY
+        desc: Canard Motor Control Board Primary MCU
+      - name: FAILSAFE
+        desc: Canard Motor Control Board Failsafe MCU
+  - name: CAMERA
+    desc: Flight Camera Board
+    id: 0x03
+    doc-link: /avionics/camera-board/index
+    inst:
+      - name: INJ_A
+        desc: Injector Section Camera A
+      - name: INJ_B
+        desc: Injector Section Camera B
+      - name: VENT_A
+        desc: Vent Section Camera A
+      - name: VENT_B
+        desc: Vent Section Camera B
+      - name: VENT_C
+        desc: Vent Section Camera C
+      - name: VENT_D
+        desc: Vent Section Camera D
+      - name: RECOVERY
+        desc: Recovery Bulkhead Camera
+  - name: POWER
+    desc: Power Board
+    id: 0x04
+    doc-link: /avionics/rocket-power-board/index
+    inst:
+      - name: ROCKET
+        desc: Rocket Power Board
+      - name: PAYLOAD
+        desc: Payload Power Board
+  - name: LOGGER
+    desc: CAN Logger Board
+    id: 0x05
+  - name: PROCESSOR
+    desc: Canard Processor Board
+    id: 0x06
+    doc-link: /controls/processor-board/index
+  - name: TELEMETRY
+    desc: Live Telemetry Board
+    id: 0x07
+    doc-link: /avionics/live-telemetry/index
+  - name: GPS
+    desc: COTS GPS Receiver Board
+    id: 0x08
+    doc-link: /avionics/gps-board/index
+  - name: SRAD_GNSS
+    desc: SRAD GNSS Receiver Board
+    id: 0x09
+    doc-link: /avionics/srad-gnss-receiver/index
+  - name: ALTIMETER
+    desc: SRAD Altimeter
+    id: 0x0A
+    doc-link: /avionics/srad-altimeter/index
+  - name: ARMING
+    desc: Remote Arming Board
+    id: 0x0B
+    doc-link: /avionics/remote-arming/index
+  - name: PAY_SENSOR
+    desc: Payload Sensor Board
+    id: 0x40
+  - name: PAY_MOTOR
+    desc: Payload Motor Control Board
+    id: 0x41
+  - name: RLCS_GLS
+    desc: RLCS v4 Ground Launch Sequencer
+    id: 0x80
+    doc-link: /electrical-gse/rlcs-v4/ground-launch-sequencer-board
+  - name: RLCS_RELAY
+    desc: RLCS v4 Relay Board (Valve and Ignition)
+    id: 0x81
+    doc-link: /electrical-gse/rlcs-v4/towerside-relay-board
+  - name: RLCS_HEATING
+    desc: RLCS v4 Tank Heating Relay Board
+    id: 0x82
+    doc-link: /electrical-gse/rlcs-v4/tank-heating-relay-board
+  - name: DAQ
+    desc: DAQ(Data Acquisition System) CAN Support
+    id: 0x83
+    doc-link: /electrical-gse/daq/index
+  - name: CHARGING
+    desc: Ground Side LiPo Charging Board
+    id: 0x84
+  - name: THERMOCOUPLE
+    desc: Thermocouple Board (K-type)
+    id: 0x85
+    doc-link: /electrical-gse/daq/thermocouple-board
+    inst:
+      - name: 1
+        desc: Thermocouple board 1, reads channel 1 to 4
+      - name: 2
+        desc: Thermocouple board 2, reads channel 5 to 8
+      - name: 3
+        desc: Thermocouple board 3, reads channel 9 to 12
+      - name: 4
+        desc: Thermocouple board 4, reads channel 13 to 16
+  - name: USB
+    desc: USB Debug
+    id: 0x86
+    doc-link: /electrical-tools/usb-debug/index
+  - name: FYDP25_TVCA
+    desc: FYDP 25 TVC Actuator Board
+    id: 0xC0
+
+enums:
+  - name: general_board_status
+    desc: General board status bitfield
+    prefix: E
+    value:
+      - name: NOMINAL
+        value: 0
+      - name: 5V_OVER_CURRENT
+        value: 1
+      - name: 5V_OVER_VOLTAGE
+        value: 2
+      - name: 5V_UNDER_VOLTAGE
+        value: 4
+      - name: 12V_OVER_CURRENT
+        value: 8
+      - name: 12V_OVER_VOLTAGE
+        value: 16
+      - name: 12V_UNDER_VOLTAGE
+        value: 32
+      - name: IO_ERROR
+        value: 64
+      - name: FS_ERROR
+        value: 128
+
+  - name: actuator_id
+    desc: Actuator ID for Actuator Command and Status Messages
+    prefix: ACTUATOR
+    value:
+      - name: OX_INJECTOR_VALVE
+        desc: Oxidizer Injector Valve, for hall-effect sensor state feedback and Canard activation
+      - name: FUEL_INJECTOR_VALVE
+        desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
+      - name: CHARGE_ENABLE
+        desc: Ground side charging board charging enable
+      - name: 5V_RAIL_ROCKET
+      - name: 5V_RAIL_PAYLOAD
+      - name: TELEMETRY
+      - name: CAMERA_INJ_A
+      - name: CAMERA_INJ_B
+      - name: CAMERA_VENT_A
+      - name: CAMERA_VENT_B
+      - name: CAMERA_VENT_C
+      - name: CAMERA_VENT_D
+      - name: CAMERA_RECOVERY
+      - name: PROC_ESTIMATOR_INIT
+        desc: Actuator command to start processor board state estimation
+      - name: CANARD_ENABLE
+        desc: Power on Canard motor control board servo
+      - name: CANARD_ANGLE
+        desc: Canard Angle Command (from Processor board to Motor Control board)
+
+  - name: actuator_state
+    desc: Actuator State
+    prefix: ACTUATOR
+    value:
+      - name: ON
+        desc: Actuator is in ON state, or Open
+      - name: OFF
+        desc: Actuator is in OFF state, or Close
+      - name: UNK
+        desc: Unknown state, for example when ball valve is turning
+      - name: ILLEGAL
+        desc: Illegal state, for example when limit switch of both state being triggered
+
+  - name: altimeter_id
+    desc: Altimeter ID for uniquely indentify each altimeter
+    prefix: ALTIMETER
+    value:
+      - name: RAVEN
+        desc: Raven4 Altimeter (COTS)
+      - name: STRATOLOGGER
+        desc: StratoLoggerCF Altimeter (COTS)
+      - name: SRAD
+        desc: SRAD Altimeter
+
+  - name: alt_arm_state
+    desc: Altimiter Arm State
+    prefix: ALT_ARM_STATE
+    value:
+      - name: DISARMED
+        desc: Disarmed
+      - name: ARMED
+        desc: Armed
+
+  - name: imu_id
+    desc: IMU Unique Indentifier
+    prefix: IMU
+    value:
+      - name: PROC_ALTIMU10
+        desc: Polulo AltIMU-10 Connected to Processor Board
+      - name: PROC_MTI630
+        desc: Movella MTI-630 Connected to Processor Board
+      - name: PROC_LSM6DSO32
+        desc: ST LSM6DSO32 Soldered on Processor Board
+      - name: SRAD_ALT_ALTIMU10
+        desc: Polulo AltIMU-10 Connected to SRAD Altimeter
+
+  - name: analog_sensor_id
+    desc: Sensor ID for Sensor Messages
+    prefix: SENSOR
+    value:
+      - name: 5V_VOLT
+        desc: Voltage of 5V rail in mV
+      - name: 5V_CURR
+        desc: Current of 5V rail in mA
+      - name: 12V_VOLT
+        desc: Voltage of 12V rail in mV
+      - name: 12V_CURR
+        desc: Current of 12V rail in mA
+      - name: CHARGE_VOLT
+        desc: LiPo charging voltage in mV
+      - name: CHARGE_CURR
+        desc: LiPo charging current in mA  
+      - name: BATT_VOLT
+        desc: Battery Voltage in mV
+      - name: BATT_CURR
+        desc: Battery Current in mA
+      - name: MOTOR_CURR
+        desc: Motor current in mA
+      - name: PRESSURE_OX
+        desc: Oxidizer Tank pressure in psi
+      - name: PRESSURE_FUEL
+        desc: Fuel Tank pressure in psi
+      - name: PRESSURE_CC
+        desc: Combustion Chamber pressure in psi
+      - name: BARO_PRESSURE
+        desc: Barometer pressure measurement
+      - name: BARO_TEMP
+        desc: Barometer temperature measurement
+      - name: RA_BATT_VOLT_1
+      - name: RA_BATT_VOLT_2
+      - name: RA_BATT_CURR_1
+      - name: RA_BATT_CURR_2
+      - name: RA_MAG_VOLT_1
+      - name: RA_MAG_VOLT_2
+      - name: FPS
+        desc: Camera framerate
+      - name: CANARD_ENCODER_1
+      - name: CANARD_ENCODER_2
+      - name: PROC_FLIGHT_PHASE_STATUS
+
+  - name: state_est_id
+    desc: State Estimation data field indentifier
+    prefix: STATE_ID
+    value:
+      - name: ATT_Q0
+      - name: ATT_Q1
+      - name: ATT_Q2
+      - name: ATT_Q3
+      - name: RATE_WX
+      - name: RATE_WY
+      - name: RATE_WZ
+      - name: VEL_VX
+      - name: VEL_VY
+      - name: VEL_VZ
+      - name: ALT
+      - name: COEFF_CL
+      - name: CANARD_ANGLE

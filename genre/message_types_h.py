@@ -1,7 +1,7 @@
 message_types_h_header = """// Auto generated file, do not edit directly
 
-#ifndef _CANLIB_MESSAGE_TYPES_H
-#define _CANLIB_MESSAGE_TYPES_H
+#ifndef CANLIB_MESSAGE_TYPES_H
+#define CANLIB_MESSAGE_TYPES_H
 
 // Message Priority
 typedef enum {
@@ -46,17 +46,18 @@ def gen_message_types_h(rocketcan):
             print('} can_board_inst_id_' + board['name'].data.lower() + '_t;\n')
 
     for enum in rocketcan['enums']:
-        first = True
+        index = 0
+        pure_index = True
         print('typedef enum {')
         for val in enum['value']:
             if 'value' in val:
                 print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0x' + '{:02X}'.format(val['value'].data) + ',')
+                pure_index = False
             else:
-                if(first):
-                    print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0,')
-                else:
-                    print('    ' + enum['prefix'].data + '_' + val['name'].data + ',')
-            first = False
+                print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0x' + '{:02X}'.format(index) + ',')
+                index += 1
+        if(pure_index):
+            print('    ' + enum['prefix'].data + '_ENUM_MAX = 0x' + '{:02X}'.format(index) + ',')
         print('} can_' + enum['name'].data + '_t;\n')
 
     print('#endif')

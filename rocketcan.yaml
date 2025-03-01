@@ -520,7 +520,7 @@ enums:
 
   - name: actuator_state
     desc: Actuator State
-    prefix: ACTUATOR
+    prefix: ACT_STATE
     value:
       - name: ON
         desc: Actuator is in ON state, or Open

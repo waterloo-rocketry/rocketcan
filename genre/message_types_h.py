@@ -22,10 +22,14 @@ typedef enum {
 def gen_message_types_h(rocketcan):
     print(message_types_h_header)
 
+    message_id_max = 0
     print('// Message Types')
     print('typedef enum {')
     for msg in rocketcan['messages']:
         print("    MSG_" + msg['name'].data + ' = 0x' + '{:03X}'.format(msg['id'].data) + ',')
+        if(msg['id'].data > message_id_max):
+            message_id_max = msg['id'].data
+    print('    MSG_ID_ENUM_MAX = 0x' + '{:03X}'.format(message_id_max + 1) + ',')
     print('} can_msg_type_t;\n')
 
     print('// Board Type IDs')

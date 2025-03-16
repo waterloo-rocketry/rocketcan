@@ -468,29 +468,6 @@ boards:
     id: 0xC0
 
 enums:
-  - name: general_board_status
-    desc: General board status bitfield
-    prefix: E
-    value:
-      - name: NOMINAL
-        value: 0
-      - name: 5V_OVER_CURRENT
-        value: 1
-      - name: 5V_OVER_VOLTAGE
-        value: 2
-      - name: 5V_UNDER_VOLTAGE
-        value: 4
-      - name: 12V_OVER_CURRENT
-        value: 8
-      - name: 12V_OVER_VOLTAGE
-        value: 16
-      - name: 12V_UNDER_VOLTAGE
-        value: 32
-      - name: IO_ERROR
-        value: 64
-      - name: FS_ERROR
-        value: 128
-
   - name: actuator_id
     desc: Actuator ID for Actuator Command and Status Messages
     prefix: ACTUATOR
@@ -626,3 +603,17 @@ enums:
       - name: ALT
       - name: COEFF_CL
       - name: CANARD_ANGLE
+
+bitfields:
+  - name: general_board_status
+    desc: General board status bitfield
+    prefix: E
+    bits:
+      - name: 5V_OVER_CURRENT
+      - name: 5V_OVER_VOLTAGE
+      - name: 5V_UNDER_VOLTAGE
+      - name: 12V_OVER_CURRENT
+      - name: 12V_OVER_VOLTAGE
+      - name: 12V_UNDER_VOLTAGE
+      - name: IO_ERROR
+      - name: FS_ERROR

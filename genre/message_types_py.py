@@ -40,6 +40,15 @@ def gen_message_types_py(rocketcan):
             val_real_name = enum['prefix'].data + '_' + val['name'].data
             if 'value' in val:
                 enum_val_count = val['value'].data
-            print('    \'' + val_real_name + '\':' + ' ' * (30 - len(val_real_name)) + '0x' + '{:02X}'.format(enum_val_count) + ',')
+            print('    \'' + val_real_name + '\':' + ' ' * (32 - len(val_real_name)) + '0x' + '{:02X}'.format(enum_val_count) + ',')
             enum_val_count += 1
+        print('}\n')
+    
+    for bitfield in rocketcan['bitfields']:
+        print(bitfield['name'].data + '_offset = {')
+        bit_count = 0
+        for bit in bitfield['bits']:
+            bit_real_name = bitfield['prefix'].data + '_' + bit['name'].data
+            print('    \'' + bit_real_name + '\':' + ' ' * (20 - len(bit_real_name)) + '0x' + '{:02X}'.format(bit_count) + ',')
+            bit_count += 1
         print('}\n')

@@ -64,4 +64,12 @@ def gen_message_types_h(rocketcan):
             print('    ' + enum['prefix'].data + '_ENUM_MAX = 0x' + '{:02X}'.format(index) + ',')
         print('} can_' + enum['name'].data + '_t;\n')
 
+    for bitfields in rocketcan['bitfields']:
+        index = 0
+        print('typedef enum {')
+        for bit in bitfields['bits']:
+            print('    ' + bitfields['prefix'].data + '_' + bit['name'].data + '_OFFSET = 0x' + '{:02X}'.format(index) + ',')
+            index += 1
+        print('} can_' + bitfields['name'].data + '_offset_t;\n')
+            
     print('#endif')

@@ -52,6 +52,15 @@ def main():
                 Optional("value"):Int(),
                 Optional("desc"):Str()
             }))
+        })),
+        "bitfields" : Seq(Map({
+            "name":Str(),
+            "desc":Str(),
+            "prefix":Str(),
+            "bits":Seq(Map({
+                "name":Str(),
+                Optional("desc"):Str()
+            }))
         }))
     })
 

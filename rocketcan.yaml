@@ -7,7 +7,7 @@ messages:
       - name: GENERAL_ERROR_BITFIELD
         desc: General error code bitfield
         width: 4
-        enum: general_board_status
+        bitfield: general_board_status
       - name: BOARD_ERROR_BITFIELD
         desc: Board specific error code bitfield
         width: 2

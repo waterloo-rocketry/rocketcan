@@ -107,6 +107,8 @@ def gen_packet_format_rst(rocketcan):
             for field in msg['field']:
                 if 'enum' in field:
                     print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['enum'].data + '`_')
+                elif 'bitfield' in field:
+                    print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['bitfield'].data + '`_')
                 else:
                     print('| **' + field['name'].data + ':** ' + field['desc'].data)
             print('')
@@ -130,4 +132,23 @@ def gen_packet_format_rst(rocketcan):
                 print('     - No Description')
             print('     - 0x' + '{:02X}'.format(enum_value_id))
             enum_value_id += 1
+        print('')
+
+    print('Bitfields Definition\n*********************\n')
+    for bitfield in rocketcan['bitfields']:
+        print(bitfield['name'].data)
+        print('=' * len(bitfield['name'].data) + '\n')
+        print(bitfield['desc'].data + '\n')
+        print('.. list-table:: ' + bitfield['name'].data + ' Bitfield bits')
+        print('   :widths: 25 60 15\n   :header-rows: 1\n')
+        print('   * - Bitfield Name\n     - Description\n     - Offset')
+        bit_offset = 0
+        for bit in bitfield['bits']:
+            print('   * - ' + bit['name'].data)
+            if 'desc' in bit:
+                print('     - ' + bit['desc'].data)
+            else:
+                print('     - No Description')
+            print('     - 0x' + '{:02X}'.format(bit_offset))
+            bit_offset += 1
         print('')

@@ -25,13 +25,7 @@ def main():
                 Optional("desc"):Str(),
                 Optional("unit"):Str(),
                 Optional("enum"):Str(),
-                Optional("bits"):Seq(Map({
-                    "name":Str(),
-                    "width":Int(),
-                    Optional("desc"):Str(),
-                    Optional("unit"):Str(),
-                    Optional("enum"):Str(),
-                }))
+                Optional("bitfield"):Str()
             }))})),
         "boards" : Seq(Map({
             "name":Str(),

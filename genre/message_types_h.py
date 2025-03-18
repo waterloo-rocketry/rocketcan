@@ -1,7 +1,7 @@
 message_types_h_header = """// Auto generated file, do not edit directly
 
-#ifndef _CANLIB_MESSAGE_TYPES_H
-#define _CANLIB_MESSAGE_TYPES_H
+#ifndef CANLIB_MESSAGE_TYPES_H
+#define CANLIB_MESSAGE_TYPES_H
 
 // Message Priority
 typedef enum {
@@ -22,10 +22,14 @@ typedef enum {
 def gen_message_types_h(rocketcan):
     print(message_types_h_header)
 
+    message_id_max = 0
     print('// Message Types')
     print('typedef enum {')
     for msg in rocketcan['messages']:
         print("    MSG_" + msg['name'].data + ' = 0x' + '{:03X}'.format(msg['id'].data) + ',')
+        if(msg['id'].data > message_id_max):
+            message_id_max = msg['id'].data
+    print('    MSG_ID_ENUM_MAX = 0x' + '{:03X}'.format(message_id_max + 1) + ',')
     print('} can_msg_type_t;\n')
 
     print('// Board Type IDs')
@@ -46,17 +50,26 @@ def gen_message_types_h(rocketcan):
             print('} can_board_inst_id_' + board['name'].data.lower() + '_t;\n')
 
     for enum in rocketcan['enums']:
-        first = True
+        index = 0
+        pure_index = True
         print('typedef enum {')
         for val in enum['value']:
             if 'value' in val:
                 print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0x' + '{:02X}'.format(val['value'].data) + ',')
+                pure_index = False
             else:
-                if(first):
-                    print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0,')
-                else:
-                    print('    ' + enum['prefix'].data + '_' + val['name'].data + ',')
-            first = False
+                print('    ' + enum['prefix'].data + '_' + val['name'].data + ' = 0x' + '{:02X}'.format(index) + ',')
+                index += 1
+        if(pure_index):
+            print('    ' + enum['prefix'].data + '_ENUM_MAX = 0x' + '{:02X}'.format(index) + ',')
         print('} can_' + enum['name'].data + '_t;\n')
 
+    for bitfields in rocketcan['bitfields']:
+        index = 0
+        print('typedef enum {')
+        for bit in bitfields['bits']:
+            print('    ' + bitfields['prefix'].data + '_' + bit['name'].data + '_OFFSET = 0x' + '{:02X}'.format(index) + ',')
+            index += 1
+        print('} can_' + bitfields['name'].data + '_offset_t;\n')
+            
     print('#endif')

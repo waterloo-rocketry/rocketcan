@@ -244,8 +244,23 @@ messages:
         desc: magnetometer Z value
         width: 2
     
-  - name: SENSOR_ANALOG
+  - name: SENSOR_BARO
     id: 0x013
+    timestamp: 2
+    field:
+      - name: IMU_ID
+        desc: IMU Unique Indentifier
+        width: 1
+        enum: imu_id
+      - name: PRESSURE
+        desc: barometer pressure reading, raw value
+        width: 3
+      - name: TEMP
+        desc: barometer temperature reading, raw value
+        width: 2
+
+  - name: SENSOR_ANALOG
+    id: 0x014
     timestamp: 2
     field:
       - name: SENSOR_ID
@@ -257,7 +272,7 @@ messages:
         width: 2
 
   - name: GPS_TIMESTAMP
-    id: 0x014
+    id: 0x015
     timestamp: 2
     field:
       - name: UTC_HOURS
@@ -274,7 +289,7 @@ messages:
         width: 1
 
   - name: GPS_LATITUDE
-    id: 0x015
+    id: 0x016
     timestamp: 2
     field:
       - name: DEGREES
@@ -291,7 +306,7 @@ messages:
         width: 1
 
   - name: GPS_LONGITUDE
-    id: 0x016
+    id: 0x017
     timestamp: 2
     field:
       - name: DEGREES
@@ -308,7 +323,7 @@ messages:
         width: 1
 
   - name: GPS_ALTITUDE
-    id: 0x017
+    id: 0x018
     timestamp: 2
     field:
       - name: ALT
@@ -319,7 +334,7 @@ messages:
         width: 1
 
   - name: GPS_INFO
-    id: 0x018
+    id: 0x019
     timestamp: 2
     field:
       - name: NUM_SAT
@@ -330,7 +345,7 @@ messages:
         width: 1
 
   - name: STATE_EST_DATA
-    id: 0x019
+    id: 0x01A
     timestamp: 2
     field:
       - name: STATE_EST_ID
@@ -342,11 +357,11 @@ messages:
         width: 4
 
   - name: LEDS_ON
-    id: 0x01A
+    id: 0x01B
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x01B
+    id: 0x01C
     timestamp: 2
 
 boards:

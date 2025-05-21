@@ -10,7 +10,9 @@ msg_prio = {
 
 message_type_py_board_inst_header = """board_inst_id = {
     'ANY':         0x00,
-    'GENERIC':     0x01,"""
+    'GROUND':      0x01,
+    'ROCKET':      0x02,
+    'PAYLOAD':     0x03,"""
 
 def gen_message_types_py(rocketcan):
     print(message_types_py_header)
@@ -25,7 +27,7 @@ def gen_message_types_py(rocketcan):
     print('}\n')
 
     print(message_type_py_board_inst_header)
-    inst_id = 2
+    inst_id = 4
     for board in rocketcan['boards']:
         if "inst" in board:
             for inst in board['inst']:

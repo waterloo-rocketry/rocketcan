@@ -404,11 +404,6 @@ boards:
     desc: Power Board
     id: 0x04
     doc-link: /avionics/rocket-power-board/index
-    inst:
-      - name: ROCKET
-        desc: Rocket Power Board
-      - name: PAYLOAD
-        desc: Payload Power Board
   - name: LOGGER
     desc: CAN Logger Board
     id: 0x05

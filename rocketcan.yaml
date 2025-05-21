@@ -511,6 +511,8 @@ enums:
         desc: Power on Canard motor control board servo
       - name: CANARD_ANGLE
         desc: Canard Angle Command (from Processor board to Motor Control board)
+      - name: PAYLOAD_MOTOR_ENABLE
+        desc: Payload motor power on/off control
 
   - name: actuator_state
     desc: Actuator State
@@ -529,12 +531,16 @@ enums:
     desc: Altimeter ID for uniquely indentify each altimeter
     prefix: ALTIMETER
     value:
-      - name: RAVEN
-        desc: Raven4 Altimeter (COTS)
-      - name: STRATOLOGGER
-        desc: StratoLoggerCF Altimeter (COTS)
-      - name: SRAD
-        desc: SRAD Altimeter
+      - name: ROCKET_RAVEN
+        desc: Raven4 Altimeter on Rocket (COTS)
+      - name: ROCKET_STRATOLOGGER
+        desc: StratoLoggerCF Altimeter on Rocket (COTS)
+      - name: ROCKET_SRAD
+        desc: SRAD Altimeter on Rocket
+      - name: PAYLOAD_RAVEN
+        desc: Raven4 Altimeter on Payload (COTS)
+      - name: RAYLOAD_STRATOLOGGER
+        desc: StratoLoggerCF Altimeter on Payload (COTS)
 
   - name: alt_arm_state
     desc: Altimiter Arm State

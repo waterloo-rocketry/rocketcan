@@ -632,5 +632,8 @@ bitfields:
       - name: 12V_OVER_CURRENT
       - name: 12V_OVER_VOLTAGE
       - name: 12V_UNDER_VOLTAGE
+      - name: BATT_OVER_CURRENT
+      - name: BATT_OVER_VOLTAGE
+      - name: BATT_UNDER_VOLTAGE
       - name: IO_ERROR
       - name: FS_ERROR

@@ -14,7 +14,30 @@ Board Type IDs
 
 board_inst_id_str = """
 Board Instance IDs
-******************"""
+******************
+
+Common Instance IDs
+===================
+
+.. list-table:: Common Instance IDs
+   :widths: 25 60 15
+   :header-rows: 1
+
+   * - Enum Name
+     - Board Instance Name
+     - ID
+   * - ANY
+     - Any board
+     - 0x00
+   * - GROUND
+     - Board on ground
+     - 0x01
+   * - ROCKET
+     - Board on rocket
+     - 0x02
+   * - PAYLOAD
+     - Board in payload
+     - 0x03"""
 
 board_inst_table_header = """   :widths: 25 60 15
    :header-rows: 1
@@ -36,7 +59,7 @@ def gen_board_id_rst(rocketcan):
 
     print(board_inst_id_str)
 
-    inst_id = 2
+    inst_id = 4
     for board in rocketcan['boards']:
         if "inst" in board:
             print('\n' + board['desc'].data)

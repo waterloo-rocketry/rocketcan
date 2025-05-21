@@ -495,6 +495,8 @@ enums:
         desc: Ground side charging board charging enable
       - name: 5V_RAIL_ROCKET
       - name: 5V_RAIL_PAYLOAD
+      - name: 12V_RAIL_ROCKET
+      - name: 12V_RAIL_PAYLOAD
       - name: TELEMETRY
       - name: CAMERA_INJ_A
       - name: CAMERA_INJ_B

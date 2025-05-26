@@ -386,18 +386,14 @@ boards:
     id: 0x03
     doc-link: /avionics/camera-board/index
     inst:
-      - name: INJ_A
-        desc: Injector Section Camera A
-      - name: INJ_B
-        desc: Injector Section Camera B
-      - name: VENT_A
-        desc: Vent Section Camera A
-      - name: VENT_B
-        desc: Vent Section Camera B
-      - name: VENT_C
-        desc: Vent Section Camera C
-      - name: VENT_D
-        desc: Vent Section Camera D
+      - name: CANARD_A
+        desc: Canard Section Camera A
+      - name: CANARD_B
+        desc: Canard Section Camera B
+      - name: SIDE_A
+        desc: Side View Camera A
+      - name: SIDE_B
+        desc: Side View Camera B
       - name: RECOVERY
         desc: Recovery Bulkhead Camera
   - name: POWER
@@ -493,13 +489,12 @@ enums:
       - name: 12V_RAIL_ROCKET
       - name: 12V_RAIL_PAYLOAD
       - name: TELEMETRY
-      - name: CAMERA_INJ_A
-      - name: CAMERA_INJ_B
-      - name: CAMERA_VENT_A
-      - name: CAMERA_VENT_B
-      - name: CAMERA_VENT_C
-      - name: CAMERA_VENT_D
+      - name: CAMERA_CANARD_A
+      - name: CAMERA_CANARD_B
+      - name: CAMERA_SIDE_A
+      - name: CAMERA_SIDE_B
       - name: CAMERA_RECOVERY
+      - name: CAMERA_PAYLOAD
       - name: PROC_ESTIMATOR_INIT
         desc: Actuator command to start processor board state estimation
       - name: CANARD_ENABLE

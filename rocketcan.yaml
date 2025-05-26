@@ -441,37 +441,10 @@ boards:
     desc: RLCS v4 Relay Board (Valve and Ignition)
     id: 0x81
     doc-link: /electrical-gse/rlcs-v4/towerside-relay-board
-  - name: RLCS_HEATING
-    desc: RLCS v4 Tank Heating Relay Board
-    id: 0x82
-    doc-link: /electrical-gse/rlcs-v4/tank-heating-relay-board
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
-    id: 0x83
+    id: 0x82
     doc-link: /electrical-gse/daq/index
-  - name: CHARGING
-    desc: Ground Side LiPo Charging Board
-    id: 0x84
-  - name: THERMOCOUPLE
-    desc: Thermocouple Board (K-type)
-    id: 0x85
-    doc-link: /electrical-gse/daq/thermocouple-board
-    inst:
-      - name: 1
-        desc: Thermocouple board 1, reads channel 1 to 4
-      - name: 2
-        desc: Thermocouple board 2, reads channel 5 to 8
-      - name: 3
-        desc: Thermocouple board 3, reads channel 9 to 12
-      - name: 4
-        desc: Thermocouple board 4, reads channel 13 to 16
-  - name: USB
-    desc: USB Debug
-    id: 0x86
-    doc-link: /electrical-tools/usb-debug/index
-  - name: FYDP25_TVCA
-    desc: FYDP 25 TVC Actuator Board
-    id: 0xC0
 
 enums:
   - name: actuator_id

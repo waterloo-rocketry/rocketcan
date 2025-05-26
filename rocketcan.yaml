@@ -582,11 +582,17 @@ enums:
       - name: MOTOR_CURR
         desc: Motor current in mA
       - name: PRESSURE_OX
-        desc: Oxidizer Tank pressure in psi
+        desc: Oxidizer Tank pressure in psi, read by Ox PT
       - name: PRESSURE_FUEL
-        desc: Fuel Tank pressure in psi
-      - name: PRESSURE_CC
-        desc: Combustion Chamber pressure in psi
+        desc: Fuel Tank pressure in psi, read by Fuel PT
+      - name: PRESSURE_CC0
+        desc: Combustion Chamber pressure in psi, read by CC PT 0
+      - name: PRESSURE_CC1
+        desc: Combustion Chamber pressure in psi, read by CC PT 0
+      - name: OX_INJ_HALL
+        desc: Oxidizer Injector Valve hall-effect sensor reading
+      - name: FUEL_INJ_HALL
+        desc: Fuel Injector Valve hall-effect sensor reading
       - name: BARO_PRESSURE
         desc: Barometer pressure measurement
       - name: BARO_TEMP

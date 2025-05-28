@@ -155,13 +155,17 @@ messages:
         width: 4
 
   - name: SENSOR_ALTITUDE
-    desc: Altitude sensor message(exclude GPS with have a specific message)
+    desc: Altimeter altitude sensor message(exclude GPS with have a specific message)
     id: 0x00C
     timestamp: 2
     field:
       - name: ALT
         desc: Altitude in ft
         width: 4
+      - name: APOGEE
+        desc: Apogee detection status
+        width: 1
+        enum: apogee_state
 
   - name: SENSOR_IMU_X
     id: 0x00D
@@ -470,6 +474,10 @@ enums:
       - name: CAMERA_PAYLOAD
       - name: PROC_ESTIMATOR_INIT
         desc: Actuator command to start processor board state estimation
+      - name: SRAD_ALT_ESTIMATOR_INIT
+        desc: Actuator command to start SRAD Altimeter state estimation
+      - name: SRAD_ALT_GPS_RESET
+        desc: Actuator command to reset GPS Receiver on SRAD Altimeter
       - name: CANARD_ENABLE
         desc: Power on Canard motor control board servo
       - name: CANARD_ANGLE
@@ -549,6 +557,12 @@ enums:
         desc: Battery Current in mA
       - name: MOTOR_CURR
         desc: Motor current in mA
+      - name: RADIO_CURR
+        desc: Radio current in mA
+      - name: GPS_CURR
+        desc: GPS Receiver current in mA
+      - name: LOCAL_CURR
+        desc: Local voltage rail (e.g. 3.3V) current in mA
       - name: PRESSURE_OX
         desc: Oxidizer Tank pressure in psi, read by Ox PT
       - name: PRESSURE_FUEL
@@ -595,6 +609,14 @@ enums:
       - name: ALT
       - name: COEFF_CL
       - name: CANARD_ANGLE
+
+  - name: apogee_state
+    desc: Apogee detection state
+    prefix: APOGEE
+    value:
+      - name: UNKNOWN
+      - name: NOT_REACHED
+      - name: REACHED
 
 bitfields:
   - name: general_board_status

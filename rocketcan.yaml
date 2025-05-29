@@ -590,7 +590,12 @@ enums:
       - name: CANARD_ENCODER_1
       - name: CANARD_ENCODER_2
       - name: PROC_FLIGHT_PHASE_STATUS
-      - name: VELOCITY
+      - name: PAYLOAD_LIM_1
+        desc: Payload Limit Switch 1
+      - name: PAYLOAD_LIM_2
+        desc: Payload Limit Switch 2
+      - name: PAYLOAD_INFRARED
+        desc: PayloadInfrared Sensor
 
   - name: state_est_id
     desc: State Estimation data field indentifier

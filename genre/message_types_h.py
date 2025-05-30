@@ -15,7 +15,9 @@ typedef enum {
 message_types_h_board_inst_generic = """// Board Instance IDs
 typedef enum {
     BOARD_INST_ID_ANY = 0x00,
-    BOARD_INST_ID_GENERIC = 0x01,
+    BOARD_INST_ID_GROUND = 0x01,
+    BOARD_INST_ID_ROCKET = 0x02,
+    BOARD_INST_ID_PAYLOAD = 0x03,
 } can_board_inst_id_t;
 """
 
@@ -40,7 +42,7 @@ def gen_message_types_h(rocketcan):
 
     print(message_types_h_board_inst_generic)
 
-    inst_id = 2
+    inst_id = 4
     for board in rocketcan['boards']:
         if "inst" in board:
             print('typedef enum {')

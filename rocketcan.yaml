@@ -155,13 +155,17 @@ messages:
         width: 4
 
   - name: SENSOR_ALTITUDE
-    desc: Altitude sensor message(exclude GPS with have a specific message)
+    desc: Altimeter altitude sensor message(exclude GPS with have a specific message)
     id: 0x00C
     timestamp: 2
     field:
       - name: ALT
         desc: Altitude in ft
         width: 4
+      - name: APOGEE
+        desc: Apogee detection status
+        width: 1
+        enum: apogee_state
 
   - name: SENSOR_IMU_X
     id: 0x00D
@@ -386,29 +390,20 @@ boards:
     id: 0x03
     doc-link: /avionics/camera-board/index
     inst:
-      - name: INJ_A
-        desc: Injector Section Camera A
-      - name: INJ_B
-        desc: Injector Section Camera B
-      - name: VENT_A
-        desc: Vent Section Camera A
-      - name: VENT_B
-        desc: Vent Section Camera B
-      - name: VENT_C
-        desc: Vent Section Camera C
-      - name: VENT_D
-        desc: Vent Section Camera D
+      - name: CANARD_A
+        desc: Canard Section Camera A
+      - name: CANARD_B
+        desc: Canard Section Camera B
+      - name: SIDE_A
+        desc: Side View Camera A
+      - name: SIDE_B
+        desc: Side View Camera B
       - name: RECOVERY
         desc: Recovery Bulkhead Camera
   - name: POWER
     desc: Power Board
     id: 0x04
     doc-link: /avionics/rocket-power-board/index
-    inst:
-      - name: ROCKET
-        desc: Rocket Power Board
-      - name: PAYLOAD
-        desc: Payload Power Board
   - name: LOGGER
     desc: CAN Logger Board
     id: 0x05
@@ -450,37 +445,10 @@ boards:
     desc: RLCS v4 Relay Board (Valve and Ignition)
     id: 0x81
     doc-link: /electrical-gse/rlcs-v4/towerside-relay-board
-  - name: RLCS_HEATING
-    desc: RLCS v4 Tank Heating Relay Board
-    id: 0x82
-    doc-link: /electrical-gse/rlcs-v4/tank-heating-relay-board
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
-    id: 0x83
+    id: 0x82
     doc-link: /electrical-gse/daq/index
-  - name: CHARGING
-    desc: Ground Side LiPo Charging Board
-    id: 0x84
-  - name: THERMOCOUPLE
-    desc: Thermocouple Board (K-type)
-    id: 0x85
-    doc-link: /electrical-gse/daq/thermocouple-board
-    inst:
-      - name: 1
-        desc: Thermocouple board 1, reads channel 1 to 4
-      - name: 2
-        desc: Thermocouple board 2, reads channel 5 to 8
-      - name: 3
-        desc: Thermocouple board 3, reads channel 9 to 12
-      - name: 4
-        desc: Thermocouple board 4, reads channel 13 to 16
-  - name: USB
-    desc: USB Debug
-    id: 0x86
-    doc-link: /electrical-tools/usb-debug/index
-  - name: FYDP25_TVCA
-    desc: FYDP 25 TVC Actuator Board
-    id: 0xC0
 
 enums:
   - name: actuator_id
@@ -495,20 +463,27 @@ enums:
         desc: Ground side charging board charging enable
       - name: 5V_RAIL_ROCKET
       - name: 5V_RAIL_PAYLOAD
+      - name: 12V_RAIL_ROCKET
+      - name: 12V_RAIL_PAYLOAD
       - name: TELEMETRY
-      - name: CAMERA_INJ_A
-      - name: CAMERA_INJ_B
-      - name: CAMERA_VENT_A
-      - name: CAMERA_VENT_B
-      - name: CAMERA_VENT_C
-      - name: CAMERA_VENT_D
+      - name: CAMERA_CANARD_A
+      - name: CAMERA_CANARD_B
+      - name: CAMERA_SIDE_A
+      - name: CAMERA_SIDE_B
       - name: CAMERA_RECOVERY
+      - name: CAMERA_PAYLOAD
       - name: PROC_ESTIMATOR_INIT
         desc: Actuator command to start processor board state estimation
+      - name: SRAD_ALT_ESTIMATOR_INIT
+        desc: Actuator command to start SRAD Altimeter state estimation
+      - name: SRAD_ALT_GPS_RESET
+        desc: Actuator command to reset GPS Receiver on SRAD Altimeter
       - name: CANARD_ENABLE
         desc: Power on Canard motor control board servo
       - name: CANARD_ANGLE
         desc: Canard Angle Command (from Processor board to Motor Control board)
+      - name: PAYLOAD_MOTOR_ENABLE
+        desc: Payload motor power on/off control
 
   - name: actuator_state
     desc: Actuator State
@@ -527,12 +502,16 @@ enums:
     desc: Altimeter ID for uniquely indentify each altimeter
     prefix: ALTIMETER
     value:
-      - name: RAVEN
-        desc: Raven4 Altimeter (COTS)
-      - name: STRATOLOGGER
-        desc: StratoLoggerCF Altimeter (COTS)
-      - name: SRAD
-        desc: SRAD Altimeter
+      - name: ROCKET_RAVEN
+        desc: Raven4 Altimeter on Rocket (COTS)
+      - name: ROCKET_STRATOLOGGER
+        desc: StratoLoggerCF Altimeter on Rocket (COTS)
+      - name: ROCKET_SRAD
+        desc: SRAD Altimeter on Rocket
+      - name: PAYLOAD_RAVEN
+        desc: Raven4 Altimeter on Payload (COTS)
+      - name: RAYLOAD_STRATOLOGGER
+        desc: StratoLoggerCF Altimeter on Payload (COTS)
 
   - name: alt_arm_state
     desc: Altimiter Arm State
@@ -578,12 +557,24 @@ enums:
         desc: Battery Current in mA
       - name: MOTOR_CURR
         desc: Motor current in mA
+      - name: RADIO_CURR
+        desc: Radio current in mA
+      - name: GPS_CURR
+        desc: GPS Receiver current in mA
+      - name: LOCAL_CURR
+        desc: Local voltage rail (e.g. 3.3V) current in mA
       - name: PRESSURE_OX
-        desc: Oxidizer Tank pressure in psi
+        desc: Oxidizer Tank pressure in psi, read by Ox PT
       - name: PRESSURE_FUEL
-        desc: Fuel Tank pressure in psi
-      - name: PRESSURE_CC
-        desc: Combustion Chamber pressure in psi
+        desc: Fuel Tank pressure in psi, read by Fuel PT
+      - name: PRESSURE_CC0
+        desc: Combustion Chamber pressure in psi, read by CC PT 0
+      - name: PRESSURE_CC1
+        desc: Combustion Chamber pressure in psi, read by CC PT 0
+      - name: OX_INJ_HALL
+        desc: Oxidizer Injector Valve hall-effect sensor reading
+      - name: FUEL_INJ_HALL
+        desc: Fuel Injector Valve hall-effect sensor reading
       - name: BARO_PRESSURE
         desc: Barometer pressure measurement
       - name: BARO_TEMP
@@ -599,7 +590,12 @@ enums:
       - name: CANARD_ENCODER_1
       - name: CANARD_ENCODER_2
       - name: PROC_FLIGHT_PHASE_STATUS
-      - name: VELOCITY
+      - name: PAYLOAD_LIM_1
+        desc: Payload Limit Switch 1
+      - name: PAYLOAD_LIM_2
+        desc: Payload Limit Switch 2
+      - name: PAYLOAD_INFRARED
+        desc: PayloadInfrared Sensor
 
   - name: state_est_id
     desc: State Estimation data field indentifier
@@ -619,6 +615,14 @@ enums:
       - name: COEFF_CL
       - name: CANARD_ANGLE
 
+  - name: apogee_state
+    desc: Apogee detection state
+    prefix: APOGEE
+    value:
+      - name: UNKNOWN
+      - name: NOT_REACHED
+      - name: REACHED
+
 bitfields:
   - name: general_board_status
     desc: General board status bitfield
@@ -630,5 +634,8 @@ bitfields:
       - name: 12V_OVER_CURRENT
       - name: 12V_OVER_VOLTAGE
       - name: 12V_UNDER_VOLTAGE
+      - name: BATT_OVER_CURRENT
+      - name: BATT_OVER_VOLTAGE
+      - name: BATT_UNDER_VOLTAGE
       - name: IO_ERROR
       - name: FS_ERROR

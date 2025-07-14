@@ -638,8 +638,10 @@ bitfields:
       - name: BATT_OVER_CURRENT
       - name: BATT_OVER_VOLTAGE
       - name: BATT_UNDER_VOLTAGE
+      - name: MOTOR_OVER_CURRENT
       - name: IO_ERROR
       - name: FS_ERROR
+      - name: WATCHDOG_TIMEOUT
 
   - name: board_specific_status
     desc: Board specific status bitfield

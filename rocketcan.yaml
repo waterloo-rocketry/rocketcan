@@ -11,6 +11,7 @@ messages:
       - name: BOARD_ERROR_BITFIELD
         desc: Board specific error code bitfield
         width: 2
+        bitfield: board_specific_status
 
   - name: RESET_CMD
     desc: Command to reset boards
@@ -639,3 +640,11 @@ bitfields:
       - name: BATT_UNDER_VOLTAGE
       - name: IO_ERROR
       - name: FS_ERROR
+
+  - name: board_specific_status
+    desc: Board specific status bitfield
+    prefix: E
+    bits:
+      - name: 12V_EFUSE_FAULT
+      - name: 5V_EFUSE_FAULT
+      - name: PT_OUT_OF_RANGE

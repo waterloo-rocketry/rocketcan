@@ -460,8 +460,10 @@ enums:
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback and Canard activation
       - name: FUEL_INJECTOR_VALVE
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
-      - name: CHARGE_ENABLE
-        desc: Ground side charging board charging enable
+      - name: ROCKET_CHARGE_ENABLE
+        desc: Rocket Ground-side Charging Enable
+      - name: PAYLOAD_CHARGE_ENABLE
+        desc: Payload Ground-side Charging Enable
       - name: 5V_RAIL_ROCKET
       - name: 5V_RAIL_PAYLOAD
       - name: 12V_RAIL_ROCKET
@@ -511,7 +513,7 @@ enums:
         desc: SRAD Altimeter on Rocket
       - name: PAYLOAD_RAVEN
         desc: Raven4 Altimeter on Payload (COTS)
-      - name: RAYLOAD_STRATOLOGGER
+      - name: PAYLOAD_STRATOLOGGER
         desc: StratoLoggerCF Altimeter on Payload (COTS)
 
   - name: alt_arm_state

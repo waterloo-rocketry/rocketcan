@@ -395,10 +395,6 @@ boards:
         desc: Canard Section Camera A
       - name: CANARD_B
         desc: Canard Section Camera B
-      - name: SIDE_A
-        desc: Side View Camera A
-      - name: SIDE_B
-        desc: Side View Camera B
       - name: RECOVERY
         desc: Recovery Bulkhead Camera
   - name: POWER
@@ -471,8 +467,6 @@ enums:
       - name: TELEMETRY
       - name: CAMERA_CANARD_A
       - name: CAMERA_CANARD_B
-      - name: CAMERA_SIDE_A
-      - name: CAMERA_SIDE_B
       - name: CAMERA_RECOVERY
       - name: CAMERA_PAYLOAD
       - name: PROC_ESTIMATOR_INIT
@@ -594,11 +588,13 @@ enums:
       - name: CANARD_ENCODER_2
       - name: PROC_FLIGHT_PHASE_STATUS
       - name: PAYLOAD_LIM_1
-        desc: Payload Limit Switch 1
+        desc: Payload Motor Board Limit Switch 1
       - name: PAYLOAD_LIM_2
-        desc: Payload Limit Switch 2
+        desc: Payload Motor Board Limit Switch 2
+      - name: PAYLOAD_SERVO_ANGLE
+        desc: Payload Servo Angle
       - name: PAYLOAD_INFRARED
-        desc: PayloadInfrared Sensor
+        desc: Payload Infrared Sensor Reading
 
   - name: state_est_id
     desc: State Estimation data field indentifier

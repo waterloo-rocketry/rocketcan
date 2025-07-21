@@ -480,7 +480,9 @@ enums:
       - name: CANARD_ANGLE
         desc: Canard Angle Command (from Processor board to Motor Control board)
       - name: PAYLOAD_MOTOR_ENABLE
-        desc: Payload motor power on/off control
+        desc: Payload Servo Motor Power Control
+      - name: PAYLOAD_LOGGING_ENABLE
+        desc: Payload Sensor Board Logging Enable Control
 
   - name: actuator_state
     desc: Actuator State
@@ -591,8 +593,8 @@ enums:
         desc: Payload Motor Board Limit Switch 1
       - name: PAYLOAD_LIM_2
         desc: Payload Motor Board Limit Switch 2
-      - name: PAYLOAD_SERVO_ANGLE
-        desc: Payload Servo Angle
+      - name: PAYLOAD_SERVO_DIRECTION
+        desc: Payload Servo Direction
       - name: PAYLOAD_INFRARED
         desc: Payload Infrared Sensor Reading
 

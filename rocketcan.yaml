@@ -562,18 +562,18 @@ enums:
         desc: GPS Receiver current in mA
       - name: LOCAL_CURR
         desc: Local voltage rail (e.g. 3.3V) current in mA
-      - name: PRESSURE_OX
-        desc: Oxidizer Tank pressure in psi, read by Ox PT
-      - name: PRESSURE_FUEL
-        desc: Fuel Tank pressure in psi, read by Fuel PT
-      - name: PRESSURE_CC0
-        desc: Combustion Chamber pressure in psi, read by CC PT 0
-      - name: PRESSURE_CC1
-        desc: Combustion Chamber pressure in psi, read by CC PT 0
-      - name: OX_INJ_HALL
-        desc: Oxidizer Injector Valve hall-effect sensor reading
-      - name: FUEL_INJ_HALL
-        desc: Fuel Injector Valve hall-effect sensor reading
+      - name: PT_CHANNEL_0
+        desc: Pressure Transducer Channel 0, J3 on Injector Sensor Hub
+      - name: PT_CHANNEL_1
+        desc: Pressure Transducer Channel 1, J4 on Injector Sensor Hub
+      - name: PT_CHANNEL_2
+        desc: Pressure Transducer Channel 2, J6 on Injector Sensor Hub
+      - name: PT_CHANNEL_3
+        desc: Pressure Transducer Channel 3, J8 on Injector Sensor Hub
+      - name: PT_CHANNEL_4
+        desc: Pressure Transducer Channel 4, J10 on Injector Sensor Hub
+      - name: HALL_CHANNEL_0
+        desc: Hall-Effect Sensor Channel 0, J7 on Injector Sensor Hub
       - name: BARO_PRESSURE
         desc: Barometer pressure measurement
       - name: BARO_TEMP
@@ -597,6 +597,10 @@ enums:
         desc: Payload Servo Direction
       - name: PAYLOAD_INFRARED
         desc: Payload Infrared Sensor Reading
+      - name: HALL_CHANNEL_1
+        desc: Hall-Effect Sensor Channel 1, J5 on Injector Sensor Hub
+      - name: HALL_CHANNEL_2
+        desc: Hall-Effect Sensor Channel 2, J9 on Injector Sensor Hub
 
   - name: state_est_id
     desc: State Estimation data field indentifier

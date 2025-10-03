@@ -1,4 +1,9 @@
 messages:
+  - name: UNDEFINED
+    desc: Undefined message, do not use
+    id: 0x000
+    timestamp: 2
+
   - name: GENERAL_BOARD_STATUS
     desc: Board status broadcast
     id: 0x001

@@ -31,13 +31,17 @@ def gen_message_types_h(rocketcan):
         print('\tMSG_' + msg['name'].data + ' = 0x' + '{:03X}'.format(msg['id'].data) + ',')
         if(msg['id'].data > message_id_max):
             message_id_max = msg['id'].data
-    print('\tMSG_ID_ENUM_MAX = 0x' + '{:03X}'.format(message_id_max + 1) + ',')
+    print('\tMSG_ID_ENUM_MAX = 0x' + '{:03X}'.format(message_id_max + 1))
     print('} can_msg_type_t;\n')
 
+    board_type_id_max = 0
     print('// Board Type IDs')
     print('typedef enum {')
     for board in rocketcan['boards']:
         print('\tBOARD_TYPE_ID_' + board['name'].data + ' = 0x' + '{:02X}'.format(board['id'].data) + ',')
+        if(board['id'].data > board_type_id_max):
+            board_type_id_max = board['id'].data
+    print('\tBOARD_TYPE_ID_ENUM_MAX = 0x' + '{:02X}'.format(board_type_id_max + 1))
     print('} can_board_type_id_t;\n')
 
     print(message_types_h_board_inst_generic)
@@ -49,6 +53,7 @@ def gen_message_types_h(rocketcan):
             for inst in board['inst']:
                 print('\tBOARD_INST_ID_' + board['name'].data + '_' + inst['name'].data + ' = 0x' + '{:02X}'.format(inst_id) + ',')
                 inst_id += 1
+            print('\tBOARD_INST_ID_' + board['name'].data + '_ENUM_MAX = 0x' + '{:02X}'.format(inst_id))
             print('} can_board_inst_id_' + board['name'].data.lower() + '_t;\n')
 
     for enum in rocketcan['enums']:
@@ -72,6 +77,7 @@ def gen_message_types_h(rocketcan):
         for bit in bitfields['bits']:
             print('\t' + bitfields['prefix'].data + '_' + bit['name'].data + '_OFFSET = 0x' + '{:02X}'.format(index) + ',')
             index += 1
+        print('\t' + bitfields['prefix'].data + '_' + bitfields['name'].data.upper() + '_OFFSET_MAX = 0x' + '{:02X}'.format(index))
         print('} can_' + bitfields['name'].data + '_offset_t;\n')
             
     print('#endif')

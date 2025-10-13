@@ -385,7 +385,6 @@ boards:
   - name: CANARD_MOTOR
     desc: Canard Motor Control Board
     id: 0x02
-    doc-link: /controls/motor-control-board/index
     inst:
       - name: PRIMARY
         desc: Canard Motor Control Board Primary MCU
@@ -394,7 +393,7 @@ boards:
   - name: CAMERA
     desc: Flight Camera Board
     id: 0x03
-    doc-link: /avionics/camera-board/index
+    doc-link: /avionics/camera-logger-board/index
     inst:
       - name: CANARD_A
         desc: Canard Section Camera A
@@ -409,6 +408,7 @@ boards:
   - name: LOGGER
     desc: CAN Logger Board
     id: 0x05
+    doc-link: /avionics/camera-logger-board/index
   - name: PROCESSOR
     desc: Canard Processor Board
     id: 0x06
@@ -424,7 +424,6 @@ boards:
   - name: SRAD_GNSS
     desc: SRAD GNSS Receiver Board
     id: 0x09
-    doc-link: /avionics/srad-gnss-receiver/index
   - name: ALTIMETER
     desc: SRAD Altimeter
     id: 0x0A

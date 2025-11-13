@@ -366,12 +366,42 @@ messages:
         desc: State data (IEEE 754 floating point)
         width: 4
 
-  - name: LEDS_ON
+  - name: STREAM_STATUS
     id: 0x01B
+    timestamp: 2
+    field:
+      - name: TOTAL_SIZE
+        desc: Total transfer size in bytes
+        width: 3
+      - name: TX_SIZE
+        desc: Transfered size in bytes
+        width: 3
+
+  - name: STREAM_DATA
+    id: 0x01C
+    timestamp: 2
+    field:
+      - name: SEQ_ID
+        desc: Sequence ID
+        width: 1
+      - name: DATA
+        desc: Data payload
+        width: 5
+
+  - name: STREAM_RETRY
+    id: 0x01D
+    timestamp: 2
+    field:
+      - name: SEQ_ID
+        desc: Sequence ID of data packet need to be resend
+        width: 1
+
+  - name: LEDS_ON
+    id: 0x01E
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x01C
+    id: 0x01F
     timestamp: 2
 
 boards:
@@ -483,8 +513,7 @@ enums:
         desc: Power on Canard motor control board servo
       - name: CANARD_ANGLE
         desc: Canard Angle Command (from Processor board to Motor Control board)
-      - name: PAYLOAD_MOTOR_ENABLE
-        desc: Payload Servo Motor Power Control
+      - name: CAMERA_CAPTURE
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
 

@@ -148,21 +148,9 @@ messages:
         desc: Main Pyro Voltage
         width: 2
 
-  - name: SENSOR_TEMP
-    desc: Temperature Sensor
-    id: 0x00B
-    timestamp: 2
-    field:
-      - name: TEMP_SENSOR_ID
-        desc: Tempterature sensor ID
-        width: 1
-      - name: TEMP
-        desc: Temperature
-        width: 4
-
   - name: SENSOR_ALTITUDE
     desc: Altimeter altitude sensor message(exclude GPS with have a specific message)
-    id: 0x00C
+    id: 0x00B
     timestamp: 2
     field:
       - name: ALT
@@ -174,7 +162,7 @@ messages:
         enum: apogee_state
 
   - name: SENSOR_IMU_X
-    id: 0x00D
+    id: 0x00C
     timestamp: 2
     field:
       - name: IMU_ID
@@ -189,7 +177,7 @@ messages:
         width: 2
 
   - name: SENSOR_IMU_Y
-    id: 0x00E
+    id: 0x00D
     timestamp: 2
     field:
       - name: IMU_ID
@@ -204,7 +192,7 @@ messages:
         width: 2
 
   - name: SENSOR_IMU_Z
-    id: 0x00F
+    id: 0x00E
     timestamp: 2
     field:
       - name: IMU_ID
@@ -219,7 +207,7 @@ messages:
         width: 2
 
   - name: SENSOR_MAG_X
-    id: 0x010
+    id: 0x00F
     timestamp: 2
     field:
       - name: IMU_ID
@@ -231,7 +219,7 @@ messages:
         width: 2
 
   - name: SENSOR_MAG_Y
-    id: 0x011
+    id: 0x010
     timestamp: 2
     field:
       - name: IMU_ID
@@ -243,7 +231,7 @@ messages:
         width: 2
 
   - name: SENSOR_MAG_Z
-    id: 0x012
+    id: 0x011
     timestamp: 2
     field:
       - name: IMU_ID
@@ -255,7 +243,7 @@ messages:
         width: 2
     
   - name: SENSOR_BARO
-    id: 0x013
+    id: 0x012
     timestamp: 2
     field:
       - name: IMU_ID
@@ -270,7 +258,7 @@ messages:
         width: 2
 
   - name: SENSOR_ANALOG
-    id: 0x014
+    id: 0x013
     timestamp: 2
     field:
       - name: SENSOR_ID
@@ -282,7 +270,7 @@ messages:
         width: 2
 
   - name: GPS_TIMESTAMP
-    id: 0x015
+    id: 0x014
     timestamp: 2
     field:
       - name: UTC_HOURS
@@ -299,7 +287,7 @@ messages:
         width: 1
 
   - name: GPS_LATITUDE
-    id: 0x016
+    id: 0x015
     timestamp: 2
     field:
       - name: DEGREES
@@ -316,7 +304,7 @@ messages:
         width: 1
 
   - name: GPS_LONGITUDE
-    id: 0x017
+    id: 0x016
     timestamp: 2
     field:
       - name: DEGREES
@@ -333,7 +321,7 @@ messages:
         width: 1
 
   - name: GPS_ALTITUDE
-    id: 0x018
+    id: 0x017
     timestamp: 2
     field:
       - name: ALT
@@ -344,7 +332,7 @@ messages:
         width: 1
 
   - name: GPS_INFO
-    id: 0x019
+    id: 0x018
     timestamp: 2
     field:
       - name: NUM_SAT
@@ -355,7 +343,7 @@ messages:
         width: 1
 
   - name: STATE_EST_DATA
-    id: 0x01A
+    id: 0x019
     timestamp: 2
     field:
       - name: STATE_EST_ID
@@ -366,12 +354,42 @@ messages:
         desc: State data (IEEE 754 floating point)
         width: 4
 
-  - name: LEDS_ON
+  - name: STREAM_STATUS
+    id: 0x01A
+    timestamp: 2
+    field:
+      - name: TOTAL_SIZE
+        desc: Total transfer size in bytes
+        width: 3
+      - name: TX_SIZE
+        desc: Transfered size in bytes
+        width: 3
+
+  - name: STREAM_DATA
     id: 0x01B
+    timestamp: 2
+    field:
+      - name: SEQ_ID
+        desc: Sequence ID
+        width: 1
+      - name: DATA
+        desc: Data payload
+        width: 5
+
+  - name: STREAM_RETRY
+    id: 0x01C
+    timestamp: 2
+    field:
+      - name: SEQ_ID
+        desc: Sequence ID of data packet need to be resend
+        width: 1
+
+  - name: LEDS_ON
+    id: 0x01D
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x01C
+    id: 0x01E
     timestamp: 2
 
 boards:
@@ -385,7 +403,6 @@ boards:
   - name: CANARD_MOTOR
     desc: Canard Motor Control Board
     id: 0x02
-    doc-link: /controls/motor-control-board/index
     inst:
       - name: PRIMARY
         desc: Canard Motor Control Board Primary MCU
@@ -394,7 +411,7 @@ boards:
   - name: CAMERA
     desc: Flight Camera Board
     id: 0x03
-    doc-link: /avionics/camera-board/index
+    doc-link: /avionics/camera-logger-board/index
     inst:
       - name: CANARD_A
         desc: Canard Section Camera A
@@ -409,6 +426,7 @@ boards:
   - name: LOGGER
     desc: CAN Logger Board
     id: 0x05
+    doc-link: /avionics/camera-logger-board/index
   - name: PROCESSOR
     desc: Canard Processor Board
     id: 0x06
@@ -424,7 +442,6 @@ boards:
   - name: SRAD_GNSS
     desc: SRAD GNSS Receiver Board
     id: 0x09
-    doc-link: /avionics/srad-gnss-receiver/index
   - name: ALTIMETER
     desc: SRAD Altimeter
     id: 0x0A
@@ -433,6 +450,9 @@ boards:
     desc: Remote Arming Board
     id: 0x0B
     doc-link: /avionics/remote-arming/index
+  - name: PHESEUS
+    desc: Pheseus board(Propulsion board)
+    id: 0x0C
   - name: PAY_SENSOR
     desc: Payload Sensor Board
     id: 0x40
@@ -484,10 +504,17 @@ enums:
         desc: Power on Canard motor control board servo
       - name: CANARD_ANGLE
         desc: Canard Angle Command (from Processor board to Motor Control board)
-      - name: PAYLOAD_MOTOR_ENABLE
-        desc: Payload Servo Motor Power Control
+      - name: CAMERA_CAPTURE
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
+      - name: THESEUS_ACTUATOR_1
+        desc: Theseus board actuator channel 1
+      - name: THESEUS_ACTUATOR_2
+        desc: Theseus board actuator channel 2
+      - name: RLCS_RELAY_POWER
+        desc: RLCS Relay Board Power Relay
+      - name: RLCS_RELAY_SELECT
+        desc: RLCS Relay Board Select Relay(Limit switch state feedback)
 
   - name: actuator_state
     desc: Actuator State
@@ -567,18 +594,22 @@ enums:
         desc: GPS Receiver current in mA
       - name: LOCAL_CURR
         desc: Local voltage rail (e.g. 3.3V) current in mA
-      - name: PT_CHANNEL_0
-        desc: Pressure Transducer Channel 0, J3 on Injector Sensor Hub
       - name: PT_CHANNEL_1
-        desc: Pressure Transducer Channel 1, J4 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 1, J3 on Injector Sensor Hub
       - name: PT_CHANNEL_2
-        desc: Pressure Transducer Channel 2, J6 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 2, J4 on Injector Sensor Hub
       - name: PT_CHANNEL_3
-        desc: Pressure Transducer Channel 3, J8 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 3, J6 on Injector Sensor Hub
       - name: PT_CHANNEL_4
-        desc: Pressure Transducer Channel 4, J10 on Injector Sensor Hub
-      - name: HALL_CHANNEL_0
-        desc: Hall-Effect Sensor Channel 0, J7 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 4, J8 on Injector Sensor Hub
+      - name: PT_CHANNEL_5
+        desc: Pressure Transducer Channel 5, J10 on Injector Sensor Hub
+      - name: HALL_CHANNEL_1
+        desc: Hall-Effect Sensor Channel 1, J7 on Injector Sensor Hub
+      - name: HALL_CHANNEL_2
+        desc: Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
+      - name: HALL_CHANNEL_3
+        desc: Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
       - name: BARO_PRESSURE
         desc: Barometer pressure measurement
       - name: BARO_TEMP
@@ -602,10 +633,24 @@ enums:
         desc: Payload Servo Direction
       - name: PAYLOAD_INFRARED
         desc: Payload Infrared Sensor Reading
-      - name: HALL_CHANNEL_1
-        desc: Hall-Effect Sensor Channel 1, J5 on Injector Sensor Hub
-      - name: HALL_CHANNEL_2
-        desc: Hall-Effect Sensor Channel 2, J9 on Injector Sensor Hub
+      - name: THESEUS_TEMP_1
+        desc: Theseus board temperature channel 1
+      - name: THESEUS_TEMP_2
+        desc: Theseus board temperature channel 2
+      - name: THESEUS_TEMP_3
+        desc: Theseus board temperature channel 3
+      - name: RLCS_RELAY_OUTPUT_VOLT_A
+        desc: RLCS Relay Board channel A output voltage
+      - name: RLCS_RELAY_OUTPUT_VOLT_B
+        desc: RLCS Relay Board channel B output voltage
+      - name: RLCS_RELAY_OUTPUT_CURR_A
+        desc: RLCS Relay Board channel A output current
+      - name: RLCS_RELAY_OUTPUT_CURR_B
+        desc: RLCS Relay Board channel B output current
+      - name: RLCS_RELAY_LIM_VOLT_A
+        desc: RLCS Relay Board limit switch A voltage
+      - name: RLCS_RELAY_LIM_VOLT_B
+        desc: RLCS Relay Board limit switch B voltage
 
   - name: state_est_id
     desc: State Estimation data field indentifier

@@ -462,11 +462,11 @@ boards:
   - name: RLCS_GLS
     desc: RLCS v4 Ground Launch Sequencer
     id: 0x80
-    doc-link: /electrical-gse/rlcs-v4/ground-launch-sequencer-board
+    doc-link: /electrical-gse/rlcs-v4/gls-board/index
   - name: RLCS_RELAY
     desc: RLCS v4 Relay Board (Valve and Ignition)
     id: 0x81
-    doc-link: /electrical-gse/rlcs-v4/towerside-relay-board
+    doc-link: /electrical-gse/rlcs-v4/relay-board/index
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
     id: 0x82

@@ -651,6 +651,10 @@ enums:
         desc: RLCS Relay Board limit switch A voltage
       - name: RLCS_RELAY_LIM_VOLT_B
         desc: RLCS Relay Board limit switch B voltage
+      - name: LOG_FILE_NAME
+        desc: SD Card log file name(the number part only)
+      - name: LOG_WRITTEN_SIZE
+        desc: Number of bytes written to log file(reset to 0 when a new file is created)
 
   - name: state_est_id
     desc: State Estimation data field indentifier

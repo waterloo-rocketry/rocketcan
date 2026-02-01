@@ -169,10 +169,10 @@ messages:
         desc: IMU Unique Indentifier
         width: 1
         enum: imu_id
-      - name: LINEAR_ACCEL
+      - name: LINEAR_ACCEL_X
         desc: Linear Acceleration on X axis
         width: 2
-      - name: ANGULAR_VELOCITY
+      - name: ANGULAR_VELOCITY_X
         desc: Angular Velocity around X axis
         width: 2
 
@@ -184,10 +184,10 @@ messages:
         desc: IMU Unique Indentifier
         width: 1
         enum: imu_id
-      - name: LINEAR_ACCEL
+      - name: LINEAR_ACCEL_Y
         desc: Linear Acceleration on Y axis
         width: 2
-      - name: ANGULAR_VELOCITY
+      - name: ANGULAR_VELOCITY_Y
         desc: Angular Velocity around Y axis
         width: 2
 
@@ -199,14 +199,14 @@ messages:
         desc: IMU Unique Indentifier
         width: 1
         enum: imu_id
-      - name: LINEAR_ACCEL
+      - name: LINEAR_ACCEL_Z
         desc: Linear Acceleration on Z axis
         width: 2
-      - name: ANGULAR_VELOCITY
+      - name: ANGULAR_VELOCITY_Z
         desc: Angular Velocity around Z axis
         width: 2
 
-  - name: SENSOR_MAG_X
+  - name: SENSOR_MAG_XY
     id: 0x00F
     timestamp: 2
     field:
@@ -214,19 +214,10 @@ messages:
         desc: IMU Unique Indentifier
         width: 1
         enum: imu_id
-      - name: MAG
+      - name: MAG_X
         desc: magnetometer X value
         width: 2
-
-  - name: SENSOR_MAG_Y
-    id: 0x010
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: MAG
+      - name: MAG_Y
         desc: magnetometer Y value
         width: 2
 
@@ -238,7 +229,7 @@ messages:
         desc: IMU Unique Indentifier
         width: 1
         enum: imu_id
-      - name: MAG
+      - name: MAG_Z
         desc: magnetometer Z value
         width: 2
     
@@ -257,7 +248,8 @@ messages:
         desc: barometer temperature reading, raw value
         width: 2
 
-  - name: SENSOR_ANALOG
+  - name: SENSOR_ANALOG16
+    desc: 16-bits analog sensor
     id: 0x013
     timestamp: 2
     field:
@@ -342,16 +334,17 @@ messages:
         desc: Quality
         width: 1
 
-  - name: STATE_EST_DATA
+  - name: SENSOR_ANALOG32
+    desc: 32-bits analog sensor
     id: 0x019
     timestamp: 2
     field:
-      - name: STATE_EST_ID
-        desc: State ID
+      - name: SENSOR_ID
+        desc: Sensor ID
         width: 1
-        enum: state_est_id
-      - name: DATA
-        desc: State data (IEEE 754 floating point)
+        enum: analog_sensor_id
+      - name: VALUE
+        desc: Analog sensor value
         width: 4
 
   - name: STREAM_STATUS
@@ -392,6 +385,26 @@ messages:
     id: 0x01E
     timestamp: 2
 
+  - name: SENSOR_ANALOG16_COMPACT
+    desc: 16-bits analog sensor (compact)
+    id: 0x01F
+    timestamp: 2
+    field:
+      - name: SENSOR_ID_A
+        desc: Sensor ID A
+        width: 1
+        enum: analog_sensor_id
+      - name: SENSOR_ID_B
+        desc: Sensor ID B
+        width: 1
+        enum: analog_sensor_id
+      - name: VALUE_A
+        desc: Analog sensor value A
+        width: 2
+      - name: VALUE_B
+        desc: Analog sensor value B
+        width: 2
+
 boards:
   - name: ANY
     desc: Any Board
@@ -400,14 +413,6 @@ boards:
     desc: Injector Sensor Hub Board
     id: 0x01
     doc-link: /avionics/injector-sensor-hub/index
-  - name: CANARD_MOTOR
-    desc: Canard Motor Control Board
-    id: 0x02
-    inst:
-      - name: PRIMARY
-        desc: Canard Motor Control Board Primary MCU
-      - name: FAILSAFE
-        desc: Canard Motor Control Board Failsafe MCU
   - name: CAMERA
     desc: Flight Camera Board
     id: 0x03
@@ -427,8 +432,8 @@ boards:
     desc: CAN Logger Board
     id: 0x05
     doc-link: /avionics/camera-logger-board/index
-  - name: PROCESSOR
-    desc: Canard Processor Board
+  - name: CANARD
+    desc: Canard Board
     id: 0x06
     doc-link: /controls/processor-board/index
   - name: TELEMETRY
@@ -500,10 +505,6 @@ enums:
         desc: Actuator command to start SRAD Altimeter state estimation
       - name: SRAD_ALT_GPS_RESET
         desc: Actuator command to reset GPS Receiver on SRAD Altimeter
-      - name: CANARD_ENABLE
-        desc: Power on Canard motor control board servo
-      - name: CANARD_ANGLE
-        desc: Canard Angle Command (from Processor board to Motor Control board)
       - name: CAMERA_CAPTURE
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
@@ -557,14 +558,18 @@ enums:
     desc: IMU Unique Indentifier
     prefix: IMU
     value:
-      - name: PROC_ALTIMU10
-        desc: Polulo AltIMU-10 Connected to Processor Board
-      - name: PROC_MTI630
-        desc: Movella MTI-630 Connected to Processor Board
-      - name: PROC_LSM6DSO32
-        desc: ST LSM6DSO32 Soldered on Processor Board
-      - name: SRAD_ALT_ALTIMU10
-        desc: Polulo AltIMU-10 Connected to SRAD Altimeter
+      - name: CANARD_LSM6DSV32X
+        desc: LSM6DSV32X 32G IMU on Canard Board
+      - name: CANARD_MS5611
+        desc: MS5611 Barometer on Canard Board
+      - name: CANARD_LSM303AGR
+        desc: LSM303AGR Compass on Canard Board
+      - name: CANARD_MTI630
+        desc: MTI-630 on Canard Board
+      - name: CANARD_ADXL380
+        desc: ADXL380 Accelerometer on Canard Board
+      - name: CANARD_ADXRS649
+        desc: ADXRS649 Gyroscope on Canard Board
 
   - name: analog_sensor_id
     desc: Sensor ID for Sensor Messages
@@ -610,10 +615,6 @@ enums:
         desc: Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
       - name: HALL_CHANNEL_3
         desc: Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
-      - name: BARO_PRESSURE
-        desc: Barometer pressure measurement
-      - name: BARO_TEMP
-        desc: Barometer temperature measurement
       - name: RA_BATT_VOLT_1
       - name: RA_BATT_VOLT_2
       - name: RA_BATT_CURR_1
@@ -622,9 +623,6 @@ enums:
       - name: RA_MAG_VOLT_2
       - name: FPS
         desc: Camera framerate
-      - name: CANARD_ENCODER_1
-      - name: CANARD_ENCODER_2
-      - name: PROC_FLIGHT_PHASE_STATUS
       - name: PAYLOAD_LIM_1
         desc: Payload Motor Board Limit Switch 1
       - name: PAYLOAD_LIM_2
@@ -665,24 +663,31 @@ enums:
         desc: Flash used space size, in MiB
       - name: FLASH_FREE
         desc: FLash free space size, in MiB
-
-  - name: state_est_id
-    desc: State Estimation data field indentifier
-    prefix: STATE_ID
-    value:
-      - name: ATT_Q0
-      - name: ATT_Q1
-      - name: ATT_Q2
-      - name: ATT_Q3
-      - name: RATE_WX
-      - name: RATE_WY
-      - name: RATE_WZ
-      - name: VEL_VX
-      - name: VEL_VY
-      - name: VEL_VZ
-      - name: ALT
-      - name: COEFF_CL
-      - name: CANARD_ANGLE
+      - name: CANARD_NAV_ORIENTATION_QUAT_Q0
+      - name: CANARD_NAV_ORIENTATION_QUAT_Q1
+      - name: CANARD_NAV_ORIENTATION_QUAT_Q2
+      - name: CANARD_NAV_ORIENTATION_QUAT_Q3
+      - name: CANARD_NAV_ANGLE_VEL_X
+      - name: CANARD_NAV_ANGLE_VEL_Y
+      - name: CANARD_NAV_ANGLE_VEL_Z
+      - name: CANARD_NAV_VEL_X
+      - name: CANARD_NAV_VEL_Y
+      - name: CANARD_NAV_VEL_Z
+      - name: CANARD_NAV_ALTITUDE
+      - name: CANARD_NAV_VARIANCE_NORM
+      - name: CANARD_CTRL_CMD_ANGLE
+      - name: CANARD_CTRL_COEFF_LIFT
+      - name: CANARD_MTI630_EST_ORIENTATION_X
+      - name: CANARD_MTI630_EST_ORIENTATION_Y
+      - name: CANARD_MTI630_EST_ORIENTATION_Z
+      - name: CANARD_MTI630_EST_ANGLE_VEL_X
+      - name: CANARD_MTI630_EST_ANGLE_VEL_Y
+      - name: CANARD_MTI630_EST_ANGLE_VEL_Z
+      - name: CANARD_MTI630_EST_VEL_X
+      - name: CANARD_MTI630_EST_VEL_Y
+      - name: CANARD_MTI630_EST_VEL_Z
+      - name: CANARD_SERVO_ANGLE
+      - name: CANARD_SERVO_TEMP
 
   - name: apogee_state
     desc: Apogee detection state

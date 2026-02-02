@@ -73,38 +73,25 @@ messages:
     desc: Set actuator commanded state
     id: 0x006
     timestamp: 2
-    field:
+    metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
-        width: 1
         enum: actuator_id
+    field:
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
         width: 1
         enum: actuator_state
 
-  - name: ACTUATOR_ANALOG_CMD
-    desc: Analog Actuator Command
-    id: 0x007
-    timestamp: 2
-    field:
-      - name: ACTUATOR_ID
-        desc: Acturator ID
-        width: 1
-        enum: actuator_id
-      - name: ACTUATOR_ANALOG_CMD_STATE
-        desc: Actuator Analog Commanded State (16 bit analog, Definition Board/Actuator specific)
-        width: 2
-
   - name: ACTUATOR_STATUS
     desc: Actuator Status Message
-    id: 0x008
+    id: 0x007
     timestamp: 2
-    field:
+    metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
-        width: 1
         enum: actuator_id
+    field:
       - name: ACTUATOR_CURR_STATE
         desc: Actuator Current State
         width: 1
@@ -116,13 +103,13 @@ messages:
 
   - name: ALT_ARM_CMD
     desc: Command to arm altimeter
-    id: 0x009
+    id: 0x008
     timestamp: 2
-    field:
+    metadata:
       - name: ALT_ID
         desc: Altimeter ID
-        width: 1
         enum: altimeter_id
+    field:
       - name: ALT_ARM_STATE
         desc: Altimeter set arm state
         width: 1
@@ -130,13 +117,13 @@ messages:
 
   - name: ALT_ARM_STATUS
     desc: Altimeter Arm Status
-    id: 0x00A
+    id: 0x009
     timestamp: 2
-    field:
+    metadata:
       - name: ALT_ID
         desc: Altimeter ID
-        width: 1
         enum: altimeter_id
+    field:
       - name: ALT_ARM_STATE
         desc: Altimeter current arm state
         width: 1
@@ -148,121 +135,53 @@ messages:
         desc: Main Pyro Voltage
         width: 2
 
-  - name: SENSOR_ALTITUDE
-    desc: Altimeter altitude sensor message(exclude GPS with have a specific message)
-    id: 0x00B
-    timestamp: 2
-    field:
-      - name: ALT
-        desc: Altitude in ft
-        width: 4
-      - name: APOGEE
-        desc: Apogee detection status
-        width: 1
-        enum: apogee_state
-
-  - name: SENSOR_IMU_X
-    id: 0x00C
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: LINEAR_ACCEL_X
-        desc: Linear Acceleration on X axis
-        width: 2
-      - name: ANGULAR_VELOCITY_X
-        desc: Angular Velocity around X axis
-        width: 2
-
-  - name: SENSOR_IMU_Y
-    id: 0x00D
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: LINEAR_ACCEL_Y
-        desc: Linear Acceleration on Y axis
-        width: 2
-      - name: ANGULAR_VELOCITY_Y
-        desc: Angular Velocity around Y axis
-        width: 2
-
-  - name: SENSOR_IMU_Z
-    id: 0x00E
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: LINEAR_ACCEL_Z
-        desc: Linear Acceleration on Z axis
-        width: 2
-      - name: ANGULAR_VELOCITY_Z
-        desc: Angular Velocity around Z axis
-        width: 2
-
-  - name: SENSOR_MAG_XY
-    id: 0x00F
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: MAG_X
-        desc: magnetometer X value
-        width: 2
-      - name: MAG_Y
-        desc: magnetometer Y value
-        width: 2
-
-  - name: SENSOR_MAG_Z
-    id: 0x011
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: MAG_Z
-        desc: magnetometer Z value
-        width: 2
-    
-  - name: SENSOR_BARO
-    id: 0x012
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: PRESSURE
-        desc: barometer pressure reading, raw value
-        width: 3
-      - name: TEMP
-        desc: barometer temperature reading, raw value
-        width: 2
-
   - name: SENSOR_ANALOG16
     desc: 16-bits analog sensor
-    id: 0x013
+    id: 0x0A
     timestamp: 2
-    field:
+    metadata:
       - name: SENSOR_ID
         desc: Sensor ID
-        width: 1
         enum: analog_sensor_id
+    field:
       - name: VALUE
         desc: Analog sensor value
         width: 2
 
+  - name: SENSOR_ANALOG32
+    desc: 32-bits analog sensor
+    id: 0x0B
+    timestamp: 2
+    metadata:
+      - name: SENSOR_ID
+        desc: Sensor ID
+        enum: analog_sensor_id
+    field:
+      - name: VALUE
+        desc: Analog sensor value
+        width: 4
+
+  - name: SENSOR_DEM_ANALOG16
+    desc: 3-Dimensional 16-bit analog sensor value message
+    id: 0x0C
+    timestamp: 2
+    metadata:
+      - name: DEM_SENSOR_ID
+        desc: 3-Dimensional sensor ID
+        enum: dem_sensor_id
+    field:
+      - name: VALUE_X
+        desc: Analog sensor value X
+        width: 2
+      - name: VALUE_Y
+        desc: Analog sensor value Y
+        width: 2
+      - name: VALUE_Z
+        desc: Analog sensor value Z
+        width: 2
+
   - name: GPS_TIMESTAMP
-    id: 0x014
+    id: 0x0D
     timestamp: 2
     field:
       - name: UTC_HOURS
@@ -279,7 +198,7 @@ messages:
         width: 1
 
   - name: GPS_LATITUDE
-    id: 0x015
+    id: 0x0E
     timestamp: 2
     field:
       - name: DEGREES
@@ -296,7 +215,7 @@ messages:
         width: 1
 
   - name: GPS_LONGITUDE
-    id: 0x016
+    id: 0x0F
     timestamp: 2
     field:
       - name: DEGREES
@@ -313,7 +232,7 @@ messages:
         width: 1
 
   - name: GPS_ALTITUDE
-    id: 0x017
+    id: 0x10
     timestamp: 2
     field:
       - name: ALT
@@ -324,7 +243,7 @@ messages:
         width: 1
 
   - name: GPS_INFO
-    id: 0x018
+    id: 0x11
     timestamp: 2
     field:
       - name: NUM_SAT
@@ -334,21 +253,8 @@ messages:
         desc: Quality
         width: 1
 
-  - name: SENSOR_ANALOG32
-    desc: 32-bits analog sensor
-    id: 0x019
-    timestamp: 2
-    field:
-      - name: SENSOR_ID
-        desc: Sensor ID
-        width: 1
-        enum: analog_sensor_id
-      - name: VALUE
-        desc: Analog sensor value
-        width: 4
-
   - name: STREAM_STATUS
-    id: 0x01A
+    id: 0x12
     timestamp: 2
     field:
       - name: TOTAL_SIZE
@@ -359,50 +265,30 @@ messages:
         width: 3
 
   - name: STREAM_DATA
-    id: 0x01B
+    id: 0x13
     timestamp: 2
-    field:
+    metadata:
       - name: SEQ_ID
         desc: Sequence ID
-        width: 1
+    field:
       - name: DATA
         desc: Data payload
-        width: 5
+        width: 6
 
   - name: STREAM_RETRY
-    id: 0x01C
+    id: 0x14
     timestamp: 2
-    field:
+    metadata:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
-        width: 1
 
   - name: LEDS_ON
-    id: 0x01D
+    id: 0x15
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x01E
+    id: 0x16
     timestamp: 2
-
-  - name: SENSOR_DEM_ANALOG16
-    desc: 3-Dimensional 16-bit analog sensor value message
-    id: 0x01F
-    timestamp: 2
-    metadata:
-      - name: DEM_SENSOR_ID
-        desc: 3-Dimensional sensor ID
-        enum: dem_sensor_id
-    field:
-      - name: VALUE_X
-        desc: Analog sensor value X
-        width: 2
-      - name: VALUE_Y
-        desc: Analog sensor value Y
-        width: 2
-      - name: VALUE_Z
-        desc: Analog sensor value Z
-        width: 2
 
 boards:
   - name: ANY
@@ -553,23 +439,6 @@ enums:
       - name: ARMED
         desc: Armed
 
-  - name: imu_id
-    desc: IMU Unique Indentifier
-    prefix: IMU
-    value:
-      - name: CANARD_LSM6DSV32X
-        desc: LSM6DSV32X 32G IMU on Canard Board
-      - name: CANARD_MS5611
-        desc: MS5611 Barometer on Canard Board
-      - name: CANARD_LSM303AGR
-        desc: LSM303AGR Compass on Canard Board
-      - name: CANARD_MTI630
-        desc: MTI-630 on Canard Board
-      - name: CANARD_ADXL380
-        desc: ADXL380 Accelerometer on Canard Board
-      - name: CANARD_ADXRS649
-        desc: ADXRS649 Gyroscope on Canard Board
-
   - name: analog_sensor_id
     desc: Sensor ID for Sensor Messages
     prefix: SENSOR
@@ -666,25 +535,10 @@ enums:
       - name: CANARD_NAV_ORIENTATION_QUAT_Q1
       - name: CANARD_NAV_ORIENTATION_QUAT_Q2
       - name: CANARD_NAV_ORIENTATION_QUAT_Q3
-      - name: CANARD_NAV_ANGLE_VEL_X
-      - name: CANARD_NAV_ANGLE_VEL_Y
-      - name: CANARD_NAV_ANGLE_VEL_Z
-      - name: CANARD_NAV_VEL_X
-      - name: CANARD_NAV_VEL_Y
-      - name: CANARD_NAV_VEL_Z
       - name: CANARD_NAV_ALTITUDE
       - name: CANARD_NAV_VARIANCE_NORM
       - name: CANARD_CTRL_CMD_ANGLE
       - name: CANARD_CTRL_COEFF_LIFT
-      - name: CANARD_MTI630_EST_ORIENTATION_X
-      - name: CANARD_MTI630_EST_ORIENTATION_Y
-      - name: CANARD_MTI630_EST_ORIENTATION_Z
-      - name: CANARD_MTI630_EST_ANGLE_VEL_X
-      - name: CANARD_MTI630_EST_ANGLE_VEL_Y
-      - name: CANARD_MTI630_EST_ANGLE_VEL_Z
-      - name: CANARD_MTI630_EST_VEL_X
-      - name: CANARD_MTI630_EST_VEL_Y
-      - name: CANARD_MTI630_EST_VEL_Z
       - name: CANARD_SERVO_ANGLE
       - name: CANARD_SERVO_TEMP
 
@@ -697,14 +551,6 @@ enums:
       - name: CANARD_MTI630_EST_ORIENTATION
       - name: CANARD_MTI630_EST_ANGLE_VEL
       - name: CANARD_MTI630_EST_VEL
-
-  - name: apogee_state
-    desc: Apogee detection state
-    prefix: APOGEE
-    value:
-      - name: UNKNOWN
-      - name: NOT_REACHED
-      - name: REACHED
 
 bitfields:
   - name: general_board_status

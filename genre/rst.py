@@ -78,7 +78,7 @@ def gen_packet_format_rst(rocketcan):
     print('Message Packet Format Definition\n********************************\n')
     
     for msg in rocketcan['messages']:
-        print(msg['name'].data + ' (0x' + '{:03X}'.format(msg['id'].data) + ')')
+        print(msg['name'].data + ' (0x' + '{:02X}'.format(msg['id'].data) + ')')
         print('=' * (len(msg['name'].data) + 8))
         if 'desc' in msg:
             print(msg['desc'].data + '\n')

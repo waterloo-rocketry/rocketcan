@@ -345,21 +345,21 @@ boards:
     id: 0x0C
   - name: PAY_SENSOR
     desc: Payload Sensor Board
-    id: 0x40
+    id: 0x0D
   - name: PAY_MOTOR
     desc: Payload Motor Control Board
-    id: 0x41
+    id: 0x0E
   - name: RLCS_GLS
     desc: RLCS v4 Ground Launch Sequencer
-    id: 0x80
+    id: 0x0F
     doc-link: /electrical-gse/rlcs-v4/gls-board/index
   - name: RLCS_RELAY
     desc: RLCS v4 Relay Board (Valve and Ignition)
-    id: 0x81
+    id: 0x10
     doc-link: /electrical-gse/rlcs-v4/relay-board/index
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
-    id: 0x82
+    id: 0x11
     doc-link: /electrical-gse/daq/index
 
 enums:
@@ -459,8 +459,6 @@ enums:
         desc: Battery Voltage in mV
       - name: BATT_CURR
         desc: Battery Current in mA
-      - name: MOTOR_CURR
-        desc: Motor current in mA
       - name: RADIO_CURR
         desc: Radio current in mA
       - name: GPS_CURR
@@ -531,26 +529,39 @@ enums:
         desc: Flash used space size, in MiB
       - name: FLASH_FREE
         desc: FLash free space size, in MiB
-      - name: CANARD_NAV_ORIENTATION_QUAT_Q0
-      - name: CANARD_NAV_ORIENTATION_QUAT_Q1
-      - name: CANARD_NAV_ORIENTATION_QUAT_Q2
       - name: CANARD_NAV_ORIENTATION_QUAT_Q3
       - name: CANARD_NAV_ALTITUDE
       - name: CANARD_NAV_VARIANCE_NORM
       - name: CANARD_CTRL_CMD_ANGLE
       - name: CANARD_CTRL_COEFF_LIFT
+      - name: CANARD_MS5611_BARO
+      - name: CANARD_MS5611_TEMP
+      - name: CANARD_MTI630_BARO_0
+      - name: CANARD_MTI630_BARO_1
+      - name: CANARD_MTI630_EST_ALT
+      - name: CANARD_ADXRS649_GYRO
       - name: CANARD_SERVO_ANGLE
+      - name: CANARD_SERVO_CURR
       - name: CANARD_SERVO_TEMP
 
   - name: dem_sensor_id
     desc: 3-Dimensional SENSOR_ID
     prefix: DEM_SENSOR
     value:
+      - name: CANARD_NAV_ORIENTATION_QUAT_Q0_Q3
       - name: CANARD_NAV_ANGLE_VEL
       - name: CANARD_NAV_VEL
+      - name: CANARD_LSM6DSV32X_ACCEL
+      - name: CANARD_LSM6DSV32X_GYRO
+      - name: CANARD_LSM303AGR_ACCEL
+      - name: CANARD_LSM303AGR_MAG
+      - name: CANARD_MTI630_ACCEL
+      - name: CANARD_MTI630_GYRO
+      - name: CANARD_MTI630_MAG
       - name: CANARD_MTI630_EST_ORIENTATION
       - name: CANARD_MTI630_EST_ANGLE_VEL
       - name: CANARD_MTI630_EST_VEL
+      - name: CANARD_ADXL380_ACCEL
 
 bitfields:
   - name: general_board_status

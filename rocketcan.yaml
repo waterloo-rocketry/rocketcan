@@ -385,24 +385,23 @@ messages:
     id: 0x01E
     timestamp: 2
 
-  - name: SENSOR_ANALOG16_COMPACT
-    desc: 16-bits analog sensor (compact)
+  - name: SENSOR_DEM_ANALOG16
+    desc: 3-Dimensional 16-bit analog sensor value message
     id: 0x01F
     timestamp: 2
+    metadata:
+      - name: DEM_SENSOR_ID
+        desc: 3-Dimensional sensor ID
+        enum: dem_sensor_id
     field:
-      - name: SENSOR_ID_A
-        desc: Sensor ID A
-        width: 1
-        enum: analog_sensor_id
-      - name: SENSOR_ID_B
-        desc: Sensor ID B
-        width: 1
-        enum: analog_sensor_id
-      - name: VALUE_A
-        desc: Analog sensor value A
+      - name: VALUE_X
+        desc: Analog sensor value X
         width: 2
-      - name: VALUE_B
-        desc: Analog sensor value B
+      - name: VALUE_Y
+        desc: Analog sensor value Y
+        width: 2
+      - name: VALUE_Z
+        desc: Analog sensor value Z
         width: 2
 
 boards:
@@ -688,6 +687,16 @@ enums:
       - name: CANARD_MTI630_EST_VEL_Z
       - name: CANARD_SERVO_ANGLE
       - name: CANARD_SERVO_TEMP
+
+  - name: dem_sensor_id
+    desc: 3-Dimensional SENSOR_ID
+    prefix: DEM_SENSOR
+    value:
+      - name: CANARD_NAV_ANGLE_VEL
+      - name: CANARD_NAV_VEL
+      - name: CANARD_MTI630_EST_ORIENTATION
+      - name: CANARD_MTI630_EST_ANGLE_VEL
+      - name: CANARD_MTI630_EST_VEL
 
   - name: apogee_state
     desc: Apogee detection state

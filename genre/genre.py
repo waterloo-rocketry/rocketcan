@@ -1,5 +1,5 @@
 import argparse
-from strictyaml import load,Map,Str,HexInt,Int,Seq,YAMLError,Optional
+from strictyaml import load,Map,Str,HexInt,Int,Seq,FixedSeq,YAMLError,Optional
 
 from message_types_h import gen_message_types_h
 from message_types_py import gen_message_types_py
@@ -19,11 +19,15 @@ def main():
             Optional("desc"):Str(),
             "id":HexInt(),
             "timestamp":Int(),
+            Optional("metadata"):FixedSeq([Map({
+                "name":Str(),
+                Optional("desc"):Str(),
+                Optional("enum"):Str()
+            })]),
             Optional("field"):Seq(Map({
                 "name":Str(),
                 "width":Int(),
                 Optional("desc"):Str(),
-                Optional("unit"):Str(),
                 Optional("enum"):Str(),
                 Optional("bitfield"):Str()
             }))})),

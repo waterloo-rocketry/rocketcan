@@ -294,72 +294,59 @@ boards:
   - name: ANY
     desc: Any Board
     id: 0x00
-  - name: INJ_SENSOR
-    desc: Injector Sensor Hub Board
+  - name: INJECTOR
+    desc: Injector Board
     id: 0x01
-    doc-link: /avionics/injector-sensor-hub/index
   - name: CAMERA
     desc: Flight Camera Board
-    id: 0x03
-    doc-link: /avionics/camera-logger-board/index
+    id: 0x02
     inst:
       - name: CANARD_A
         desc: Canard Section Camera A
       - name: CANARD_B
         desc: Canard Section Camera B
-      - name: RECOVERY
-        desc: Recovery Bulkhead Camera
   - name: POWER
     desc: Power Board
-    id: 0x04
+    id: 0x03
     doc-link: /avionics/rocket-power-board/index
   - name: LOGGER
     desc: CAN Logger Board
-    id: 0x05
+    id: 0x04
     doc-link: /avionics/camera-logger-board/index
   - name: CANARD
     desc: Canard Board
-    id: 0x06
+    id: 0x05
     doc-link: /controls/processor-board/index
   - name: TELEMETRY
     desc: Live Telemetry Board
-    id: 0x07
+    id: 0x06
     doc-link: /avionics/live-telemetry/index
   - name: GPS
     desc: COTS GPS Receiver Board
-    id: 0x08
+    id: 0x07
     doc-link: /avionics/gps-board/index
-  - name: SRAD_GNSS
-    desc: SRAD GNSS Receiver Board
-    id: 0x09
   - name: ALTIMETER
     desc: SRAD Altimeter
-    id: 0x0A
+    id: 0x08
     doc-link: /avionics/srad-altimeter/index
   - name: ARMING
     desc: Remote Arming Board
-    id: 0x0B
+    id: 0x09
     doc-link: /avionics/remote-arming/index
-  - name: PHESEUS
-    desc: Pheseus board(Propulsion board)
-    id: 0x0C
-  - name: PAY_SENSOR
-    desc: Payload Sensor Board
-    id: 0x0D
-  - name: PAY_MOTOR
-    desc: Payload Motor Control Board
-    id: 0x0E
+  - name: PAYLOAD
+    desc: Payload Board
+    id: 0x0A
   - name: RLCS_GLS
     desc: RLCS v4 Ground Launch Sequencer
-    id: 0x0F
+    id: 0x0B
     doc-link: /electrical-gse/rlcs-v4/gls-board/index
   - name: RLCS_RELAY
-    desc: RLCS v4 Relay Board (Valve and Ignition)
-    id: 0x10
+    desc: RLCS v4 Relay Board
+    id: 0x0C
     doc-link: /electrical-gse/rlcs-v4/relay-board/index
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
-    id: 0x11
+    id: 0x0D
     doc-link: /electrical-gse/daq/index
 
 enums:

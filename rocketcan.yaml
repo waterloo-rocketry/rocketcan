@@ -301,10 +301,12 @@ boards:
     desc: Flight Camera Board
     id: 0x02
     inst:
-      - name: CANARD_A
-        desc: Canard Section Camera A
-      - name: CANARD_B
-        desc: Canard Section Camera B
+      - name: SIDE_LOOKING
+        desc: Side Looking Camera
+      - name: DOWN_LOOKING
+        desc: Down Looking Camera
+      - name: RECOVERY
+        desc: Recovery Looking Camera
   - name: POWER
     desc: Power Board
     id: 0x03
@@ -333,6 +335,11 @@ boards:
     desc: Remote Arming Board
     id: 0x09
     doc-link: /avionics/remote-arming/index
+    inst:
+      - name: RA_RAVEN
+        desc: Remote Arming for Raven
+      - name: RA_STRATOLOGGER
+        desc: Remote Arming for Stratologger
   - name: PAYLOAD
     desc: Payload Board
     id: 0x0A
@@ -365,12 +372,10 @@ enums:
       - name: 5V_RAIL_ROCKET
       - name: 5V_RAIL_PAYLOAD
       - name: 12V_RAIL_ROCKET
-      - name: 12V_RAIL_PAYLOAD
       - name: TELEMETRY
-      - name: CAMERA_CANARD_A
-      - name: CAMERA_CANARD_B
+      - name: CAMERA_SIDE_LOOKING
+      - name: CAMERA_DOWN_LOOKING
       - name: CAMERA_RECOVERY
-      - name: CAMERA_PAYLOAD
       - name: PROC_ESTIMATOR_INIT
         desc: Actuator command to start processor board state estimation
       - name: SRAD_ALT_ESTIMATOR_INIT
@@ -406,16 +411,12 @@ enums:
     desc: Altimeter ID for uniquely indentify each altimeter
     prefix: ALTIMETER
     value:
-      - name: ROCKET_RAVEN
-        desc: Raven4 Altimeter on Rocket (COTS)
-      - name: ROCKET_STRATOLOGGER
-        desc: StratoLoggerCF Altimeter on Rocket (COTS)
-      - name: ROCKET_SRAD
-        desc: SRAD Altimeter on Rocket
-      - name: PAYLOAD_RAVEN
-        desc: Raven4 Altimeter on Payload (COTS)
-      - name: PAYLOAD_STRATOLOGGER
-        desc: StratoLoggerCF Altimeter on Payload (COTS)
+      - name: RAVEN
+        desc: Raven4 Altimeter
+      - name: STRATOLOGGER
+        desc: StratoLoggerCF
+      - name: SRAD
+        desc: SRAD Altimeter
 
   - name: alt_arm_state
     desc: Altimiter Arm State
@@ -516,9 +517,6 @@ enums:
         desc: Flash used space size, in MiB
       - name: FLASH_FREE
         desc: FLash free space size, in MiB
-      - name: CANARD_NAV_ORIENTATION_QUAT_Q3
-      - name: CANARD_NAV_ALTITUDE
-      - name: CANARD_NAV_VARIANCE_NORM
       - name: CANARD_CTRL_CMD_ANGLE
       - name: CANARD_CTRL_COEFF_LIFT
       - name: CANARD_MS5611_BARO
@@ -535,7 +533,10 @@ enums:
     desc: 3-Dimensional SENSOR_ID
     prefix: DEM_SENSOR
     value:
-      - name: CANARD_NAV_ORIENTATION_QUAT_Q0_Q3
+      - name: CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
+        desc: Canard Navigation Orientation QX, QY, QZ
+      - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
+        desc: Canard Navigation Orientation QW, Altitude, Variance Norm
       - name: CANARD_NAV_ANGLE_VEL
       - name: CANARD_NAV_VEL
       - name: CANARD_LSM6DSV32X_ACCEL

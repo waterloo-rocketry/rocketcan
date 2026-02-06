@@ -376,8 +376,10 @@ enums:
       - name: CAMERA_SIDE_LOOKING
       - name: CAMERA_DOWN_LOOKING
       - name: CAMERA_RECOVERY
-      - name: PROC_ESTIMATOR_INIT
-        desc: Actuator command to start processor board state estimation
+      - name: CANARD_PAD_FILTER
+        desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
+      - name: CANARD_LOW_POWER_MODE
+        desc: Canard Low-Power Mode (In Low-Power mode when ACT_STATE_ON, vice versa)
       - name: SRAD_ALT_ESTIMATOR_INIT
         desc: Actuator command to start SRAD Altimeter state estimation
       - name: SRAD_ALT_GPS_RESET
@@ -518,16 +520,27 @@ enums:
       - name: FLASH_FREE
         desc: FLash free space size, in MiB
       - name: CANARD_CTRL_CMD_ANGLE
+        desc: Canard Controller Commanded Angle
       - name: CANARD_CTRL_COEFF_LIFT
+        desc: Canard Controller Coefficient of Lift
       - name: CANARD_MS5611_BARO
+        desc: Canard MS5611 Barometer pressure reading
       - name: CANARD_MS5611_TEMP
+        desc: Canard MS5611 Barometer temperature reading
       - name: CANARD_MTI630_BARO_0
+        desc: Canard MTI-630 Movella barometer reading 0
       - name: CANARD_MTI630_BARO_1
+        desc: Canard MTI-630 Movella barometer reading 1
       - name: CANARD_MTI630_EST_ALT
+        desc: Canard MTI-630 Movella Estimation altitude
       - name: CANARD_ADXRS649_GYRO
+        desc: Canard ADXRS649 1-Axis Gyroscope angular velocity reading
       - name: CANARD_SERVO_ANGLE
+        desc: Canard Servo encoder angle reading
       - name: CANARD_SERVO_CURR
+        desc: Canard Servo current reading (in mA)
       - name: CANARD_SERVO_TEMP
+        desc: Canard Servo temperature reading (in Celcius)
 
   - name: dem_sensor_id
     desc: 3-Dimensional SENSOR_ID
@@ -538,18 +551,31 @@ enums:
       - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
         desc: Canard Navigation Orientation QW, Altitude, Variance Norm
       - name: CANARD_NAV_ANGLE_VEL
+        desc: Canard Navigation Angular Velocity
       - name: CANARD_NAV_VEL
+        desc: Canard Navigation Velocity
       - name: CANARD_LSM6DSV32X_ACCEL
+        desc: Canard LSM6DSV32X 32G IMU Acceleration
       - name: CANARD_LSM6DSV32X_GYRO
+        desc: Canard LSM6DSV32X 32G IMU Angular Velocity
       - name: CANARD_LSM303AGR_ACCEL
+        desc: Canard LSM303AGR Compass Acceleration
       - name: CANARD_LSM303AGR_MAG
+        desc: Canard LSM303AGR Magnetometer Reading
       - name: CANARD_MTI630_ACCEL
+        desc: Canard MTI-630 Movella Acceleration
       - name: CANARD_MTI630_GYRO
+        desc: Canard MTI-630 Movella Angular Velocity
       - name: CANARD_MTI630_MAG
+        desc: Canard MTI-630 Movella Magnetometer Reading
       - name: CANARD_MTI630_EST_ORIENTATION
+        desc: Canard MTI-630 Movella Estimation Orientation (Euler)
       - name: CANARD_MTI630_EST_ANGLE_VEL
+        desc: Canard MTI-630 Movella Estimation Angular Velocity
       - name: CANARD_MTI630_EST_VEL
+        desc: Canard MTI-630 Movella Estimation Velocity
       - name: CANARD_ADXL380_ACCEL
+        desc: Canard ADXL380 Accelerometer Acceleration
 
 bitfields:
   - name: general_board_status

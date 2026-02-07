@@ -78,7 +78,7 @@ def gen_packet_format_rst(rocketcan):
     print('Message Packet Format Definition\n********************************\n')
     
     for msg in rocketcan['messages']:
-        print(msg['name'].data + ' (0x' + '{:03X}'.format(msg['id'].data) + ')')
+        print(msg['name'].data + ' (0x' + '{:02X}'.format(msg['id'].data) + ')')
         print('=' * (len(msg['name'].data) + 8))
         if 'desc' in msg:
             print(msg['desc'].data + '\n')
@@ -90,6 +90,25 @@ def gen_packet_format_rst(rocketcan):
             line_4 = '|'
             line_5 = '+'
             next_byte = 0
+
+            if 'metadata' in msg:
+                metadata = msg['metadata'][0]
+                byte_str = 'Metadata'
+
+                if(len(byte_str) > len(metadata['name'].data)):
+                    box_width = len(byte_str)
+                    line_1 = line_1 + '-' * (box_width + 2) + '+'
+                    line_2 = line_2 + ' ' + byte_str + ' |'
+                    line_3 = line_3 + '=' * (box_width + 2) + '+'
+                    line_4 = line_4 + ' ' + metadata['name'].data + ' ' * (box_width - len(metadata['name'].data)) + ' |'
+                    line_5 = line_5 + '-' * (box_width + 2) + '+'
+                else:
+                    box_width = len(metadata['name'].data)
+                    line_1 = line_1 + '-' * (box_width + 2) + '+'
+                    line_2 = line_2 + ' ' + byte_str + ' ' * (box_width - len(byte_str)) + ' |'
+                    line_3 = line_3 + '=' * (box_width + 2) + '+'
+                    line_4 = line_4 + ' ' + metadata['name'].data + ' |'
+                    line_5 = line_5 + '-' * (box_width + 2) + '+'
 
             if(msg['timestamp'] == 2):
                 line_1 += '--------+---------+'
@@ -128,6 +147,13 @@ def gen_packet_format_rst(rocketcan):
             print(line_4)
             print(line_5 + '\n')
 
+            if 'metadata' in msg:
+                metadata = msg['metadata'][0]
+                if 'enum' in metadata:
+                    print('| **' + metadata['name'].data + ':** ' + metadata['desc'].data + ', see `' + metadata['enum'].data + '`_')
+                else:
+                    print('| **' + metadata['name'].data + ':** ' + metadata['desc'].data)
+            
             for field in msg['field']:
                 if 'enum' in field:
                     print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['enum'].data + '`_')
@@ -135,6 +161,7 @@ def gen_packet_format_rst(rocketcan):
                     print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['bitfield'].data + '`_')
                 else:
                     print('| **' + field['name'].data + ':** ' + field['desc'].data)
+
             print('')
 
     print('Enums Definition\n****************\n')

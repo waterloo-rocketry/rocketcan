@@ -73,38 +73,25 @@ messages:
     desc: Set actuator commanded state
     id: 0x006
     timestamp: 2
-    field:
+    metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
-        width: 1
         enum: actuator_id
+    field:
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
         width: 1
         enum: actuator_state
 
-  - name: ACTUATOR_ANALOG_CMD
-    desc: Analog Actuator Command
-    id: 0x007
-    timestamp: 2
-    field:
-      - name: ACTUATOR_ID
-        desc: Acturator ID
-        width: 1
-        enum: actuator_id
-      - name: ACTUATOR_ANALOG_CMD_STATE
-        desc: Actuator Analog Commanded State (16 bit analog, Definition Board/Actuator specific)
-        width: 2
-
   - name: ACTUATOR_STATUS
     desc: Actuator Status Message
-    id: 0x008
+    id: 0x007
     timestamp: 2
-    field:
+    metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
-        width: 1
         enum: actuator_id
+    field:
       - name: ACTUATOR_CURR_STATE
         desc: Actuator Current State
         width: 1
@@ -116,13 +103,13 @@ messages:
 
   - name: ALT_ARM_CMD
     desc: Command to arm altimeter
-    id: 0x009
+    id: 0x008
     timestamp: 2
-    field:
+    metadata:
       - name: ALT_ID
         desc: Altimeter ID
-        width: 1
         enum: altimeter_id
+    field:
       - name: ALT_ARM_STATE
         desc: Altimeter set arm state
         width: 1
@@ -130,13 +117,13 @@ messages:
 
   - name: ALT_ARM_STATUS
     desc: Altimeter Arm Status
-    id: 0x00A
+    id: 0x009
     timestamp: 2
-    field:
+    metadata:
       - name: ALT_ID
         desc: Altimeter ID
-        width: 1
         enum: altimeter_id
+    field:
       - name: ALT_ARM_STATE
         desc: Altimeter current arm state
         width: 1
@@ -148,129 +135,53 @@ messages:
         desc: Main Pyro Voltage
         width: 2
 
-  - name: SENSOR_ALTITUDE
-    desc: Altimeter altitude sensor message(exclude GPS with have a specific message)
-    id: 0x00B
+  - name: SENSOR_ANALOG16
+    desc: 16-bits analog sensor
+    id: 0x0A
     timestamp: 2
-    field:
-      - name: ALT
-        desc: Altitude in ft
-        width: 4
-      - name: APOGEE
-        desc: Apogee detection status
-        width: 1
-        enum: apogee_state
-
-  - name: SENSOR_IMU_X
-    id: 0x00C
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: LINEAR_ACCEL
-        desc: Linear Acceleration on X axis
-        width: 2
-      - name: ANGULAR_VELOCITY
-        desc: Angular Velocity around X axis
-        width: 2
-
-  - name: SENSOR_IMU_Y
-    id: 0x00D
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: LINEAR_ACCEL
-        desc: Linear Acceleration on Y axis
-        width: 2
-      - name: ANGULAR_VELOCITY
-        desc: Angular Velocity around Y axis
-        width: 2
-
-  - name: SENSOR_IMU_Z
-    id: 0x00E
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: LINEAR_ACCEL
-        desc: Linear Acceleration on Z axis
-        width: 2
-      - name: ANGULAR_VELOCITY
-        desc: Angular Velocity around Z axis
-        width: 2
-
-  - name: SENSOR_MAG_X
-    id: 0x00F
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: MAG
-        desc: magnetometer X value
-        width: 2
-
-  - name: SENSOR_MAG_Y
-    id: 0x010
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: MAG
-        desc: magnetometer Y value
-        width: 2
-
-  - name: SENSOR_MAG_Z
-    id: 0x011
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: MAG
-        desc: magnetometer Z value
-        width: 2
-    
-  - name: SENSOR_BARO
-    id: 0x012
-    timestamp: 2
-    field:
-      - name: IMU_ID
-        desc: IMU Unique Indentifier
-        width: 1
-        enum: imu_id
-      - name: PRESSURE
-        desc: barometer pressure reading, raw value
-        width: 3
-      - name: TEMP
-        desc: barometer temperature reading, raw value
-        width: 2
-
-  - name: SENSOR_ANALOG
-    id: 0x013
-    timestamp: 2
-    field:
+    metadata:
       - name: SENSOR_ID
         desc: Sensor ID
-        width: 1
         enum: analog_sensor_id
+    field:
       - name: VALUE
         desc: Analog sensor value
         width: 2
 
+  - name: SENSOR_ANALOG32
+    desc: 32-bits analog sensor
+    id: 0x0B
+    timestamp: 2
+    metadata:
+      - name: SENSOR_ID
+        desc: Sensor ID
+        enum: analog_sensor_id
+    field:
+      - name: VALUE
+        desc: Analog sensor value
+        width: 4
+
+  - name: SENSOR_DEM_ANALOG16
+    desc: 3-Dimensional 16-bit analog sensor value message
+    id: 0x0C
+    timestamp: 2
+    metadata:
+      - name: DEM_SENSOR_ID
+        desc: 3-Dimensional sensor ID
+        enum: dem_sensor_id
+    field:
+      - name: VALUE_X
+        desc: Analog sensor value X
+        width: 2
+      - name: VALUE_Y
+        desc: Analog sensor value Y
+        width: 2
+      - name: VALUE_Z
+        desc: Analog sensor value Z
+        width: 2
+
   - name: GPS_TIMESTAMP
-    id: 0x014
+    id: 0x0D
     timestamp: 2
     field:
       - name: UTC_HOURS
@@ -287,7 +198,7 @@ messages:
         width: 1
 
   - name: GPS_LATITUDE
-    id: 0x015
+    id: 0x0E
     timestamp: 2
     field:
       - name: DEGREES
@@ -304,7 +215,7 @@ messages:
         width: 1
 
   - name: GPS_LONGITUDE
-    id: 0x016
+    id: 0x0F
     timestamp: 2
     field:
       - name: DEGREES
@@ -321,7 +232,7 @@ messages:
         width: 1
 
   - name: GPS_ALTITUDE
-    id: 0x017
+    id: 0x10
     timestamp: 2
     field:
       - name: ALT
@@ -332,7 +243,7 @@ messages:
         width: 1
 
   - name: GPS_INFO
-    id: 0x018
+    id: 0x11
     timestamp: 2
     field:
       - name: NUM_SAT
@@ -342,20 +253,8 @@ messages:
         desc: Quality
         width: 1
 
-  - name: STATE_EST_DATA
-    id: 0x019
-    timestamp: 2
-    field:
-      - name: STATE_EST_ID
-        desc: State ID
-        width: 1
-        enum: state_est_id
-      - name: DATA
-        desc: State data (IEEE 754 floating point)
-        width: 4
-
   - name: STREAM_STATUS
-    id: 0x01A
+    id: 0x12
     timestamp: 2
     field:
       - name: TOTAL_SIZE
@@ -366,110 +265,95 @@ messages:
         width: 3
 
   - name: STREAM_DATA
-    id: 0x01B
+    id: 0x13
     timestamp: 2
-    field:
+    metadata:
       - name: SEQ_ID
         desc: Sequence ID
-        width: 1
+    field:
       - name: DATA
         desc: Data payload
-        width: 5
+        width: 6
 
   - name: STREAM_RETRY
-    id: 0x01C
+    id: 0x14
     timestamp: 2
-    field:
+    metadata:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
-        width: 1
 
   - name: LEDS_ON
-    id: 0x01D
+    id: 0x15
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x01E
+    id: 0x16
     timestamp: 2
 
 boards:
   - name: ANY
     desc: Any Board
     id: 0x00
-  - name: INJ_SENSOR
-    desc: Injector Sensor Hub Board
+  - name: INJECTOR
+    desc: Injector Board
     id: 0x01
-    doc-link: /avionics/injector-sensor-hub/index
-  - name: CANARD_MOTOR
-    desc: Canard Motor Control Board
-    id: 0x02
-    inst:
-      - name: PRIMARY
-        desc: Canard Motor Control Board Primary MCU
-      - name: FAILSAFE
-        desc: Canard Motor Control Board Failsafe MCU
   - name: CAMERA
     desc: Flight Camera Board
-    id: 0x03
-    doc-link: /avionics/camera-logger-board/index
+    id: 0x02
     inst:
-      - name: CANARD_A
-        desc: Canard Section Camera A
-      - name: CANARD_B
-        desc: Canard Section Camera B
+      - name: SIDE_LOOKING
+        desc: Side Looking Camera
+      - name: DOWN_LOOKING
+        desc: Down Looking Camera
       - name: RECOVERY
-        desc: Recovery Bulkhead Camera
+        desc: Recovery Looking Camera
   - name: POWER
     desc: Power Board
-    id: 0x04
+    id: 0x03
     doc-link: /avionics/rocket-power-board/index
   - name: LOGGER
     desc: CAN Logger Board
-    id: 0x05
+    id: 0x04
     doc-link: /avionics/camera-logger-board/index
-  - name: PROCESSOR
-    desc: Canard Processor Board
-    id: 0x06
+  - name: CANARD
+    desc: Canard Board
+    id: 0x05
     doc-link: /controls/processor-board/index
   - name: TELEMETRY
     desc: Live Telemetry Board
-    id: 0x07
+    id: 0x06
     doc-link: /avionics/live-telemetry/index
   - name: GPS
     desc: COTS GPS Receiver Board
-    id: 0x08
+    id: 0x07
     doc-link: /avionics/gps-board/index
-  - name: SRAD_GNSS
-    desc: SRAD GNSS Receiver Board
-    id: 0x09
   - name: ALTIMETER
     desc: SRAD Altimeter
-    id: 0x0A
+    id: 0x08
     doc-link: /avionics/srad-altimeter/index
   - name: ARMING
     desc: Remote Arming Board
-    id: 0x0B
+    id: 0x09
     doc-link: /avionics/remote-arming/index
-  - name: PHESEUS
-    desc: Pheseus board(Propulsion board)
-    id: 0x0C
-  - name: PAY_SENSOR
-    desc: Payload Sensor Board
-    id: 0x40
-  - name: PAY_MOTOR
-    desc: Payload Motor Control Board
-    id: 0x41
+    inst:
+      - name: RA_RAVEN
+        desc: Remote Arming for Raven
+      - name: RA_STRATOLOGGER
+        desc: Remote Arming for Stratologger
+  - name: PAYLOAD
+    desc: Payload Board
+    id: 0x0A
   - name: RLCS_GLS
     desc: RLCS v4 Ground Launch Sequencer
-    id: 0x80
-    doc-link: /electrical-gse/rlcs-v4/ground-launch-sequencer-board
+    id: 0x0B
+    doc-link: /electrical-gse/rlcs-v4/gls-board/index
   - name: RLCS_RELAY
-    desc: RLCS v4 Relay Board (Valve and Ignition)
-    id: 0x81
-    doc-link: /electrical-gse/rlcs-v4/towerside-relay-board
+    desc: RLCS v4 Relay Board
+    id: 0x0C
+    doc-link: /electrical-gse/rlcs-v4/relay-board/index
   - name: DAQ
     desc: DAQ(Data Acquisition System) CAN Support
-    id: 0x82
+    id: 0x0D
     doc-link: /electrical-gse/daq/index
 
 enums:
@@ -488,22 +372,18 @@ enums:
       - name: 5V_RAIL_ROCKET
       - name: 5V_RAIL_PAYLOAD
       - name: 12V_RAIL_ROCKET
-      - name: 12V_RAIL_PAYLOAD
       - name: TELEMETRY
-      - name: CAMERA_CANARD_A
-      - name: CAMERA_CANARD_B
+      - name: CAMERA_SIDE_LOOKING
+      - name: CAMERA_DOWN_LOOKING
       - name: CAMERA_RECOVERY
-      - name: CAMERA_PAYLOAD
-      - name: PROC_ESTIMATOR_INIT
-        desc: Actuator command to start processor board state estimation
+      - name: CANARD_PAD_FILTER
+        desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
+      - name: CANARD_LOW_POWER_MODE
+        desc: Canard Low-Power Mode (In Low-Power mode when ACT_STATE_ON, vice versa)
       - name: SRAD_ALT_ESTIMATOR_INIT
         desc: Actuator command to start SRAD Altimeter state estimation
       - name: SRAD_ALT_GPS_RESET
         desc: Actuator command to reset GPS Receiver on SRAD Altimeter
-      - name: CANARD_ENABLE
-        desc: Power on Canard motor control board servo
-      - name: CANARD_ANGLE
-        desc: Canard Angle Command (from Processor board to Motor Control board)
       - name: CAMERA_CAPTURE
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
@@ -533,16 +413,12 @@ enums:
     desc: Altimeter ID for uniquely indentify each altimeter
     prefix: ALTIMETER
     value:
-      - name: ROCKET_RAVEN
-        desc: Raven4 Altimeter on Rocket (COTS)
-      - name: ROCKET_STRATOLOGGER
-        desc: StratoLoggerCF Altimeter on Rocket (COTS)
-      - name: ROCKET_SRAD
-        desc: SRAD Altimeter on Rocket
-      - name: PAYLOAD_RAVEN
-        desc: Raven4 Altimeter on Payload (COTS)
-      - name: PAYLOAD_STRATOLOGGER
-        desc: StratoLoggerCF Altimeter on Payload (COTS)
+      - name: RAVEN
+        desc: Raven4 Altimeter
+      - name: STRATOLOGGER
+        desc: StratoLoggerCF
+      - name: SRAD
+        desc: SRAD Altimeter
 
   - name: alt_arm_state
     desc: Altimiter Arm State
@@ -552,19 +428,6 @@ enums:
         desc: Disarmed
       - name: ARMED
         desc: Armed
-
-  - name: imu_id
-    desc: IMU Unique Indentifier
-    prefix: IMU
-    value:
-      - name: PROC_ALTIMU10
-        desc: Polulo AltIMU-10 Connected to Processor Board
-      - name: PROC_MTI630
-        desc: Movella MTI-630 Connected to Processor Board
-      - name: PROC_LSM6DSO32
-        desc: ST LSM6DSO32 Soldered on Processor Board
-      - name: SRAD_ALT_ALTIMU10
-        desc: Polulo AltIMU-10 Connected to SRAD Altimeter
 
   - name: analog_sensor_id
     desc: Sensor ID for Sensor Messages
@@ -586,8 +449,6 @@ enums:
         desc: Battery Voltage in mV
       - name: BATT_CURR
         desc: Battery Current in mA
-      - name: MOTOR_CURR
-        desc: Motor current in mA
       - name: RADIO_CURR
         desc: Radio current in mA
       - name: GPS_CURR
@@ -610,10 +471,6 @@ enums:
         desc: Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
       - name: HALL_CHANNEL_3
         desc: Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
-      - name: BARO_PRESSURE
-        desc: Barometer pressure measurement
-      - name: BARO_TEMP
-        desc: Barometer temperature measurement
       - name: RA_BATT_VOLT_1
       - name: RA_BATT_VOLT_2
       - name: RA_BATT_CURR_1
@@ -622,9 +479,6 @@ enums:
       - name: RA_MAG_VOLT_2
       - name: FPS
         desc: Camera framerate
-      - name: CANARD_ENCODER_1
-      - name: CANARD_ENCODER_2
-      - name: PROC_FLIGHT_PHASE_STATUS
       - name: PAYLOAD_LIM_1
         desc: Payload Motor Board Limit Switch 1
       - name: PAYLOAD_LIM_2
@@ -651,32 +505,77 @@ enums:
         desc: RLCS Relay Board limit switch A voltage
       - name: RLCS_RELAY_LIM_VOLT_B
         desc: RLCS Relay Board limit switch B voltage
+      - name: LOG_WRITTEN_SIZE
+        desc: Number of bytes written to log file(reset to 0 when a new file is created)
+      - name: SD_LOG_FILE_NAME
+        desc: SD Card log file name(the number part only)
+      - name: SD_USED
+        desc: SD Card used space size, in MiB
+      - name: SD_FREE
+        desc: SD Card free space size, in MiB
+      - name: FLASH_LOG_FILE_NAME
+        desc: Flash log file name(the number part only)
+      - name: FLASH_USED
+        desc: Flash used space size, in MiB
+      - name: FLASH_FREE
+        desc: FLash free space size, in MiB
+      - name: CANARD_CTRL_CMD_ANGLE
+        desc: Canard Controller Commanded Angle
+      - name: CANARD_CTRL_COEFF_LIFT
+        desc: Canard Controller Coefficient of Lift
+      - name: CANARD_MS5611_BARO
+        desc: Canard MS5611 Barometer pressure reading
+      - name: CANARD_MS5611_TEMP
+        desc: Canard MS5611 Barometer temperature reading
+      - name: CANARD_MTI630_BARO_0
+        desc: Canard MTI-630 Movella barometer reading 0
+      - name: CANARD_MTI630_BARO_1
+        desc: Canard MTI-630 Movella barometer reading 1
+      - name: CANARD_MTI630_EST_ALT
+        desc: Canard MTI-630 Movella Estimation altitude
+      - name: CANARD_ADXRS649_GYRO
+        desc: Canard ADXRS649 1-Axis Gyroscope angular velocity reading
+      - name: CANARD_SERVO_ANGLE
+        desc: Canard Servo encoder angle reading
+      - name: CANARD_SERVO_CURR
+        desc: Canard Servo current reading (in mA)
+      - name: CANARD_SERVO_TEMP
+        desc: Canard Servo temperature reading (in Celcius)
 
-  - name: state_est_id
-    desc: State Estimation data field indentifier
-    prefix: STATE_ID
+  - name: dem_sensor_id
+    desc: 3-Dimensional SENSOR_ID
+    prefix: DEM_SENSOR
     value:
-      - name: ATT_Q0
-      - name: ATT_Q1
-      - name: ATT_Q2
-      - name: ATT_Q3
-      - name: RATE_WX
-      - name: RATE_WY
-      - name: RATE_WZ
-      - name: VEL_VX
-      - name: VEL_VY
-      - name: VEL_VZ
-      - name: ALT
-      - name: COEFF_CL
-      - name: CANARD_ANGLE
-
-  - name: apogee_state
-    desc: Apogee detection state
-    prefix: APOGEE
-    value:
-      - name: UNKNOWN
-      - name: NOT_REACHED
-      - name: REACHED
+      - name: CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
+        desc: Canard Navigation Orientation QX, QY, QZ
+      - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
+        desc: Canard Navigation Orientation QW, Altitude, Variance Norm
+      - name: CANARD_NAV_ANGLE_VEL
+        desc: Canard Navigation Angular Velocity
+      - name: CANARD_NAV_VEL
+        desc: Canard Navigation Velocity
+      - name: CANARD_LSM6DSV32X_ACCEL
+        desc: Canard LSM6DSV32X 32G IMU Acceleration
+      - name: CANARD_LSM6DSV32X_GYRO
+        desc: Canard LSM6DSV32X 32G IMU Angular Velocity
+      - name: CANARD_LSM303AGR_ACCEL
+        desc: Canard LSM303AGR Compass Acceleration
+      - name: CANARD_LSM303AGR_MAG
+        desc: Canard LSM303AGR Magnetometer Reading
+      - name: CANARD_MTI630_ACCEL
+        desc: Canard MTI-630 Movella Acceleration
+      - name: CANARD_MTI630_GYRO
+        desc: Canard MTI-630 Movella Angular Velocity
+      - name: CANARD_MTI630_MAG
+        desc: Canard MTI-630 Movella Magnetometer Reading
+      - name: CANARD_MTI630_EST_ORIENTATION
+        desc: Canard MTI-630 Movella Estimation Orientation (Euler)
+      - name: CANARD_MTI630_EST_ANGLE_VEL
+        desc: Canard MTI-630 Movella Estimation Angular Velocity
+      - name: CANARD_MTI630_EST_VEL
+        desc: Canard MTI-630 Movella Estimation Velocity
+      - name: CANARD_ADXL380_ACCEL
+        desc: Canard ADXL380 Accelerometer Acceleration
 
 bitfields:
   - name: general_board_status

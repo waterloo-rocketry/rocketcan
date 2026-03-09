@@ -9,14 +9,10 @@ messages:
     id: 0x001
     timestamp: 2
     field:
-      - name: GENERAL_ERROR_BITFIELD
-        desc: General error code bitfield
-        width: 4
-        bitfield: general_board_status
       - name: BOARD_ERROR_BITFIELD
-        desc: Board specific error code bitfield
-        width: 2
-        bitfield: board_specific_status
+        desc: Board error code bitfield
+        width: 4
+        bitfield: board_error_bitfield
 
   - name: RESET_CMD
     desc: Command to reset boards
@@ -578,8 +574,8 @@ enums:
         desc: Canard ADXL380 Accelerometer Acceleration
 
 bitfields:
-  - name: general_board_status
-    desc: General board status bitfield
+  - name: board_error_bitfield
+    desc: Board error bitfield
     prefix: E
     bits:
       - name: 5V_OVER_CURRENT
@@ -595,11 +591,6 @@ bitfields:
       - name: IO_ERROR
       - name: FS_ERROR
       - name: WATCHDOG_TIMEOUT
-
-  - name: board_specific_status
-    desc: Board specific status bitfield
-    prefix: E
-    bits:
       - name: 12V_EFUSE_FAULT
       - name: 5V_EFUSE_FAULT
       - name: PT_OUT_OF_RANGE

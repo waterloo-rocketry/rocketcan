@@ -157,13 +157,29 @@ messages:
         desc: Analog sensor value
         width: 4
 
-  - name: SENSOR_DEM_ANALOG16
-    desc: 3-Dimensional 16-bit analog sensor value message
+  - name: SENSOR_2D_ANALOG24
+    desc: 2-Dimensional 24-bit analog sensor value message
     id: 0x0C
     timestamp: 2
     metadata:
       - name: DEM_SENSOR_ID
-        desc: 3-Dimensional sensor ID
+        desc: Dimensional sensor ID
+        enum: dem_sensor_id
+    field:
+      - name: VALUE_X
+        desc: Analog sensor value X
+        width: 3
+      - name: VALUE_Y
+        desc: Analog sensor value Y
+        width: 3
+
+  - name: SENSOR_3D_ANALOG16
+    desc: 3-Dimensional 16-bit analog sensor value message
+    id: 0x0D
+    timestamp: 2
+    metadata:
+      - name: DEM_SENSOR_ID
+        desc: Dimensional sensor ID
         enum: dem_sensor_id
     field:
       - name: VALUE_X
@@ -177,7 +193,7 @@ messages:
         width: 2
 
   - name: GPS_TIMESTAMP
-    id: 0x0D
+    id: 0x0E
     timestamp: 2
     field:
       - name: UTC_HOURS
@@ -194,7 +210,7 @@ messages:
         width: 1
 
   - name: GPS_LATITUDE
-    id: 0x0E
+    id: 0x0F
     timestamp: 2
     field:
       - name: DEGREES
@@ -211,7 +227,7 @@ messages:
         width: 1
 
   - name: GPS_LONGITUDE
-    id: 0x0F
+    id: 0x10
     timestamp: 2
     field:
       - name: DEGREES
@@ -228,7 +244,7 @@ messages:
         width: 1
 
   - name: GPS_ALTITUDE
-    id: 0x10
+    id: 0x11
     timestamp: 2
     field:
       - name: ALT
@@ -239,7 +255,7 @@ messages:
         width: 1
 
   - name: GPS_INFO
-    id: 0x11
+    id: 0x12
     timestamp: 2
     field:
       - name: NUM_SAT
@@ -250,7 +266,7 @@ messages:
         width: 1
 
   - name: STREAM_STATUS
-    id: 0x12
+    id: 0x13
     timestamp: 2
     field:
       - name: TOTAL_SIZE
@@ -261,7 +277,7 @@ messages:
         width: 3
 
   - name: STREAM_DATA
-    id: 0x13
+    id: 0x14
     timestamp: 2
     metadata:
       - name: SEQ_ID
@@ -272,18 +288,18 @@ messages:
         width: 6
 
   - name: STREAM_RETRY
-    id: 0x14
+    id: 0x15
     timestamp: 2
     metadata:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
 
   - name: LEDS_ON
-    id: 0x15
+    id: 0x16
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x16
+    id: 0x17
     timestamp: 2
 
 boards:
@@ -539,7 +555,7 @@ enums:
         desc: Canard Servo temperature reading (in Celcius)
 
   - name: dem_sensor_id
-    desc: 3-Dimensional SENSOR_ID
+    desc: Dimensional SENSOR_ID
     prefix: DEM_SENSOR
     value:
       - name: CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ

@@ -1,4 +1,2 @@
-genre/venv
-genre/__pycache__
-
-*.h
+__pycache__
+output

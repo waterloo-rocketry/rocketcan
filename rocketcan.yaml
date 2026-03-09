@@ -330,7 +330,7 @@ boards:
   - name: CANARD
     desc: Canard Board
     id: 0x05
-    doc-link: /controls/processor-board/index
+    doc-link: /controls/canards-electrical/index
   - name: TELEMETRY
     desc: Live Telemetry Board
     id: 0x06

@@ -92,12 +92,12 @@ messages:
         desc: Acturator ID
         enum: actuator_id
     field:
-      - name: ACTUATOR_CURR_STATE
-        desc: Actuator Current State
-        width: 1
-        enum: actuator_state
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
+        width: 1
+        enum: actuator_state
+      - name: ACTUATOR_CURR_STATE
+        desc: Actuator Current State
         width: 1
         enum: actuator_state
 

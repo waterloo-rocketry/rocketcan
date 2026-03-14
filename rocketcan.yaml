@@ -162,9 +162,9 @@ messages:
     id: 0x0C
     timestamp: 2
     metadata:
-      - name: DEM_SENSOR_ID
-        desc: Dimensional sensor ID
-        enum: dem_sensor_id
+      - name: SENSOR_ID
+        desc: 2 Dimensional sensor ID
+        enum: dem_2d_sensor_id
     field:
       - name: VALUE_X
         desc: Analog sensor value X
@@ -178,9 +178,9 @@ messages:
     id: 0x0D
     timestamp: 2
     metadata:
-      - name: DEM_SENSOR_ID
-        desc: Dimensional sensor ID
-        enum: dem_sensor_id
+      - name: SENSOR_ID
+        desc: 3 Dimensional sensor ID
+        enum: dem_3d_sensor_id
     field:
       - name: VALUE_X
         desc: Analog sensor value X
@@ -407,6 +407,10 @@ enums:
         desc: RLCS Relay Board Power Relay
       - name: RLCS_RELAY_SELECT
         desc: RLCS Relay Board Select Relay(Limit switch state feedback)
+      - name: PAYLOAD_LASER
+        desc: Payload Laser
+      - name: PAYLOAD_PZT_ARM
+        desc: Payload PZT phase biasing arming
 
   - name: actuator_state
     desc: Actuator State
@@ -535,10 +539,6 @@ enums:
         desc: Canard Controller Commanded Angle
       - name: CANARD_CTRL_COEFF_LIFT
         desc: Canard Controller Coefficient of Lift
-      - name: CANARD_MS5611_BARO
-        desc: Canard MS5611 Barometer pressure reading
-      - name: CANARD_MS5611_TEMP
-        desc: Canard MS5611 Barometer temperature reading
       - name: CANARD_MTI630_BARO_0
         desc: Canard MTI-630 Movella barometer reading 0
       - name: CANARD_MTI630_BARO_1
@@ -553,15 +553,24 @@ enums:
         desc: Canard Servo current reading (in mA)
       - name: CANARD_SERVO_TEMP
         desc: Canard Servo temperature reading (in Celcius)
+      - name: PAYLOAD_SENSOR_CURR_READING
+        desc: Payload Sensor Current Reading
 
-  - name: dem_sensor_id
-    desc: Dimensional SENSOR_ID
-    prefix: DEM_SENSOR
+  - name: dem_2d_sensor_id
+    desc: 2 Dimensional Sensor ID
+    prefix: DEM_2D_SENSOR
+    value:
+      - name: CANARD_MS5611_BARO_TEMP
+        desc: Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
+
+  - name: dem_3d_sensor_id
+    desc: 3 Dimensional Sensor ID
+    prefix: DEM_3D_SENSOR
     value:
       - name: CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
         desc: Canard Navigation Orientation QX, QY, QZ
       - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
-        desc: Canard Navigation Orientation QW, Altitude, Variance Norm
+        desc: Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
       - name: CANARD_NAV_ANGLE_VEL
         desc: Canard Navigation Angular Velocity
       - name: CANARD_NAV_VEL

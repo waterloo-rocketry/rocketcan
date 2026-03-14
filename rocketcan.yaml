@@ -561,6 +561,12 @@ enums:
     desc: 2 Dimensional Sensor ID
     prefix: DEM_2D_SENSOR
     value:
+      - name: CANARD_NAV_VEL_ANGLE_VEL_X
+        desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on X-axis
+      - name: CANARD_NAV_VEL_ANGLE_VEL_Y
+        desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Y-axis
+      - name: CANARD_NAV_VEL_ANGLE_VEL_Z
+        desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Z-axis
       - name: CANARD_MS5611_BARO_TEMP
         desc: Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
 
@@ -572,10 +578,6 @@ enums:
         desc: Canard Navigation Orientation QX, QY, QZ
       - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
         desc: Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
-      - name: CANARD_NAV_ANGLE_VEL
-        desc: Canard Navigation Angular Velocity
-      - name: CANARD_NAV_VEL
-        desc: Canard Navigation Velocity
       - name: CANARD_LSM6DSV32X_ACCEL
         desc: Canard LSM6DSV32X 32G IMU Acceleration
       - name: CANARD_LSM6DSV32X_GYRO

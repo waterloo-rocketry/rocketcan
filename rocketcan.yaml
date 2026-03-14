@@ -400,10 +400,10 @@ enums:
       - name: CAMERA_CAPTURE
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
-      - name: THESEUS_ACTUATOR_1
-        desc: Theseus board actuator channel 1
-      - name: THESEUS_ACTUATOR_2
-        desc: Theseus board actuator channel 2
+      - name: INJECTOR_BOARD_ACTUATOR_1
+        desc: Injector board actuator channel 1
+      - name: INJECTOR_BOARD_ACTUATOR_2
+        desc: Injector board actuator channel 2
       - name: RLCS_RELAY_POWER
         desc: RLCS Relay Board Power Relay
       - name: RLCS_RELAY_SELECT
@@ -473,21 +473,31 @@ enums:
       - name: LOCAL_CURR
         desc: Local voltage rail (e.g. 3.3V) current in mA
       - name: PT_CHANNEL_1
-        desc: Pressure Transducer Channel 1, J3 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 1
       - name: PT_CHANNEL_2
-        desc: Pressure Transducer Channel 2, J4 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 2
       - name: PT_CHANNEL_3
-        desc: Pressure Transducer Channel 3, J6 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 3
       - name: PT_CHANNEL_4
-        desc: Pressure Transducer Channel 4, J8 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 4
       - name: PT_CHANNEL_5
-        desc: Pressure Transducer Channel 5, J10 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 5
+      - name: PT_CHANNEL_6
+        desc: Pressure Transducer Channel 6
+      - name: PT_CHANNEL_7
+        desc: Pressure Transducer Channel 7
+      - name: PT_CHANNEL_8
+        desc: Pressure Transducer Channel 8
+      - name: PT_CHANNEL_9
+        desc: Pressure Transducer Channel 9
+      - name: PT_CHANNEL_10
+        desc: Pressure Transducer Channel 10
       - name: HALL_CHANNEL_1
-        desc: Hall-Effect Sensor Channel 1, J7 on Injector Sensor Hub
+        desc: Hall-Effect Sensor Channel 1
       - name: HALL_CHANNEL_2
-        desc: Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
+        desc: Hall-Effect Sensor Channel 2
       - name: HALL_CHANNEL_3
-        desc: Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
+        desc: Hall-Effect Sensor Channel 3
       - name: RA_BATT_VOLT_1
       - name: RA_BATT_VOLT_2
       - name: RA_BATT_CURR_1
@@ -504,12 +514,12 @@ enums:
         desc: Payload Servo Direction
       - name: PAYLOAD_INFRARED
         desc: Payload Infrared Sensor Reading
-      - name: THESEUS_TEMP_1
-        desc: Theseus board temperature channel 1
-      - name: THESEUS_TEMP_2
-        desc: Theseus board temperature channel 2
-      - name: THESEUS_TEMP_3
-        desc: Theseus board temperature channel 3
+      - name: INJECTOR_BOARD_TEMP_1
+        desc: Injector board temperature channel 1
+      - name: INJECTOR_BOARD_TEMP_2
+        desc: Injector board temperature channel 2
+      - name: INJECTOR_BOARD_TEMP_3
+        desc: Injector board temperature channel 3
       - name: RLCS_RELAY_OUTPUT_VOLT_A
         desc: RLCS Relay Board channel A output voltage
       - name: RLCS_RELAY_OUTPUT_VOLT_B

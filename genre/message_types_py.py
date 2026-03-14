@@ -9,10 +9,10 @@ msg_prio = {
 """
 
 message_type_py_board_inst_header = """board_inst_id = {
-    'ANY':         0x00,
-    'GROUND':      0x01,
-    'ROCKET':      0x02,
-    'PAYLOAD':     0x03,"""
+    'ANY':             0x00,
+    'GROUND':          0x01,
+    'NOSECONE':        0x02,
+    'CONTROL_SECTION': 0x03,"""
 
 def gen_message_types_py(rocketcan):
     print(message_types_py_header)

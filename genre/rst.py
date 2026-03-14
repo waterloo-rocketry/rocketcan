@@ -30,13 +30,13 @@ Common Instance IDs
      - Any board
      - 0x00
    * - GROUND
-     - Board on ground
+     - Boards on ground
      - 0x01
-   * - ROCKET
-     - Board on rocket
+   * - NOSECONE
+     - Boards on Nosecone RecElec Sled
      - 0x02
-   * - PAYLOAD
-     - Board in payload
+   * - CONTROL_SECTION
+     - Boards in control/canards section
      - 0x03"""
 
 board_inst_table_header = """   :widths: 25 60 15

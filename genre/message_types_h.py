@@ -16,8 +16,8 @@ message_types_h_board_inst_generic = """// Board Instance IDs
 typedef enum {
 \tBOARD_INST_ID_ANY = 0x00,
 \tBOARD_INST_ID_GROUND = 0x01,
-\tBOARD_INST_ID_ROCKET = 0x02,
-\tBOARD_INST_ID_PAYLOAD = 0x03
+\tBOARD_INST_ID_NOSECONE = 0x02,
+\tBOARD_INST_ID_CONTROL_SECTION = 0x03
 } can_board_inst_id_t;
 """
 

@@ -382,7 +382,6 @@ enums:
       - name: PAYLOAD_CHARGE_ENABLE
         desc: Payload Ground-side Charging Enable
       - name: 5V_RAIL_ROCKET
-      - name: 5V_RAIL_PAYLOAD
       - name: 12V_RAIL_ROCKET
       - name: TELEMETRY
       - name: CAMERA_SIDE_LOOKING
@@ -390,8 +389,10 @@ enums:
       - name: CAMERA_RECOVERY
       - name: CANARD_PAD_FILTER
         desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
-      - name: CANARD_LOW_POWER_MODE
-        desc: Canard Low-Power Mode (In Low-Power mode when ACT_STATE_ON, vice versa)
+      - name: CANARD_5V_OUTPUT
+        desc: Enable Canard Board's 5V output to payload
+      - name: CANARD_LIPO_ON
+        desc: Enable Canard board draw power from LiPo
       - name: SRAD_ALT_ESTIMATOR_INIT
         desc: Actuator command to start SRAD Altimeter state estimation
       - name: SRAD_ALT_GPS_RESET

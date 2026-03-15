@@ -32,12 +32,9 @@ Common Instance IDs
    * - GROUND
      - Boards on ground
      - 0x01
-   * - NOSECONE_RECELEC
-     - Boards on Nosecone RecElec Sled
-     - 0x02
-   * - CONTROL_SECTION
-     - Boards in Control/Canards Section
-     - 0x03"""
+   * - ROCKET
+     - Boards on rocket
+     - 0x02"""
 
 board_inst_table_header = """   :widths: 25 60 15
    :header-rows: 1
@@ -59,7 +56,7 @@ def gen_board_id_rst(rocketcan):
 
     print(board_inst_id_str)
 
-    inst_id = 4
+    inst_id = 3
     for board in rocketcan['boards']:
         if "inst" in board:
             print('\n' + board['desc'].data)

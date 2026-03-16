@@ -9,14 +9,10 @@ messages:
     id: 0x001
     timestamp: 2
     field:
-      - name: GENERAL_ERROR_BITFIELD
-        desc: General error code bitfield
-        width: 4
-        bitfield: general_board_status
       - name: BOARD_ERROR_BITFIELD
-        desc: Board specific error code bitfield
-        width: 2
-        bitfield: board_specific_status
+        desc: Board error code bitfield
+        width: 4
+        bitfield: board_error_bitfield
 
   - name: RESET_CMD
     desc: Command to reset boards
@@ -92,12 +88,12 @@ messages:
         desc: Acturator ID
         enum: actuator_id
     field:
-      - name: ACTUATOR_CURR_STATE
-        desc: Actuator Current State
-        width: 1
-        enum: actuator_state
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
+        width: 1
+        enum: actuator_state
+      - name: ACTUATOR_CURR_STATE
+        desc: Actuator Current State
         width: 1
         enum: actuator_state
 
@@ -161,14 +157,30 @@ messages:
         desc: Analog sensor value
         width: 4
 
-  - name: SENSOR_DEM_ANALOG16
-    desc: 3-Dimensional 16-bit analog sensor value message
+  - name: SENSOR_2D_ANALOG24
+    desc: 2-Dimensional 24-bit analog sensor value message
     id: 0x0C
     timestamp: 2
     metadata:
-      - name: DEM_SENSOR_ID
-        desc: 3-Dimensional sensor ID
-        enum: dem_sensor_id
+      - name: SENSOR_ID
+        desc: 2 Dimensional sensor ID
+        enum: dem_2d_sensor_id
+    field:
+      - name: VALUE_X
+        desc: Analog sensor value X
+        width: 3
+      - name: VALUE_Y
+        desc: Analog sensor value Y
+        width: 3
+
+  - name: SENSOR_3D_ANALOG16
+    desc: 3-Dimensional 16-bit analog sensor value message
+    id: 0x0D
+    timestamp: 2
+    metadata:
+      - name: SENSOR_ID
+        desc: 3 Dimensional sensor ID
+        enum: dem_3d_sensor_id
     field:
       - name: VALUE_X
         desc: Analog sensor value X
@@ -181,7 +193,7 @@ messages:
         width: 2
 
   - name: GPS_TIMESTAMP
-    id: 0x0D
+    id: 0x0E
     timestamp: 2
     field:
       - name: UTC_HOURS
@@ -198,7 +210,7 @@ messages:
         width: 1
 
   - name: GPS_LATITUDE
-    id: 0x0E
+    id: 0x0F
     timestamp: 2
     field:
       - name: DEGREES
@@ -215,7 +227,7 @@ messages:
         width: 1
 
   - name: GPS_LONGITUDE
-    id: 0x0F
+    id: 0x10
     timestamp: 2
     field:
       - name: DEGREES
@@ -232,7 +244,7 @@ messages:
         width: 1
 
   - name: GPS_ALTITUDE
-    id: 0x10
+    id: 0x11
     timestamp: 2
     field:
       - name: ALT
@@ -243,7 +255,7 @@ messages:
         width: 1
 
   - name: GPS_INFO
-    id: 0x11
+    id: 0x12
     timestamp: 2
     field:
       - name: NUM_SAT
@@ -254,7 +266,7 @@ messages:
         width: 1
 
   - name: STREAM_STATUS
-    id: 0x12
+    id: 0x13
     timestamp: 2
     field:
       - name: TOTAL_SIZE
@@ -265,7 +277,7 @@ messages:
         width: 3
 
   - name: STREAM_DATA
-    id: 0x13
+    id: 0x14
     timestamp: 2
     metadata:
       - name: SEQ_ID
@@ -276,18 +288,18 @@ messages:
         width: 6
 
   - name: STREAM_RETRY
-    id: 0x14
+    id: 0x15
     timestamp: 2
     metadata:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
 
   - name: LEDS_ON
-    id: 0x15
+    id: 0x16
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x16
+    id: 0x17
     timestamp: 2
 
 boards:
@@ -318,7 +330,7 @@ boards:
   - name: CANARD
     desc: Canard Board
     id: 0x05
-    doc-link: /controls/processor-board/index
+    doc-link: /controls/canards-electrical/index
   - name: TELEMETRY
     desc: Live Telemetry Board
     id: 0x06
@@ -370,7 +382,6 @@ enums:
       - name: PAYLOAD_CHARGE_ENABLE
         desc: Payload Ground-side Charging Enable
       - name: 5V_RAIL_ROCKET
-      - name: 5V_RAIL_PAYLOAD
       - name: 12V_RAIL_ROCKET
       - name: TELEMETRY
       - name: CAMERA_SIDE_LOOKING
@@ -378,8 +389,10 @@ enums:
       - name: CAMERA_RECOVERY
       - name: CANARD_PAD_FILTER
         desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
-      - name: CANARD_LOW_POWER_MODE
-        desc: Canard Low-Power Mode (In Low-Power mode when ACT_STATE_ON, vice versa)
+      - name: CANARD_5V_OUTPUT
+        desc: Enable Canard Board's 5V output to payload
+      - name: CANARD_LIPO_ON
+        desc: Enable Canard board draw power from LiPo
       - name: SRAD_ALT_ESTIMATOR_INIT
         desc: Actuator command to start SRAD Altimeter state estimation
       - name: SRAD_ALT_GPS_RESET
@@ -387,14 +400,18 @@ enums:
       - name: CAMERA_CAPTURE
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
-      - name: THESEUS_ACTUATOR_1
-        desc: Theseus board actuator channel 1
-      - name: THESEUS_ACTUATOR_2
-        desc: Theseus board actuator channel 2
+      - name: INJECTOR_BOARD_ACTUATOR_1
+        desc: Injector board actuator channel 1
+      - name: INJECTOR_BOARD_ACTUATOR_2
+        desc: Injector board actuator channel 2
       - name: RLCS_RELAY_POWER
         desc: RLCS Relay Board Power Relay
       - name: RLCS_RELAY_SELECT
         desc: RLCS Relay Board Select Relay(Limit switch state feedback)
+      - name: PAYLOAD_LASER
+        desc: Payload Laser
+      - name: PAYLOAD_PZT_ARM
+        desc: Payload PZT phase biasing arming
 
   - name: actuator_state
     desc: Actuator State
@@ -456,21 +473,31 @@ enums:
       - name: LOCAL_CURR
         desc: Local voltage rail (e.g. 3.3V) current in mA
       - name: PT_CHANNEL_1
-        desc: Pressure Transducer Channel 1, J3 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 1
       - name: PT_CHANNEL_2
-        desc: Pressure Transducer Channel 2, J4 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 2
       - name: PT_CHANNEL_3
-        desc: Pressure Transducer Channel 3, J6 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 3
       - name: PT_CHANNEL_4
-        desc: Pressure Transducer Channel 4, J8 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 4
       - name: PT_CHANNEL_5
-        desc: Pressure Transducer Channel 5, J10 on Injector Sensor Hub
+        desc: Pressure Transducer Channel 5
+      - name: PT_CHANNEL_6
+        desc: Pressure Transducer Channel 6
+      - name: PT_CHANNEL_7
+        desc: Pressure Transducer Channel 7
+      - name: PT_CHANNEL_8
+        desc: Pressure Transducer Channel 8
+      - name: PT_CHANNEL_9
+        desc: Pressure Transducer Channel 9
+      - name: PT_CHANNEL_10
+        desc: Pressure Transducer Channel 10
       - name: HALL_CHANNEL_1
-        desc: Hall-Effect Sensor Channel 1, J7 on Injector Sensor Hub
+        desc: Hall-Effect Sensor Channel 1
       - name: HALL_CHANNEL_2
-        desc: Hall-Effect Sensor Channel 2, J5 on Injector Sensor Hub
+        desc: Hall-Effect Sensor Channel 2
       - name: HALL_CHANNEL_3
-        desc: Hall-Effect Sensor Channel 3, J9 on Injector Sensor Hub
+        desc: Hall-Effect Sensor Channel 3
       - name: RA_BATT_VOLT_1
       - name: RA_BATT_VOLT_2
       - name: RA_BATT_CURR_1
@@ -487,12 +514,12 @@ enums:
         desc: Payload Servo Direction
       - name: PAYLOAD_INFRARED
         desc: Payload Infrared Sensor Reading
-      - name: THESEUS_TEMP_1
-        desc: Theseus board temperature channel 1
-      - name: THESEUS_TEMP_2
-        desc: Theseus board temperature channel 2
-      - name: THESEUS_TEMP_3
-        desc: Theseus board temperature channel 3
+      - name: INJECTOR_BOARD_TEMP_1
+        desc: Injector board temperature channel 1
+      - name: INJECTOR_BOARD_TEMP_2
+        desc: Injector board temperature channel 2
+      - name: INJECTOR_BOARD_TEMP_3
+        desc: Injector board temperature channel 3
       - name: RLCS_RELAY_OUTPUT_VOLT_A
         desc: RLCS Relay Board channel A output voltage
       - name: RLCS_RELAY_OUTPUT_VOLT_B
@@ -523,10 +550,6 @@ enums:
         desc: Canard Controller Commanded Angle
       - name: CANARD_CTRL_COEFF_LIFT
         desc: Canard Controller Coefficient of Lift
-      - name: CANARD_MS5611_BARO
-        desc: Canard MS5611 Barometer pressure reading
-      - name: CANARD_MS5611_TEMP
-        desc: Canard MS5611 Barometer temperature reading
       - name: CANARD_MTI630_BARO_0
         desc: Canard MTI-630 Movella barometer reading 0
       - name: CANARD_MTI630_BARO_1
@@ -541,19 +564,30 @@ enums:
         desc: Canard Servo current reading (in mA)
       - name: CANARD_SERVO_TEMP
         desc: Canard Servo temperature reading (in Celcius)
+      - name: PAYLOAD_SENSOR_CURR_READING
+        desc: Payload Sensor Current Reading
 
-  - name: dem_sensor_id
-    desc: 3-Dimensional SENSOR_ID
-    prefix: DEM_SENSOR
+  - name: dem_2d_sensor_id
+    desc: 2 Dimensional Sensor ID
+    prefix: DEM_2D_SENSOR
+    value:
+      - name: CANARD_NAV_VEL_ANGLE_VEL_X
+        desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on X-axis
+      - name: CANARD_NAV_VEL_ANGLE_VEL_Y
+        desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Y-axis
+      - name: CANARD_NAV_VEL_ANGLE_VEL_Z
+        desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Z-axis
+      - name: CANARD_MS5611_BARO_TEMP
+        desc: Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
+
+  - name: dem_3d_sensor_id
+    desc: 3 Dimensional Sensor ID
+    prefix: DEM_3D_SENSOR
     value:
       - name: CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
         desc: Canard Navigation Orientation QX, QY, QZ
       - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
-        desc: Canard Navigation Orientation QW, Altitude, Variance Norm
-      - name: CANARD_NAV_ANGLE_VEL
-        desc: Canard Navigation Angular Velocity
-      - name: CANARD_NAV_VEL
-        desc: Canard Navigation Velocity
+        desc: Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
       - name: CANARD_LSM6DSV32X_ACCEL
         desc: Canard LSM6DSV32X 32G IMU Acceleration
       - name: CANARD_LSM6DSV32X_GYRO
@@ -578,8 +612,8 @@ enums:
         desc: Canard ADXL380 Accelerometer Acceleration
 
 bitfields:
-  - name: general_board_status
-    desc: General board status bitfield
+  - name: board_error_bitfield
+    desc: Board error bitfield
     prefix: E
     bits:
       - name: 5V_OVER_CURRENT
@@ -595,11 +629,6 @@ bitfields:
       - name: IO_ERROR
       - name: FS_ERROR
       - name: WATCHDOG_TIMEOUT
-
-  - name: board_specific_status
-    desc: Board specific status bitfield
-    prefix: E
-    bits:
       - name: 12V_EFUSE_FAULT
       - name: 5V_EFUSE_FAULT
       - name: PT_OUT_OF_RANGE

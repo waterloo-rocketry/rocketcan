@@ -377,6 +377,8 @@ enums:
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback and Canard activation
       - name: FUEL_INJECTOR_VALVE
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
+      - name: IGNITION
+        desc: Ignition Puck
       - name: ROCKET_CHARGE_ENABLE
         desc: Rocket Ground-side Charging Enable
       - name: PAYLOAD_CHARGE_ENABLE
@@ -566,6 +568,8 @@ enums:
         desc: Canard Servo temperature reading (in Celcius)
       - name: PAYLOAD_SENSOR_CURR_READING
         desc: Payload Sensor Current Reading
+      - name: ALTITUDE
+        desc: Altitude in ft
 
   - name: dem_2d_sensor_id
     desc: 2 Dimensional Sensor ID

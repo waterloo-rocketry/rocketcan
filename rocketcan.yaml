@@ -636,3 +636,5 @@ bitfields:
       - name: 12V_EFUSE_FAULT
       - name: 5V_EFUSE_FAULT
       - name: PT_OUT_OF_RANGE
+      - name: CANARD_MODULE_FAILURE
+        desc: Canard firmware application module error

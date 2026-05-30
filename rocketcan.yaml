@@ -409,9 +409,12 @@ enums:
       - name: 5V_RAIL_ROCKET
       - name: 12V_RAIL_ROCKET
       - name: TELEMETRY
-      - name: CAMERA_SIDE_LOOKING
-      - name: CAMERA_DOWN_LOOKING
-      - name: CAMERA_RECOVERY
+      - name: CAMERA_SIDE_LOOKING_POWER
+      - name: CAMERA_DOWN_LOOKING_POWER
+      - name: CAMERA_RECOVERY_POWER
+      - name: CAMERA_SIDE_LOOKING_RECORD
+      - name: CAMERA_DOWN_LOOKING_RECORD
+      - name: CAMERA_RECOVERY_RECORD
       - name: CANARD_PAD_FILTER
         desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
       - name: CANARD_5V_OUTPUT
@@ -499,6 +502,8 @@ enums:
         desc: Radio current in mA
       - name: GPS_CURR
         desc: GPS Receiver current in mA
+      - name: CAMERA_CURR
+        desc: Camera current in mA
       - name: LOCAL_CURR
         desc: Local voltage rail (e.g. 3.3V) current in mA
       - name: PT_CHANNEL_1
@@ -623,10 +628,10 @@ enums:
         desc: Canard LSM6DSV32X 32G IMU Acceleration
       - name: CANARD_LSM6DSV32X_GYRO
         desc: Canard LSM6DSV32X 32G IMU Angular Velocity
-      - name: CANARD_LSM303AGR_ACCEL
-        desc: Canard LSM303AGR Compass Acceleration
-      - name: CANARD_LSM303AGR_MAG
-        desc: Canard LSM303AGR Magnetometer Reading
+      - name: CANARD_IIS2MDC_ACCEL
+        desc: Canard IIS2MDC Compass Acceleration
+      - name: CANARD_IIS2MDC_MAG
+        desc: Canard IIS2MDC Magnetometer Reading
       - name: CANARD_MTI630_ACCEL
         desc: Canard MTI-630 Movella Acceleration
       - name: CANARD_MTI630_GYRO

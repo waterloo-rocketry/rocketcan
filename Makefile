@@ -1,5 +1,5 @@
 .PHONY: all
-all: output/message_types.h output/message_types.py output/board-id.rst output/packet-format.rst 
+all: output/message_types.h output/message_types.py output/message_types.ts output/board-id.rst output/packet-format.rst
 
 output/message_types.h: rocketcan.yaml
 	mkdir -p output
@@ -8,6 +8,10 @@ output/message_types.h: rocketcan.yaml
 output/message_types.py: rocketcan.yaml
 	mkdir -p output
 	python genre/genre.py -f message-types-py $< > $@
+
+output/message_types.ts: rocketcan.yaml
+	mkdir -p output
+	python genre/genre.py -f message-types-ts $< > $@
 
 output/board-id.rst: rocketcan.yaml
 	mkdir -p output

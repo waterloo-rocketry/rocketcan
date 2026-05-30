@@ -308,12 +308,26 @@ messages:
         desc: Received Signal Strength Indicator
         width: 1
 
-  - name: LEDS_ON
+  - name: CANARD_FIRMWARE_ERROR
     id: 0x17
+    timestamp: 2
+    metadata:
+      - name: MODULE_ID
+        desc: Module ID
+    field:
+      - name: ERROR_CODE
+        desc: Error Code Bitfield
+        width: 4
+      - name: SEVERITY
+        desc: Severity
+        width: 1
+
+  - name: LEDS_ON
+    id: 0x18
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x18
+    id: 0x19
     timestamp: 2
 
 boards:

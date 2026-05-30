@@ -294,12 +294,26 @@ messages:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
 
-  - name: LEDS_ON
+  - name: TELEMETRY_INFO
     id: 0x16
+    timestamp: 2
+    metadata:
+      - name: CHANNEL_ID
+        desc: Channel ID(Use LTT board instance ID)
+    field:
+      - name: LQI
+        desc: Link Quality Indicator
+        width: 1
+      - name: RSSI
+        desc: Received Signal Strength Indicator
+        width: 1
+
+  - name: LEDS_ON
+    id: 0x17
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x17
+    id: 0x18
     timestamp: 2
 
 boards:
@@ -335,6 +349,15 @@ boards:
     desc: Live Telemetry Board
     id: 0x06
     doc-link: /avionics/live-telemetry/index
+    inst:
+      - name: GROUND_1
+        desc: Ground side 1
+      - name: GROUND_2
+        desc: Ground side 2
+      - name: GROUND_3
+        desc: Ground side 3
+      - name: GROUND_4
+        desc: Ground side 4
   - name: GPS
     desc: COTS GPS Receiver Board
     id: 0x07
@@ -414,6 +437,10 @@ enums:
         desc: Payload Laser
       - name: PAYLOAD_PZT_ARM
         desc: Payload PZT phase biasing arming
+      - name: LOGGER_FLASH_ERASE
+        desc: Erase logger board flash
+      - name: CANARD_FLASH_ERASE
+        desc: Erase canard board flash
 
   - name: actuator_state
     desc: Actuator State

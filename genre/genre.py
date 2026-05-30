@@ -3,6 +3,7 @@ from strictyaml import load,Map,Str,HexInt,Int,Seq,FixedSeq,YAMLError,Optional
 
 from message_types_h import gen_message_types_h
 from message_types_py import gen_message_types_py
+from message_types_ts import gen_message_types_ts
 from rst import gen_board_id_rst, gen_packet_format_rst
 
 def main():
@@ -69,6 +70,8 @@ def main():
             gen_message_types_h(rocketcan)
         elif(args.format == 'message-types-py'):
             gen_message_types_py(rocketcan)
+        elif(args.format == 'message-types-ts'):
+            gen_message_types_ts(rocketcan)
         elif(args.format == 'board-id-rst'):
             gen_board_id_rst(rocketcan)
         elif(args.format == 'packet-format-rst'):

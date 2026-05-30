@@ -294,12 +294,40 @@ messages:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
 
-  - name: LEDS_ON
+  - name: TELEMETRY_INFO
     id: 0x16
+    timestamp: 2
+    metadata:
+      - name: CHANNEL_ID
+        desc: Channel ID(Use LTT board instance ID)
+    field:
+      - name: LQI
+        desc: Link Quality Indicator
+        width: 1
+      - name: RSSI
+        desc: Received Signal Strength Indicator
+        width: 1
+
+  - name: CANARD_FIRMWARE_ERROR
+    id: 0x17
+    timestamp: 2
+    metadata:
+      - name: MODULE_ID
+        desc: Module ID
+    field:
+      - name: ERROR_CODE
+        desc: Error Code Bitfield
+        width: 4
+      - name: SEVERITY
+        desc: Severity
+        width: 1
+
+  - name: LEDS_ON
+    id: 0x18
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x17
+    id: 0x19
     timestamp: 2
 
 boards:
@@ -335,6 +363,15 @@ boards:
     desc: Live Telemetry Board
     id: 0x06
     doc-link: /avionics/live-telemetry/index
+    inst:
+      - name: GROUND_1
+        desc: Ground side 1
+      - name: GROUND_2
+        desc: Ground side 2
+      - name: GROUND_3
+        desc: Ground side 3
+      - name: GROUND_4
+        desc: Ground side 4
   - name: GPS
     desc: COTS GPS Receiver Board
     id: 0x07
@@ -377,6 +414,8 @@ enums:
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback and Canard activation
       - name: FUEL_INJECTOR_VALVE
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
+      - name: IGNITION
+        desc: Ignition Puck
       - name: ROCKET_CHARGE_ENABLE
         desc: Rocket Ground-side Charging Enable
       - name: PAYLOAD_CHARGE_ENABLE
@@ -384,9 +423,12 @@ enums:
       - name: 5V_RAIL_ROCKET
       - name: 12V_RAIL_ROCKET
       - name: TELEMETRY
-      - name: CAMERA_SIDE_LOOKING
-      - name: CAMERA_DOWN_LOOKING
-      - name: CAMERA_RECOVERY
+      - name: CAMERA_SIDE_LOOKING_POWER
+      - name: CAMERA_DOWN_LOOKING_POWER
+      - name: CAMERA_RECOVERY_POWER
+      - name: CAMERA_SIDE_LOOKING_RECORD
+      - name: CAMERA_DOWN_LOOKING_RECORD
+      - name: CAMERA_RECOVERY_RECORD
       - name: CANARD_PAD_FILTER
         desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
       - name: CANARD_5V_OUTPUT
@@ -412,6 +454,10 @@ enums:
         desc: Payload Laser
       - name: PAYLOAD_PZT_ARM
         desc: Payload PZT phase biasing arming
+      - name: LOGGER_FLASH_ERASE
+        desc: Erase logger board flash
+      - name: CANARD_FLASH_ERASE
+        desc: Erase canard board flash
 
   - name: actuator_state
     desc: Actuator State
@@ -470,6 +516,8 @@ enums:
         desc: Radio current in mA
       - name: GPS_CURR
         desc: GPS Receiver current in mA
+      - name: CAMERA_CURR
+        desc: Camera current in mA
       - name: LOCAL_CURR
         desc: Local voltage rail (e.g. 3.3V) current in mA
       - name: PT_CHANNEL_1
@@ -566,6 +614,8 @@ enums:
         desc: Canard Servo temperature reading (in Celcius)
       - name: PAYLOAD_SENSOR_CURR_READING
         desc: Payload Sensor Current Reading
+      - name: ALTITUDE
+        desc: Altitude in ft
 
   - name: dem_2d_sensor_id
     desc: 2 Dimensional Sensor ID
@@ -592,10 +642,10 @@ enums:
         desc: Canard LSM6DSV32X 32G IMU Acceleration
       - name: CANARD_LSM6DSV32X_GYRO
         desc: Canard LSM6DSV32X 32G IMU Angular Velocity
-      - name: CANARD_LSM303AGR_ACCEL
-        desc: Canard LSM303AGR Compass Acceleration
-      - name: CANARD_LSM303AGR_MAG
-        desc: Canard LSM303AGR Magnetometer Reading
+      - name: CANARD_IIS2MDC_ACCEL
+        desc: Canard IIS2MDC Compass Acceleration
+      - name: CANARD_IIS2MDC_MAG
+        desc: Canard IIS2MDC Magnetometer Reading
       - name: CANARD_MTI630_ACCEL
         desc: Canard MTI-630 Movella Acceleration
       - name: CANARD_MTI630_GYRO
@@ -632,3 +682,5 @@ bitfields:
       - name: 12V_EFUSE_FAULT
       - name: 5V_EFUSE_FAULT
       - name: PT_OUT_OF_RANGE
+      - name: CANARD_MODULE_FAILURE
+        desc: Canard firmware application module error

@@ -510,6 +510,8 @@ enums:
         desc: LiPo charging current in mA  
       - name: BATT_VOLT
         desc: Battery Voltage in mV
+      - name: ALT_BATT_VOLT
+        desc: Secondary Battery Voltage in mV
       - name: BATT_CURR
         desc: Battery Current in mA
       - name: RADIO_CURR

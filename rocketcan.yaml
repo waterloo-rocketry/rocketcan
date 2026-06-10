@@ -308,8 +308,15 @@ messages:
         desc: Received Signal Strength Indicator
         width: 1
 
-  - name: CANARD_FIRMWARE_ERROR
+  - name: TELEMETRY_STATE_SWITCH
     id: 0x17
+    timestamp: 2
+    metadata:
+      - name: CHANNEL_ID
+        desc: Channel ID(Use LTT board instance ID)
+
+  - name: CANARD_FIRMWARE_ERROR
+    id: 0x18
     timestamp: 2
     metadata:
       - name: MODULE_ID
@@ -323,11 +330,11 @@ messages:
         width: 1
 
   - name: LEDS_ON
-    id: 0x18
+    id: 0x19
     timestamp: 2
 
   - name: LEDS_OFF
-    id: 0x19
+    id: 0x20
     timestamp: 2
 
 boards:

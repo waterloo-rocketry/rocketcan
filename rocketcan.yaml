@@ -465,6 +465,8 @@ enums:
         desc: Erase logger board flash
       - name: CANARD_FLASH_ERASE
         desc: Erase canard board flash
+      - name: CANARD_MOTOR_CALIBRATION
+        desc: Start canard motor calibration routine
 
   - name: actuator_state
     desc: Actuator State

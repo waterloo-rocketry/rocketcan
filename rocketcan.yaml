@@ -423,10 +423,10 @@ enums:
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
       - name: IGNITION
         desc: Ignition Puck
-      - name: ROCKET_CHARGE_ENABLE
-        desc: Rocket Ground-side Charging Enable
-      - name: PAYLOAD_CHARGE_ENABLE
-        desc: Payload Ground-side Charging Enable
+      - name: ROCKET_UPPER_CHARGE_ENABLE
+        desc: Rocket Upper Section Ground-side Charging Enable
+      - name: ROCKET_INJECTOR_CHARGE_ENABLE
+        desc: Rocket Injector Section Ground-side Charging Enable
       - name: 5V_RAIL_ROCKET
       - name: 12V_RAIL_ROCKET
       - name: TELEMETRY

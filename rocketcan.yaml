@@ -457,8 +457,8 @@ enums:
         desc: RLCS Relay Board Power Relay
       - name: RLCS_RELAY_SELECT
         desc: RLCS Relay Board Select Relay(Limit switch state feedback)
-      - name: PAYLOAD_LASER
-        desc: Payload Laser
+      - name: PAYLOAD_ACCEL_ARM
+        desc: Payload accelerometer arming
       - name: PAYLOAD_PZT_ARM
         desc: Payload PZT phase biasing arming
       - name: LOGGER_FLASH_ERASE

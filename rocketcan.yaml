@@ -529,8 +529,8 @@ enums:
         desc: GPS Receiver current in mA
       - name: CAMERA_CURR
         desc: Camera current in mA
-      - name: LOCAL_CURR
-        desc: Local voltage rail (e.g. 3.3V) current in mA
+      - name: LOCAL_RAIL_CURR
+        desc: Local power rail (e.g. 3.3V) current in mA
       - name: PT_CHANNEL_1
         desc: Pressure Transducer Channel 1
       - name: PT_CHANNEL_2
@@ -677,16 +677,16 @@ bitfields:
     desc: Board error bitfield
     prefix: E
     bits:
-      - name: 5V_OVER_CURRENT
-      - name: 5V_OVER_VOLTAGE
-      - name: 5V_UNDER_VOLTAGE
-      - name: 12V_OVER_CURRENT
-      - name: 12V_OVER_VOLTAGE
-      - name: 12V_UNDER_VOLTAGE
-      - name: BATT_OVER_CURRENT
-      - name: BATT_OVER_VOLTAGE
-      - name: BATT_UNDER_VOLTAGE
-      - name: MOTOR_OVER_CURRENT
+      - name: 5V_OVER_CURR
+      - name: 5V_OVER_VOLT
+      - name: 5V_UNDER_VOLT
+      - name: 12V_OVER_CURR
+      - name: 12V_OVER_VOLT
+      - name: 12V_UNDER_VOLT
+      - name: BATT_OVER_CURR
+      - name: BATT_OVER_VOLT
+      - name: BATT_UNDER_VOLT
+      - name: MOTOR_OVER_CURR
       - name: IO_ERROR
       - name: FS_ERROR
       - name: WATCHDOG_TIMEOUT
@@ -695,3 +695,5 @@ bitfields:
       - name: PT_OUT_OF_RANGE
       - name: CANARD_MODULE_FAILURE
         desc: Canard firmware application module error
+      - name: LOCAL_RAIL_OVER_CURR
+        desc: Local power rail (e.g. 3.3V) over current

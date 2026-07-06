@@ -640,18 +640,18 @@ enums:
         desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Z-axis
       - name: CANARD_MS5611_BARO_TEMP
         desc: Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
-      - name: CANARD_MTI630_EST_ORIENTATION_QW_QX
+      - name: CANARD_MTI630_EST_ORI_QW_QX
         desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QW and QX demension
-      - name: CANARD_MTI630_EST_ORIENTATION_QY_QZ
+      - name: CANARD_MTI630_EST_ORI_QY_QZ
         desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QY and QZ demension
 
   - name: dem_3d_sensor_id
     desc: 3 Dimensional Sensor ID
     prefix: DEM_3D_SENSOR
     value:
-      - name: CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
+      - name: CANARD_NAV_ORI_QX_QY_QZ
         desc: Canard Navigation Orientation QX, QY, QZ
-      - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
+      - name: CANARD_NAV_ORI_QW_ALT_VARNORM
         desc: Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
       - name: CANARD_LSM6DSV32X_ACCEL
         desc: Canard LSM6DSV32X 32G IMU Acceleration

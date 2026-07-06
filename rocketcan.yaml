@@ -640,6 +640,10 @@ enums:
         desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Z-axis
       - name: CANARD_MS5611_BARO_TEMP
         desc: Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
+      - name: CANARD_MTI630_EST_ORIENTATION_QW_QX
+        desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QW and QX demension
+      - name: CANARD_MTI630_EST_ORIENTATION_QY_QZ
+        desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QY and QZ demension
 
   - name: dem_3d_sensor_id
     desc: 3 Dimensional Sensor ID
@@ -663,8 +667,8 @@ enums:
         desc: Canard MTI-630 Movella Angular Velocity
       - name: CANARD_MTI630_MAG
         desc: Canard MTI-630 Movella Magnetometer Reading
-      - name: CANARD_MTI630_EST_ORIENTATION
-        desc: Canard MTI-630 Movella Estimation Orientation (Euler)
+      - name: RESERVED_0
+        desc: Reserved 0
       - name: CANARD_MTI630_EST_ANGLE_VEL
         desc: Canard MTI-630 Movella Estimation Angular Velocity
       - name: CANARD_MTI630_EST_VEL

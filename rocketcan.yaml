@@ -701,3 +701,7 @@ bitfields:
         desc: Canard firmware application module error
       - name: LOCAL_RAIL_OVER_CURR
         desc: Local power rail (e.g. 3.3V) over current
+      - name: CHARGE_RAIL_OVER_VOLT
+        desc: Charge power rail over voltage
+      - name: CHARGE_RAIL_OVER_CURR
+        desc: Charge power rail over current

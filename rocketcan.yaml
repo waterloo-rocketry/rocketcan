@@ -19,10 +19,10 @@ messages:
     id: 0x002
     timestamp: 2
     field:
-      - name: BOARD_TYPE_ID
+      - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of board to reset, set to 0 to reset all boards on bus
         width: 1
-      - name: BOARD_INST_ID
+      - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of board to reset, set to 0 to reset all board of specific type
         width: 1
 
@@ -40,10 +40,10 @@ messages:
     id: 0x004
     timestamp: 2
     field:
-      - name: BOARD_TYPE_ID
+      - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of target board, cannot be zero
         width: 1
-      - name: BOARD_INST_ID
+      - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of target board, set to 0 to set all board of specific type
         width: 1
       - name: CONFIG_ID

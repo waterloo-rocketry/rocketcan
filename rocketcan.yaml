@@ -675,6 +675,22 @@ enums:
         desc: Canard MTI-630 Movella Estimation Velocity
       - name: CANARD_ADXL380_ACCEL
         desc: Canard ADXL380 Accelerometer Acceleration
+      - name: PAYLOAD_ACCEL_0
+        desc: Payload Accelerometer 0
+      - name: PAYLOAD_ACCEL_1
+        desc: Payload Accelerometer 1
+      - name: PAYLOAD_ACCEL_2
+        desc: Payload Accelerometer 2
+      - name: PAYLOAD_ACCEL_3
+        desc: Payload Accelerometer 3
+      - name: PAYLOAD_ACCEL_4
+        desc: Payload Accelerometer 4
+      - name: PAYLOAD_ACCEL_5
+        desc: Payload Accelerometer 5
+      - name: PAYLOAD_ACCEL_6
+        desc: Payload Accelerometer 6
+      - name: PAYLOAD_ACCEL_7
+        desc: Payload Accelerometer 7
 
 bitfields:
   - name: board_error_bitfield

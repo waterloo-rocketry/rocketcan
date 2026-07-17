@@ -470,6 +470,12 @@ enums:
         desc: Erase canard board flash
       - name: CANARD_MOTOR_CALIBRATION
         desc: Start canard motor calibration routine
+      - name: LOGGER_SD_CLEAR
+        desc: Clear logger board SD card
+      - name: CANARD_SD_CLEAR
+        desc: Clear canard board SD card
+      - name: PAYLOAD_SD_CLEAR
+        desc: Clear payload board SD card
 
   - name: actuator_state
     desc: Actuator State
@@ -630,6 +636,8 @@ enums:
         desc: Payload Sensor Current Reading
       - name: ALTITUDE
         desc: Altitude in ft
+      - name: PAYLOAD_TEMP
+        desc: Payload temperature
 
   - name: dem_2d_sensor_id
     desc: 2 Dimensional Sensor ID

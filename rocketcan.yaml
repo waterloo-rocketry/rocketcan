@@ -305,7 +305,7 @@ messages:
         desc: Link Quality Indicator
         width: 1
       - name: RSSI
-        desc: Received Signal Strength Indicator
+        desc: Received Signal Strength Indicator(2s complement signed)
         width: 1
 
   - name: TELEMETRY_STATE_SWITCH

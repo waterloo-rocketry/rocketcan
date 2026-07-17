@@ -321,13 +321,16 @@ messages:
     metadata:
       - name: MODULE_ID
         desc: Module ID
+        enum: canards_module_id
     field:
       - name: ERROR_CODE
         desc: Error Code Bitfield
         width: 4
+        bitfield: canards_module_error_bitfield
       - name: SEVERITY
         desc: Severity
         width: 1
+        enum: canards_health_severity
 
   - name: LEDS_ON
     id: 0x19
@@ -692,6 +695,44 @@ enums:
       - name: PAYLOAD_ACCEL_7
         desc: Payload Accelerometer 7
 
+  - name: canards_health_severity
+    desc: Canards Health Severity
+    prefix: CANARDS_HEALTH_SEVERITY
+    value:
+      - name: HEALTH_OK
+        desc: No issues
+      - name: HEALTH_ERROR
+        desc: Something is wrong, but can still fly safely
+      - name: HEALTH_FATAL
+        desc: Unrecoverable failure, unsafe flight
+
+  - name: canards_module_id
+    desc: Canards Module ID
+    prefix: CANARDS_MODULE_ID
+    value:
+      - name: ADC
+      - name: ADXL380
+      - name: ADXRS649
+      - name: AK45
+      - name: CAN_HANDLER
+      - name: CONTROLLER
+      - name: FLIGHT_PHASE
+      - name: FSM
+      - name: GPIO
+      - name: I2C
+      - name: IIS2MDC
+      - name: LOGGER
+      - name: LSM6DSV32X
+      - name: MOVELLA
+      - name: MS5611
+      - name: NAVIGATOR
+      - name: POWER_HANDLER
+      - name: SD_CARD
+      - name: SENSOR_HANDLER
+      - name: TELEMETRY
+      - name: TIMER
+      - name: UART
+
 bitfields:
   - name: board_error_bitfield
     desc: Board error bitfield
@@ -721,3 +762,58 @@ bitfields:
         desc: Charge power rail over voltage
       - name: CHARGE_RAIL_OVER_CURR
         desc: Charge power rail over current
+
+  - name: canards_module_error_bitfield
+    desc: Canards module_error bitfield
+    prefix: CANARDS_MODULE_E
+    bits:
+      - name: BAT1_FAULT
+        desc: Battery 1 fault
+      - name: BAT2_FAULT
+        desc: Battery 2 fault
+      - name: DEVICE_FAULT
+        desc: External device fault
+      - name: FILE_SYSTEM
+        desc: SD card or flash storage mount, read, or write operation failed
+      - name: HARDWARE_FAIL
+        desc: Hardware interface failed (GPIO, pin config, etc.)
+      - name: LOW_POWER_MODE_WITH_EXT_5V_ON
+        desc: Low-power mode active while external 5V is on
+      - name: COMM_FAILURE
+        desc: Communication protocol failure (I2C, SPI, UART, etc.)
+      - name: CRC_FAILED
+        desc: Integrity check failed
+      - name: NO_DATA
+        desc: Expected sensor data packet or control command frame is missing
+      - name: RX_FAILURE
+        desc: Error occurred during data reception on physical bus transceivers
+      - name: TIMEOUT
+        desc: Operation or sensor handshake exceeded its allocated time window
+      - name: TX_FAILURE
+        desc: Transmit failure
+      - name: ERROR_STATE
+        desc: FSM transitioned into an unhandled, invalid, or corrupted state
+      - name: FAILED_CALIBRATION
+        desc: Calibration routine executed but failed
+      - name: NOT_CALIBRATED
+        desc: Calibration did not execute
+      - name: LOOP_TIMING
+        desc: Control loop period did not meet timing requirements
+      - name: NOT_INIT
+        desc: Module, task, or driver was accessed before being initialized
+      - name: OS
+        desc: RTOS feature (queue, semaphore) failed
+      - name: CODEGEN
+        desc: Error occurred inside codegen
+      - name: UNEXPECTED_EVENT
+        desc: Attempted to trigger an illegal state transition event
+      - name: INVALID_PARAM
+        desc: Function argument passed with value outside of legal range
+      - name: MATH
+        desc: Floating-point exception, division by zero, or NaN in control algorithms
+      - name: OUT_OF_BOUNDS
+        desc: Data is out of range
+      - name: OVERFLOW
+        desc: Buffer, queue, or integer arithmetic register overflow
+      - name: INTERNAL
+        desc: General software assertion or unhandled catch-all logical exception

@@ -19,10 +19,10 @@ messages:
     id: 0x002
     timestamp: 2
     field:
-      - name: BOARD_TYPE_ID
+      - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of board to reset, set to 0 to reset all boards on bus
         width: 1
-      - name: BOARD_INST_ID
+      - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of board to reset, set to 0 to reset all board of specific type
         width: 1
 
@@ -40,10 +40,10 @@ messages:
     id: 0x004
     timestamp: 2
     field:
-      - name: BOARD_TYPE_ID
+      - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of target board, cannot be zero
         width: 1
-      - name: BOARD_INST_ID
+      - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of target board, set to 0 to set all board of specific type
         width: 1
       - name: CONFIG_ID
@@ -305,7 +305,7 @@ messages:
         desc: Link Quality Indicator
         width: 1
       - name: RSSI
-        desc: Received Signal Strength Indicator
+        desc: Received Signal Strength Indicator(2s complement signed)
         width: 1
 
   - name: TELEMETRY_STATE_SWITCH
@@ -321,13 +321,16 @@ messages:
     metadata:
       - name: MODULE_ID
         desc: Module ID
+        enum: canards_module_id
     field:
       - name: ERROR_CODE
         desc: Error Code Bitfield
         width: 4
+        bitfield: canards_module_error_bitfield
       - name: SEVERITY
         desc: Severity
         width: 1
+        enum: canards_health_severity
 
   - name: LEDS_ON
     id: 0x19
@@ -423,10 +426,10 @@ enums:
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
       - name: IGNITION
         desc: Ignition Puck
-      - name: ROCKET_CHARGE_ENABLE
-        desc: Rocket Ground-side Charging Enable
-      - name: PAYLOAD_CHARGE_ENABLE
-        desc: Payload Ground-side Charging Enable
+      - name: ROCKET_UPPER_CHARGE_ENABLE
+        desc: Rocket Upper Section Ground-side Charging Enable
+      - name: ROCKET_INJECTOR_CHARGE_ENABLE
+        desc: Rocket Injector Section Ground-side Charging Enable
       - name: 5V_RAIL_ROCKET
       - name: 12V_RAIL_ROCKET
       - name: TELEMETRY
@@ -457,14 +460,22 @@ enums:
         desc: RLCS Relay Board Power Relay
       - name: RLCS_RELAY_SELECT
         desc: RLCS Relay Board Select Relay(Limit switch state feedback)
-      - name: PAYLOAD_LASER
-        desc: Payload Laser
+      - name: PAYLOAD_ACCEL_ARM
+        desc: Payload accelerometer arming
       - name: PAYLOAD_PZT_ARM
         desc: Payload PZT phase biasing arming
       - name: LOGGER_FLASH_ERASE
         desc: Erase logger board flash
       - name: CANARD_FLASH_ERASE
         desc: Erase canard board flash
+      - name: CANARD_MOTOR_CALIBRATION
+        desc: Start canard motor calibration routine
+      - name: LOGGER_SD_CLEAR
+        desc: Clear logger board SD card
+      - name: CANARD_SD_CLEAR
+        desc: Clear canard board SD card
+      - name: PAYLOAD_SD_CLEAR
+        desc: Clear payload board SD card
 
   - name: actuator_state
     desc: Actuator State
@@ -527,8 +538,8 @@ enums:
         desc: GPS Receiver current in mA
       - name: CAMERA_CURR
         desc: Camera current in mA
-      - name: LOCAL_CURR
-        desc: Local voltage rail (e.g. 3.3V) current in mA
+      - name: LOCAL_RAIL_CURR
+        desc: Local power rail (e.g. 3.3V) current in mA
       - name: PT_CHANNEL_1
         desc: Pressure Transducer Channel 1
       - name: PT_CHANNEL_2
@@ -625,6 +636,8 @@ enums:
         desc: Payload Sensor Current Reading
       - name: ALTITUDE
         desc: Altitude in ft
+      - name: PAYLOAD_TEMP
+        desc: Payload temperature
 
   - name: dem_2d_sensor_id
     desc: 2 Dimensional Sensor ID
@@ -638,14 +651,18 @@ enums:
         desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Z-axis
       - name: CANARD_MS5611_BARO_TEMP
         desc: Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
+      - name: CANARD_MTI630_EST_ORI_QW_QX
+        desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QW and QX demension
+      - name: CANARD_MTI630_EST_ORI_QY_QZ
+        desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QY and QZ demension
 
   - name: dem_3d_sensor_id
     desc: 3 Dimensional Sensor ID
     prefix: DEM_3D_SENSOR
     value:
-      - name: CANARD_NAV_ORIENTATION_QUAT_QX_QY_QZ
+      - name: CANARD_NAV_ORI_QX_QY_QZ
         desc: Canard Navigation Orientation QX, QY, QZ
-      - name: CANARD_NAV_ORIENTATION_QUAT_QW_ALT_VARNORM
+      - name: CANARD_NAV_ORI_QW_ALT_VARNORM
         desc: Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
       - name: CANARD_LSM6DSV32X_ACCEL
         desc: Canard LSM6DSV32X 32G IMU Acceleration
@@ -661,30 +678,84 @@ enums:
         desc: Canard MTI-630 Movella Angular Velocity
       - name: CANARD_MTI630_MAG
         desc: Canard MTI-630 Movella Magnetometer Reading
-      - name: CANARD_MTI630_EST_ORIENTATION
-        desc: Canard MTI-630 Movella Estimation Orientation (Euler)
+      - name: RESERVED_0
+        desc: Reserved 0
       - name: CANARD_MTI630_EST_ANGLE_VEL
         desc: Canard MTI-630 Movella Estimation Angular Velocity
       - name: CANARD_MTI630_EST_VEL
         desc: Canard MTI-630 Movella Estimation Velocity
       - name: CANARD_ADXL380_ACCEL
         desc: Canard ADXL380 Accelerometer Acceleration
+      - name: PAYLOAD_ACCEL_0
+        desc: Payload Accelerometer 0
+      - name: PAYLOAD_ACCEL_1
+        desc: Payload Accelerometer 1
+      - name: PAYLOAD_ACCEL_2
+        desc: Payload Accelerometer 2
+      - name: PAYLOAD_ACCEL_3
+        desc: Payload Accelerometer 3
+      - name: PAYLOAD_ACCEL_4
+        desc: Payload Accelerometer 4
+      - name: PAYLOAD_ACCEL_5
+        desc: Payload Accelerometer 5
+      - name: PAYLOAD_ACCEL_6
+        desc: Payload Accelerometer 6
+      - name: PAYLOAD_ACCEL_7
+        desc: Payload Accelerometer 7
+
+  - name: canards_health_severity
+    desc: Canards Health Severity
+    prefix: CANARDS_HEALTH_SEVERITY
+    value:
+      - name: HEALTH_OK
+        desc: No issues
+      - name: HEALTH_ERROR
+        desc: Something is wrong, but can still fly safely
+      - name: HEALTH_FATAL
+        desc: Unrecoverable failure, unsafe flight
+
+  - name: canards_module_id
+    desc: Canards Module ID
+    prefix: CANARDS_MODULE_ID
+    value:
+      - name: ADC
+      - name: ADXL380
+      - name: ADXRS649
+      - name: AK45
+      - name: CAN_HANDLER
+      - name: CONTROLLER
+      - name: FLIGHT_PHASE
+      - name: FSM
+      - name: GPIO
+      - name: I2C
+      - name: IIS2MDC
+      - name: LOGGER
+      - name: LSM6DSV32X
+      - name: MOVELLA
+      - name: MS5611
+      - name: NAVIGATOR
+      - name: POWER_HANDLER
+      - name: SD_CARD
+      - name: SENSOR_HANDLER
+      - name: TELEMETRY
+      - name: TIMER
+      - name: UART
 
 bitfields:
   - name: board_error_bitfield
     desc: Board error bitfield
     prefix: E
     bits:
-      - name: 5V_OVER_CURRENT
-      - name: 5V_OVER_VOLTAGE
-      - name: 5V_UNDER_VOLTAGE
-      - name: 12V_OVER_CURRENT
-      - name: 12V_OVER_VOLTAGE
-      - name: 12V_UNDER_VOLTAGE
-      - name: BATT_OVER_CURRENT
-      - name: BATT_OVER_VOLTAGE
-      - name: BATT_UNDER_VOLTAGE
-      - name: MOTOR_OVER_CURRENT
+      - name: 5V_OVER_CURR
+      - name: 5V_OVER_VOLT
+      - name: 5V_UNDER_VOLT
+      - name: 12V_OVER_CURR
+      - name: 12V_OVER_VOLT
+      - name: 12V_UNDER_VOLT
+      - name: BATT_OVER_CURR
+      - name: BATT_OVER_VOLT
+      - name: BATT_UNDER_VOLT
+      - name: MOTOR_OVER_CURR
       - name: IO_ERROR
       - name: FS_ERROR
       - name: WATCHDOG_TIMEOUT
@@ -693,3 +764,64 @@ bitfields:
       - name: PT_OUT_OF_RANGE
       - name: CANARD_MODULE_FAILURE
         desc: Canard firmware application module error
+      - name: LOCAL_RAIL_OVER_CURR
+        desc: Local power rail (e.g. 3.3V) over current
+      - name: CHARGE_RAIL_OVER_VOLT
+        desc: Charge power rail over voltage
+      - name: CHARGE_RAIL_OVER_CURR
+        desc: Charge power rail over current
+
+  - name: canards_module_error_bitfield
+    desc: Canards module_error bitfield
+    prefix: CANARDS_MODULE_E
+    bits:
+      - name: BAT1_FAULT
+        desc: Battery 1 fault
+      - name: BAT2_FAULT
+        desc: Battery 2 fault
+      - name: DEVICE_FAULT
+        desc: External device fault
+      - name: FILE_SYSTEM
+        desc: SD card or flash storage mount, read, or write operation failed
+      - name: HARDWARE_FAIL
+        desc: Hardware interface failed (GPIO, pin config, etc.)
+      - name: LOW_POWER_MODE_WITH_EXT_5V_ON
+        desc: Low-power mode active while external 5V is on
+      - name: COMM_FAILURE
+        desc: Communication protocol failure (I2C, SPI, UART, etc.)
+      - name: CRC_FAILED
+        desc: Integrity check failed
+      - name: NO_DATA
+        desc: Expected sensor data packet or control command frame is missing
+      - name: RX_FAILURE
+        desc: Error occurred during data reception on physical bus transceivers
+      - name: TIMEOUT
+        desc: Operation or sensor handshake exceeded its allocated time window
+      - name: TX_FAILURE
+        desc: Transmit failure
+      - name: ERROR_STATE
+        desc: FSM transitioned into an unhandled, invalid, or corrupted state
+      - name: FAILED_CALIBRATION
+        desc: Calibration routine executed but failed
+      - name: NOT_CALIBRATED
+        desc: Calibration did not execute
+      - name: LOOP_TIMING
+        desc: Control loop period did not meet timing requirements
+      - name: NOT_INIT
+        desc: Module, task, or driver was accessed before being initialized
+      - name: OS
+        desc: RTOS feature (queue, semaphore) failed
+      - name: CODEGEN
+        desc: Error occurred inside codegen
+      - name: UNEXPECTED_EVENT
+        desc: Attempted to trigger an illegal state transition event
+      - name: INVALID_PARAM
+        desc: Function argument passed with value outside of legal range
+      - name: MATH
+        desc: Floating-point exception, division by zero, or NaN in control algorithms
+      - name: OUT_OF_BOUNDS
+        desc: Data is out of range
+      - name: OVERFLOW
+        desc: Buffer, queue, or integer arithmetic register overflow
+      - name: INTERNAL
+        desc: General software assertion or unhandled catch-all logical exception

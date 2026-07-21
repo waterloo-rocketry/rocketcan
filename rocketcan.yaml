@@ -414,6 +414,18 @@ boards:
     desc: DAQ(Data Acquisition System) CAN Support
     id: 0x0D
     doc-link: /electrical-gse/daq/index
+  - name: THERMOCOUPLE
+    desc: Thermocouple board
+    id: 0x0E
+    inst:
+      - name: TCB_1
+        desc: TCB 1
+      - name: TCB_2
+        desc: TCB 2
+      - name: TCB_3
+        desc: TCB 3
+      - name: TCB_4
+        desc: TCB 4
 
 enums:
   - name: actuator_id
@@ -638,6 +650,38 @@ enums:
         desc: Altitude in ft
       - name: PAYLOAD_TEMP
         desc: Payload temperature
+      - name: TC_0
+        desc: TC 0
+      - name: TC_1
+        desc: TC 1
+      - name: TC_2
+        desc: TC 2
+      - name: TC_3
+        desc: TC 3
+      - name: TC_4
+        desc: TC 4
+      - name: TC_5
+        desc: TC 5
+      - name: TC_6
+        desc: TC 6
+      - name: TC_7
+        desc: TC 7
+      - name: TC_8
+        desc: TC 8
+      - name: TC_9
+        desc: TC 9
+      - name: TC_10
+        desc: TC 10
+      - name: TC_11
+        desc: TC 11
+      - name: TC_12
+        desc: TC 12
+      - name: TC_13
+        desc: TC 13
+      - name: TC_14
+        desc: TC 14
+      - name: TC_15
+        desc: TC 15
 
   - name: dem_2d_sensor_id
     desc: 2 Dimensional Sensor ID

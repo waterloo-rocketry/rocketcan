@@ -80,7 +80,7 @@ def gen_packet_format_rst(rocketcan):
         if 'desc' in msg:
             print(msg['desc'].data + '\n')
 
-        if 'field' in msg:
+        if 'field' in msg or 'metadata' in msg:
             line_1 = '+'
             line_2 = '|'
             line_3 = '+'
@@ -115,28 +115,29 @@ def gen_packet_format_rst(rocketcan):
                 line_5 += '--------+---------+'
                 next_byte += 2
 
-            for field in msg['field']:
-                byte_str = 'Byte '
-                if(field['width'].data == 1):
-                    byte_str += str(next_byte)
-                else:
-                    byte_str = byte_str + str(next_byte) + '-' + str(next_byte + field['width'].data - 1)
-                if(len(byte_str) > len(field['name'].data)):
-                    box_width = len(byte_str)
-                    line_1 = line_1 + '-' * (box_width + 2) + '+'
-                    line_2 = line_2 + ' ' + byte_str + ' |'
-                    line_3 = line_3 + '=' * (box_width + 2) + '+'
-                    line_4 = line_4 + ' ' + field['name'].data + ' ' * (box_width - len(field['name'].data)) + ' |'
-                    line_5 = line_5 + '-' * (box_width + 2) + '+'
-                else:
-                    box_width = len(field['name'].data)
-                    line_1 = line_1 + '-' * (box_width + 2) + '+'
-                    line_2 = line_2 + ' ' + byte_str + ' ' * (box_width - len(byte_str)) + ' |'
-                    line_3 = line_3 + '=' * (box_width + 2) + '+'
-                    line_4 = line_4 + ' ' + field['name'].data + ' |'
-                    line_5 = line_5 + '-' * (box_width + 2) + '+'
+            if 'field' in msg:
+                for field in msg['field']:
+                    byte_str = 'Byte '
+                    if(field['width'].data == 1):
+                        byte_str += str(next_byte)
+                    else:
+                        byte_str = byte_str + str(next_byte) + '-' + str(next_byte + field['width'].data - 1)
+                    if(len(byte_str) > len(field['name'].data)):
+                        box_width = len(byte_str)
+                        line_1 = line_1 + '-' * (box_width + 2) + '+'
+                        line_2 = line_2 + ' ' + byte_str + ' |'
+                        line_3 = line_3 + '=' * (box_width + 2) + '+'
+                        line_4 = line_4 + ' ' + field['name'].data + ' ' * (box_width - len(field['name'].data)) + ' |'
+                        line_5 = line_5 + '-' * (box_width + 2) + '+'
+                    else:
+                        box_width = len(field['name'].data)
+                        line_1 = line_1 + '-' * (box_width + 2) + '+'
+                        line_2 = line_2 + ' ' + byte_str + ' ' * (box_width - len(byte_str)) + ' |'
+                        line_3 = line_3 + '=' * (box_width + 2) + '+'
+                        line_4 = line_4 + ' ' + field['name'].data + ' |'
+                        line_5 = line_5 + '-' * (box_width + 2) + '+'
 
-                next_byte += field['width'].data
+                    next_byte += field['width'].data
 
             print(line_1)
             print(line_2)
@@ -151,13 +152,14 @@ def gen_packet_format_rst(rocketcan):
                 else:
                     print('| **' + metadata['name'].data + ':** ' + metadata['desc'].data)
             
-            for field in msg['field']:
-                if 'enum' in field:
-                    print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['enum'].data + '`_')
-                elif 'bitfield' in field:
-                    print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['bitfield'].data + '`_')
-                else:
-                    print('| **' + field['name'].data + ':** ' + field['desc'].data)
+            if 'field' in msg:
+                for field in msg['field']:
+                    if 'enum' in field:
+                        print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['enum'].data + '`_')
+                    elif 'bitfield' in field:
+                        print('| **' + field['name'].data + ':** ' + field['desc'].data + ', see `' + field['bitfield'].data + '`_')
+                    else:
+                        print('| **' + field['name'].data + ':** ' + field['desc'].data)
 
             print('')
 

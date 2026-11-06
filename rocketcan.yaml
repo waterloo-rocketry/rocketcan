@@ -321,6 +321,8 @@ messages:
     metadata:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
+    field:
+      - ref: timestamp
 
   - name: TELEMETRY_INFO
     id: 0x16
@@ -343,6 +345,8 @@ messages:
       - name: CHANNEL_ID
         desc: Channel ID which is the LTT board instance ID
         enum: board_inst
+    field:
+      - ref: timestamp
 
   - name: CANARD_FIRMWARE_ERROR
     id: 0x18

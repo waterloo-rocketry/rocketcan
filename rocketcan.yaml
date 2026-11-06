@@ -1,14 +1,39 @@
+sid:
+  - fields:
+      - name: prio
+        bits: 2
+        enum: prio
+      # Uses 'messages', which is separate from the rest of enums
+      - name: message_type
+        bits: 7
+      - name: board_type
+        bits: 6
+        enum: board_type
+      - name: board_inst
+        bits: 6
+        enum: board_inst
+      # Uses 'message.metadata', an arbitrary extra byte of data for every message
+      - name: metadata
+        bits: 8
+
+message_fields:
+  - id: timestamp
+    name: TIMESTAMP
+    desc: Message timestamp in milliseconds
+    width: 2
+
 messages:
   - name: UNDEFINED
     desc: Undefined message, do not use
     id: 0x000
-    timestamp: 2
+    field:
+      - ref: timestamp
 
   - name: GENERAL_BOARD_STATUS
     desc: Board status broadcast
     id: 0x001
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: BOARD_ERROR_BITFIELD
         desc: Board error code bitfield
         width: 4
@@ -17,20 +42,22 @@ messages:
   - name: RESET_CMD
     desc: Command to reset boards
     id: 0x002
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of board to reset, set to 0 to reset all boards on bus
         width: 1
+        enum: board_type
       - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of board to reset, set to 0 to reset all board of specific type
         width: 1
+        enum: board_inst
 
   - name: DEBUG_RAW
     desc: 6-bytes of raw data
     id: 0x003
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: RAW_DATA
         desc: Raw data, 6 bytes
         width: 6
@@ -38,14 +65,16 @@ messages:
   - name: CONFIG_SET
     desc: Set board specific configuration
     id: 0x004
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of target board, cannot be zero
         width: 1
+        enum: board_type
       - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of target board, set to 0 to set all board of specific type
         width: 1
+        enum: board_inst
       - name: CONFIG_ID
         desc: Configuration ID, Board Specific
         width: 2
@@ -56,8 +85,8 @@ messages:
   - name: CONFIG_STATUS
     desc: Broadcast board specific configuration, for verify CONFIG_SET success
     id: 0x005
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: CONFIG_ID
         desc: Configuration ID, Board Specific
         width: 2
@@ -68,12 +97,12 @@ messages:
   - name: ACTUATOR_CMD
     desc: Set actuator commanded state
     id: 0x006
-    timestamp: 2
     metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
         enum: actuator_id
     field:
+      - ref: timestamp
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
         width: 1
@@ -82,12 +111,12 @@ messages:
   - name: ACTUATOR_STATUS
     desc: Actuator Status Message
     id: 0x007
-    timestamp: 2
     metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
         enum: actuator_id
     field:
+      - ref: timestamp
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
         width: 1
@@ -100,12 +129,12 @@ messages:
   - name: ALT_ARM_CMD
     desc: Command to arm altimeter
     id: 0x008
-    timestamp: 2
     metadata:
       - name: ALT_ID
         desc: Altimeter ID
         enum: altimeter_id
     field:
+      - ref: timestamp
       - name: ALT_ARM_STATE
         desc: Altimeter set arm state
         width: 1
@@ -114,12 +143,12 @@ messages:
   - name: ALT_ARM_STATUS
     desc: Altimeter Arm Status
     id: 0x009
-    timestamp: 2
     metadata:
       - name: ALT_ID
         desc: Altimeter ID
         enum: altimeter_id
     field:
+      - ref: timestamp
       - name: ALT_ARM_STATE
         desc: Altimeter current arm state
         width: 1
@@ -134,12 +163,12 @@ messages:
   - name: SENSOR_ANALOG16
     desc: 16-bits analog sensor
     id: 0x0A
-    timestamp: 2
     metadata:
       - name: SENSOR_ID
         desc: Sensor ID
         enum: analog_sensor_id
     field:
+      - ref: timestamp
       - name: VALUE
         desc: Analog sensor value
         width: 2
@@ -147,12 +176,12 @@ messages:
   - name: SENSOR_ANALOG32
     desc: 32-bits analog sensor
     id: 0x0B
-    timestamp: 2
     metadata:
       - name: SENSOR_ID
         desc: Sensor ID
         enum: analog_sensor_id
     field:
+      - ref: timestamp
       - name: VALUE
         desc: Analog sensor value
         width: 4
@@ -160,12 +189,12 @@ messages:
   - name: SENSOR_2D_ANALOG24
     desc: 2-Dimensional 24-bit analog sensor value message
     id: 0x0C
-    timestamp: 2
     metadata:
       - name: SENSOR_ID
         desc: 2 Dimensional sensor ID
         enum: dem_2d_sensor_id
     field:
+      - ref: timestamp
       - name: VALUE_X
         desc: Analog sensor value X
         width: 3
@@ -176,12 +205,12 @@ messages:
   - name: SENSOR_3D_ANALOG16
     desc: 3-Dimensional 16-bit analog sensor value message
     id: 0x0D
-    timestamp: 2
     metadata:
       - name: SENSOR_ID
         desc: 3 Dimensional sensor ID
         enum: dem_3d_sensor_id
     field:
+      - ref: timestamp
       - name: VALUE_X
         desc: Analog sensor value X
         width: 2
@@ -194,8 +223,8 @@ messages:
 
   - name: GPS_TIMESTAMP
     id: 0x0E
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: UTC_HOURS
         desc: Hour
         width: 1
@@ -211,8 +240,8 @@ messages:
 
   - name: GPS_LATITUDE
     id: 0x0F
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: DEGREES
         desc: Degrees
         width: 1
@@ -228,8 +257,8 @@ messages:
 
   - name: GPS_LONGITUDE
     id: 0x10
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: DEGREES
         desc: Degrees
         width: 1
@@ -245,8 +274,8 @@ messages:
 
   - name: GPS_ALTITUDE
     id: 0x11
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: ALT
         desc: Altitude in ft
         width: 4
@@ -256,8 +285,8 @@ messages:
 
   - name: GPS_INFO
     id: 0x12
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: NUM_SAT
         desc: Number of satellite
         width: 1
@@ -267,8 +296,8 @@ messages:
 
   - name: STREAM_STATUS
     id: 0x13
-    timestamp: 2
     field:
+      - ref: timestamp
       - name: TOTAL_SIZE
         desc: Total transfer size in bytes
         width: 3
@@ -278,29 +307,31 @@ messages:
 
   - name: STREAM_DATA
     id: 0x14
-    timestamp: 2
     metadata:
       - name: SEQ_ID
         desc: Sequence ID
     field:
+      - ref: timestamp
       - name: DATA
         desc: Data payload
         width: 6
 
   - name: STREAM_RETRY
     id: 0x15
-    timestamp: 2
     metadata:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
+    field:
+      - ref: timestamp
 
   - name: TELEMETRY_INFO
     id: 0x16
-    timestamp: 2
     metadata:
       - name: CHANNEL_ID
-        desc: Channel ID(Use LTT board instance ID)
+        desc: Channel ID which is the LTT board instance ID
+        enum: board_inst
     field:
+      - ref: timestamp
       - name: LQI
         desc: Link Quality Indicator
         width: 1
@@ -310,19 +341,21 @@ messages:
 
   - name: TELEMETRY_STATE_SWITCH
     id: 0x17
-    timestamp: 2
     metadata:
       - name: CHANNEL_ID
-        desc: Channel ID(Use LTT board instance ID)
+        desc: Channel ID which is the LTT board instance ID
+        enum: board_inst
+    field:
+      - ref: timestamp
 
   - name: CANARD_FIRMWARE_ERROR
     id: 0x18
-    timestamp: 2
     metadata:
       - name: MODULE_ID
         desc: Module ID
         enum: canards_module_id
     field:
+      - ref: timestamp
       - name: ERROR_CODE
         desc: Error Code Bitfield
         width: 4
@@ -334,90 +367,127 @@ messages:
 
   - name: LEDS_ON
     id: 0x19
-    timestamp: 2
+    field:
+      - ref: timestamp
 
   - name: LEDS_OFF
     id: 0x20
-    timestamp: 2
+    field:
+      - ref: timestamp
 
-boards:
-  - name: ANY
-    desc: Any Board
-    id: 0x00
-  - name: INJECTOR
-    desc: Injector Board
-    id: 0x01
-  - name: CAMERA
-    desc: Flight Camera Board
-    id: 0x02
-    inst:
-      - name: SIDE_LOOKING
+enums:
+  - name: prio
+    desc: Priority for CAN SID
+    prefix: PRIO
+    value:
+      - name: HIGHEST
+        desc: Human-sent commands, valve actuation, canard angle
+        id: 0x0
+      - name: HIGH
+        desc: Ops-critical data
+        id: 0x1
+      - name: MEDIUM
+        desc: Non-ops-critical data
+        id: 0x2
+      - name: LOW
+        desc: For logging only
+        id: 0x3
+        
+  - name: board_type
+    desc: Board type ID for CAN SID
+    prefix: BOARD_TYPE_ID
+    value:
+      - name: ANY
+        desc: Any Board
+        id: 0x00
+      - name: INJECTOR
+        desc: Injector Board
+        id: 0x01
+      - name: CAMERA
+        desc: Flight Camera Board
+        id: 0x02
+      - name: POWER
+        desc: Power Board
+        id: 0x03
+        doc-link: /avionics/rocket-power-board/index
+      - name: LOGGER
+        desc: CAN Logger Board
+        id: 0x04
+        doc-link: /avionics/camera-logger-board/index
+      - name: CANARD
+        desc: Canard Board
+        id: 0x05
+        doc-link: /controls/canards-electrical/index
+      - name: TELEMETRY
+        desc: Live Telemetry Board
+        id: 0x06
+        doc-link: /avionics/live-telemetry/index
+      - name: GPS
+        desc: COTS GPS Receiver Board
+        id: 0x07
+        doc-link: /avionics/gps-board/index
+      - name: ALTIMETER
+        desc: SRAD Altimeter
+        id: 0x08
+        doc-link: /avionics/srad-altimeter/index
+      - name: ARMING
+        desc: Remote Arming Board
+        id: 0x09
+        doc-link: /avionics/remote-arming/index
+      - name: PAYLOAD
+        desc: Payload Board
+        id: 0x0A
+      - name: RLCS_GLS
+        desc: RLCS v4 Ground Launch Sequencer
+        id: 0x0B
+        doc-link: /electrical-gse/rlcs-v4/gls-board/index
+      - name: RLCS_RELAY
+        desc: RLCS v4 Relay Board
+        id: 0x0C
+        doc-link: /electrical-gse/rlcs-v4/relay-board/index
+      - name: DAQ
+        desc: DAQ(Data Acquisition System) CAN Support
+        id: 0x0D
+        doc-link: /electrical-gse/daq/index
+      - name: THERMOCOUPLE
+        desc: Thermocouple board
+        id: 0x0E
+
+  - name: board_inst
+    desc: Board instance ID for CAN SID
+    prefix: BOARD_INST_ID
+    value:
+      - name: ANY
+        desc: Any instance of the board
+        id: 0x00
+      - name: GROUND
+        desc: Board on the ground 
+        id: 0x01
+      - name: ROCKET
+        desc: Board on the rocket 
+        id: 0x02
+
+      - name: CAMERA_SIDE_LOOKING
         desc: Side Looking Camera
-      - name: DOWN_LOOKING
+      - name: CAMERA_DOWN_LOOKING
         desc: Down Looking Camera
-      - name: RECOVERY
+      - name: CAMERA_RECOVERY
         desc: Recovery Looking Camera
-  - name: POWER
-    desc: Power Board
-    id: 0x03
-    doc-link: /avionics/rocket-power-board/index
-  - name: LOGGER
-    desc: CAN Logger Board
-    id: 0x04
-    doc-link: /avionics/camera-logger-board/index
-  - name: CANARD
-    desc: Canard Board
-    id: 0x05
-    doc-link: /controls/canards-electrical/index
-  - name: TELEMETRY
-    desc: Live Telemetry Board
-    id: 0x06
-    doc-link: /avionics/live-telemetry/index
-    inst:
-      - name: GROUND_1
-        desc: Ground side 1
-      - name: GROUND_2
-        desc: Ground side 2
-      - name: GROUND_3
-        desc: Ground side 3
-      - name: GROUND_4
-        desc: Ground side 4
-  - name: GPS
-    desc: COTS GPS Receiver Board
-    id: 0x07
-    doc-link: /avionics/gps-board/index
-  - name: ALTIMETER
-    desc: SRAD Altimeter
-    id: 0x08
-    doc-link: /avionics/srad-altimeter/index
-  - name: ARMING
-    desc: Remote Arming Board
-    id: 0x09
-    doc-link: /avionics/remote-arming/index
-    inst:
-      - name: RA_RAVEN
+
+      - name: TELEMETRY_GROUND_1
+        desc: Ground side LTT 1
+      - name: TELEMETRY_GROUND_2
+        desc: Ground side LTT 2
+      - name: TELEMETRY_GROUND_3
+        desc: Ground side LTT 3
+      - name: TELEMETRY_GROUND_4
+        desc: Ground side LTT 4
+
+      - name: ARMING_RA_RAVEN
         desc: Remote Arming for Raven
-      - name: RA_STRATOLOGGER
+      - name: ARMING_RA_STRATOLOGGER
         desc: Remote Arming for Stratologger
-  - name: PAYLOAD
-    desc: Payload Board
-    id: 0x0A
-  - name: RLCS_GLS
-    desc: RLCS v4 Ground Launch Sequencer
-    id: 0x0B
-    doc-link: /electrical-gse/rlcs-v4/gls-board/index
-  - name: RLCS_RELAY
-    desc: RLCS v4 Relay Board
-    id: 0x0C
-    doc-link: /electrical-gse/rlcs-v4/relay-board/index
-  - name: DAQ
-    desc: DAQ(Data Acquisition System) CAN Support
-    id: 0x0D
-    doc-link: /electrical-gse/daq/index
-  - name: THERMOCOUPLE
-    desc: Thermocouple board
-    id: 0x0E
-    inst:
+        
       - name: TCB_1
         desc: TCB 1
       - name: TCB_2
@@ -427,7 +497,6 @@ boards:
       - name: TCB_4
         desc: TCB 4
 
-enums:
   - name: actuator_id
     desc: Actuator ID for Actuator Command and Status Messages
     prefix: ACTUATOR

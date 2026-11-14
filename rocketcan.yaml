@@ -1,20 +1,20 @@
 sid:
-  - fields:
-      - name: prio
-        bits: 2
-        enum: prio
-      # Uses 'messages', which is separate from the rest of enums
-      - name: message_type
-        bits: 7
-      - name: board_type
-        bits: 6
-        enum: board_type
-      - name: board_inst
-        bits: 6
-        enum: board_inst
-      # Uses 'message.metadata', an arbitrary extra byte of data for every message
-      - name: metadata
-        bits: 8
+  fields:
+    - name: prio
+      bits: 2
+      enum: prio
+    # Uses 'messages', which is separate from the rest of enums
+    - name: message_type
+      bits: 7
+    - name: board_type
+      bits: 6
+      enum: board_type
+    - name: board_inst
+      bits: 6
+      enum: board_inst
+    # Uses 'message.metadata', an arbitrary extra byte of data for every message
+    - name: metadata
+      bits: 8
 
 message_fields:
   - id: timestamp

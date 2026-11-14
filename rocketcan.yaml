@@ -22,6 +22,7 @@ message_fields:
     desc: Message timestamp in milliseconds
     bytes: 2
     type: uint
+    unit: ms
 
 messages:
   - name: UNDEFINED

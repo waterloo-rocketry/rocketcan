@@ -21,78 +21,113 @@ message_fields:
     name: TIMESTAMP
     desc: Message timestamp in milliseconds
     bytes: 2
+    type: uint
 
 messages:
   - name: UNDEFINED
     desc: Undefined message, do not use
     id: 0x000
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
 
   - name: GENERAL_BOARD_STATUS
     desc: Board status broadcast
     id: 0x001
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: BOARD_ERROR_BITFIELD
         desc: Board error code bitfield
         bytes: 4
+        type: bitfield
         bitfield: board_error_bitfield
 
   - name: RESET_CMD
     desc: Command to reset boards
     id: 0x002
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of board to reset, set to 0 to reset all boards on bus
         bytes: 1
+        type: enum
         enum: board_type
       - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of board to reset, set to 0 to reset all board of specific type
         bytes: 1
+        type: enum
         enum: board_inst
 
   - name: DEBUG_RAW
     desc: 6-bytes of raw data
     id: 0x003
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: RAW_DATA
         desc: Raw data, 6 bytes
         bytes: 6
+        type: raw
 
   - name: CONFIG_SET
     desc: Set board specific configuration
     id: 0x004
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: TARGET_BOARD_TYPE_ID
         desc: Board Type ID of target board, cannot be zero
         bytes: 1
+        type: enum
         enum: board_type
       - name: TARGET_BOARD_INST_ID
         desc: Board Inst ID of target board, set to 0 to set all board of specific type
         bytes: 1
+        type: enum
         enum: board_inst
       - name: CONFIG_ID
         desc: Configuration ID, Board Specific
         bytes: 2
+        type: uint
       - name: CONFIG_VALUE
         desc: Configuration Value, Board and Config ID specific
         bytes: 2
+        type: uint
 
   - name: CONFIG_STATUS
     desc: Broadcast board specific configuration, for verify CONFIG_SET success
     id: 0x005
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: CONFIG_ID
         desc: Configuration ID, Board Specific
         bytes: 2
+        type: uint
       - name: CONFIG_VALUE
         desc: Configuration Value, Board and Config ID specific
         bytes: 2
+        type: uint
 
   - name: ACTUATOR_CMD
     desc: Set actuator commanded state
@@ -100,12 +135,14 @@ messages:
     metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
+        type: enum
         enum: actuator_id
     field:
       - ref: timestamp
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
         bytes: 1
+        type: enum
         enum: actuator_state
 
   - name: ACTUATOR_STATUS
@@ -114,16 +151,19 @@ messages:
     metadata:
       - name: ACTUATOR_ID
         desc: Acturator ID
+        type: enum
         enum: actuator_id
     field:
       - ref: timestamp
       - name: ACTUATOR_CMD_STATE
         desc: Actuator Commanded State
         bytes: 1
+        type: enum
         enum: actuator_state
       - name: ACTUATOR_CURR_STATE
         desc: Actuator Current State
         bytes: 1
+        type: enum
         enum: actuator_state
 
   - name: ALT_ARM_CMD
@@ -132,12 +172,14 @@ messages:
     metadata:
       - name: ALT_ID
         desc: Altimeter ID
+        type: enum
         enum: altimeter_id
     field:
       - ref: timestamp
       - name: ALT_ARM_STATE
         desc: Altimeter set arm state
         bytes: 1
+        type: enum
         enum: alt_arm_state
 
   - name: ALT_ARM_STATUS
@@ -146,19 +188,23 @@ messages:
     metadata:
       - name: ALT_ID
         desc: Altimeter ID
+        type: enum
         enum: altimeter_id
     field:
       - ref: timestamp
       - name: ALT_ARM_STATE
         desc: Altimeter current arm state
         bytes: 1
+        type: enum
         enum: alt_arm_state
       - name: DROGUE_V
         desc: Drogue Pyro Voltage
         bytes: 2
+        type: uint
       - name: MAIN_V
         desc: Main Pyro Voltage
         bytes: 2
+        type: uint
 
   - name: SENSOR_ANALOG16
     desc: 16-bits analog sensor
@@ -166,12 +212,15 @@ messages:
     metadata:
       - name: SENSOR_ID
         desc: Sensor ID
+        type: enum
         enum: analog_sensor_id
+    # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
       - name: VALUE
         desc: Analog sensor value
         bytes: 2
+        type: uint
 
   - name: SENSOR_ANALOG32
     desc: 32-bits analog sensor
@@ -179,12 +228,15 @@ messages:
     metadata:
       - name: SENSOR_ID
         desc: Sensor ID
+        type: enum
         enum: analog_sensor_id
+    # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
       - name: VALUE
         desc: Analog sensor value
         bytes: 4
+        type: uint
 
   - name: SENSOR_2D_ANALOG24
     desc: 2-Dimensional 24-bit analog sensor value message
@@ -192,15 +244,19 @@ messages:
     metadata:
       - name: SENSOR_ID
         desc: 2 Dimensional sensor ID
+        type: enum
         enum: dem_2d_sensor_id
+    # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
       - name: VALUE_X
         desc: Analog sensor value X
         bytes: 3
+        type: uint
       - name: VALUE_Y
         desc: Analog sensor value Y
         bytes: 3
+        type: uint
 
   - name: SENSOR_3D_ANALOG16
     desc: 3-Dimensional 16-bit analog sensor value message
@@ -208,119 +264,169 @@ messages:
     metadata:
       - name: SENSOR_ID
         desc: 3 Dimensional sensor ID
+        type: enum
         enum: dem_3d_sensor_id
+    # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
       - name: VALUE_X
         desc: Analog sensor value X
         bytes: 2
+        type: uint
       - name: VALUE_Y
         desc: Analog sensor value Y
         bytes: 2
+        type: uint
       - name: VALUE_Z
         desc: Analog sensor value Z
         bytes: 2
+        type: uint
 
   - name: GPS_TIMESTAMP
     id: 0x0E
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: UTC_HOURS
         desc: Hour
         bytes: 1
+        type: uint
       - name: UTC_MINUTES
         desc: Minutes
         bytes: 1
+        type: uint
       - name: UTC_SECONDS
         desc: Seconds
         bytes: 1
+        type: uint
       - name: UTC_DSECONDS
         desc: Decisecond
         bytes: 1
+        type: uint
 
   - name: GPS_LATITUDE
     id: 0x0F
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: DEGREES
         desc: Degrees
         bytes: 1
+        type: uint
       - name: MINUTES
         desc: Minutes
         bytes: 1
+        type: uint
       - name: DMINUTES_H
         desc: No description
         bytes: 2
+        type: uint
       - name: DIR_NS
         desc: North/South
         bytes: 1
+        type: ascii
 
   - name: GPS_LONGITUDE
     id: 0x10
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: DEGREES
         desc: Degrees
         bytes: 1
+        type: uint
       - name: MINUTES
         desc: Minutes
         bytes: 1
+        type: uint
       - name: DMINUTES_H
         desc: No description
         bytes: 2
+        type: uint
       - name: DIR_EW
         desc: East/West
         bytes: 1
+        type: ascii
 
   - name: GPS_ALTITUDE
     id: 0x11
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: ALT
         desc: Altitude in ft
         bytes: 4
+        type: uint
       - name: DALT
         desc: No description
         bytes: 1
+        type: uint
 
   - name: GPS_INFO
     id: 0x12
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: NUM_SAT
         desc: Number of satellite
         bytes: 1
+        type: uint
       - name: QUALITY
         desc: Quality
         bytes: 1
+        type: uint
 
   - name: STREAM_STATUS
     id: 0x13
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
       - name: TOTAL_SIZE
         desc: Total transfer size in bytes
         bytes: 3
+        type: uint
       - name: TX_SIZE
         desc: Transfered size in bytes
         bytes: 3
+        type: uint
 
   - name: STREAM_DATA
     id: 0x14
     metadata:
       - name: SEQ_ID
         desc: Sequence ID
+        type: uint
     field:
       - ref: timestamp
       - name: DATA
         desc: Data payload
         bytes: 6
+        type: raw
 
   - name: STREAM_RETRY
     id: 0x15
     metadata:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
+        type: uint
     field:
       - ref: timestamp
 
@@ -329,21 +435,25 @@ messages:
     metadata:
       - name: CHANNEL_ID
         desc: Channel ID which is the LTT board instance ID
+        type: enum
         enum: board_inst
     field:
       - ref: timestamp
       - name: LQI
         desc: Link Quality Indicator
         bytes: 1
+        type: uint
       - name: RSSI
         desc: Received Signal Strength Indicator(2s complement signed)
         bytes: 1
+        type: int
 
   - name: TELEMETRY_STATE_SWITCH
     id: 0x17
     metadata:
       - name: CHANNEL_ID
         desc: Channel ID which is the LTT board instance ID
+        type: enum
         enum: board_inst
     field:
       - ref: timestamp
@@ -353,25 +463,36 @@ messages:
     metadata:
       - name: MODULE_ID
         desc: Module ID
+        type: enum
         enum: canards_module_id
     field:
       - ref: timestamp
       - name: ERROR_CODE
         desc: Error Code Bitfield
         bytes: 4
+        type: bitfield
         bitfield: canards_module_error_bitfield
       - name: SEVERITY
         desc: Severity
         bytes: 1
+        type: enum
         enum: canards_health_severity
 
   - name: LEDS_ON
     id: 0x19
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
 
   - name: LEDS_OFF
     id: 0x20
+    metadata:
+      - name: UNUSED
+        desc: Unused metadata byte
+        type: uint
     field:
       - ref: timestamp
 

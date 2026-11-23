@@ -541,16 +541,16 @@ enums:
     value:
       - name: HIGHEST
         desc: Human-sent commands, valve actuation, canard angle
-        id: 0x0
+        number: 0x0
       - name: HIGH
         desc: Ops-critical data
-        id: 0x1
+        number: 0x1
       - name: MEDIUM
         desc: Non-ops-critical data
-        id: 0x2
+        number: 0x2
       - name: LOW
         desc: For logging only
-        id: 0x3
+        number: 0x3
         
   - name: board_type
     desc: Board type ID for CAN SID
@@ -558,59 +558,59 @@ enums:
     value:
       - name: ANY
         desc: Any Board
-        id: 0x00
+        number: 0x00
       - name: INJECTOR
         desc: Injector Board
-        id: 0x01
+        number: 0x01
       - name: CAMERA
         desc: Flight Camera Board
-        id: 0x02
+        number: 0x02
       - name: POWER
         desc: Power Board
-        id: 0x03
+        number: 0x03
         doc-link: /avionics/rocket-power-board/index
       - name: LOGGER
         desc: CAN Logger Board
-        id: 0x04
+        number: 0x04
         doc-link: /avionics/camera-logger-board/index
       - name: CANARD
         desc: Canard Board
-        id: 0x05
+        number: 0x05
         doc-link: /controls/canards-electrical/index
       - name: TELEMETRY
         desc: Live Telemetry Board
-        id: 0x06
+        number: 0x06
         doc-link: /avionics/live-telemetry/index
       - name: GPS
         desc: COTS GPS Receiver Board
-        id: 0x07
+        number: 0x07
         doc-link: /avionics/gps-board/index
       - name: ALTIMETER
         desc: SRAD Altimeter
-        id: 0x08
+        number: 0x08
         doc-link: /avionics/srad-altimeter/index
       - name: ARMING
         desc: Remote Arming Board
-        id: 0x09
+        number: 0x09
         doc-link: /avionics/remote-arming/index
       - name: PAYLOAD
         desc: Payload Board
-        id: 0x0A
+        number: 0x0A
       - name: RLCS_GLS
         desc: RLCS v4 Ground Launch Sequencer
-        id: 0x0B
+        number: 0x0B
         doc-link: /electrical-gse/rlcs-v4/gls-board/index
       - name: RLCS_RELAY
         desc: RLCS v4 Relay Board
-        id: 0x0C
+        number: 0x0C
         doc-link: /electrical-gse/rlcs-v4/relay-board/index
       - name: DAQ
         desc: DAQ(Data Acquisition System) CAN Support
-        id: 0x0D
+        number: 0x0D
         doc-link: /electrical-gse/daq/index
       - name: THERMOCOUPLE
         desc: Thermocouple board
-        id: 0x0E
+        number: 0x0E
 
   - name: board_inst
     desc: Board instance ID for CAN SID
@@ -618,56 +618,56 @@ enums:
     value:
       - name: ANY
         desc: Any instance of the board
-        id: 0x00
+        number: 0x00
       - name: GROUND
         desc: Board on the ground 
-        id: 0x01
+        number: 0x01
       - name: ROCKET
         desc: Board on the rocket 
-        id: 0x02
+        number: 0x02
 
       - name: CAMERA_SIDE_LOOKING
         desc: Side Looking Camera
-        id: 0x03
+        number: 0x03
       - name: CAMERA_DOWN_LOOKING
         desc: Down Looking Camera
-        id: 0x04
+        number: 0x04
       - name: CAMERA_RECOVERY
         desc: Recovery Looking Camera
-        id: 0x05
+        number: 0x05
 
       - name: TELEMETRY_GROUND_1
         desc: Ground side LTT 1
-        id: 0x06
+        number: 0x06
       - name: TELEMETRY_GROUND_2
         desc: Ground side LTT 2
-        id: 0x07
+        number: 0x07
       - name: TELEMETRY_GROUND_3
         desc: Ground side LTT 3
-        id: 0x08
+        number: 0x08
       - name: TELEMETRY_GROUND_4
         desc: Ground side LTT 4
-        id: 0x09
+        number: 0x09
 
       - name: ARMING_RA_RAVEN
         desc: Remote Arming for Raven
-        id: 0x0A
+        number: 0x0A
       - name: ARMING_RA_STRATOLOGGER
         desc: Remote Arming for Stratologger
-        id: 0x0B
+        number: 0x0B
         
       - name: TCB_1
         desc: TCB 1
-        id: 0x0C
+        number: 0x0C
       - name: TCB_2
         desc: TCB 2
-        id: 0x0D
+        number: 0x0D
       - name: TCB_3
         desc: TCB 3
-        id: 0x0E
+        number: 0x0E
       - name: TCB_4
         desc: TCB 4
-        id: 0x0F
+        number: 0x0F
 
   - name: actuator_id
     desc: Actuator ID for Actuator Command and Status Messages
@@ -675,103 +675,103 @@ enums:
     value:
       - name: OX_INJECTOR_VALVE
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback and Canard activation
-        id: 0x00
+        number: 0x00
       - name: FUEL_INJECTOR_VALVE
         desc: Oxidizer Injector Valve, for hall-effect sensor state feedback
-        id: 0x01
+        number: 0x01
       - name: IGNITION
         desc: Ignition Puck
-        id: 0x02
+        number: 0x02
       - name: ROCKET_UPPER_CHARGE_ENABLE
         desc: Rocket Upper Section Ground-side Charging Enable
-        id: 0x03
+        number: 0x03
       - name: ROCKET_INJECTOR_CHARGE_ENABLE
         desc: Rocket Injector Section Ground-side Charging Enable
-        id: 0x04
+        number: 0x04
       - name: 5V_RAIL_ROCKET
         desc: ""
-        id: 0x05
+        number: 0x05
       - name: 12V_RAIL_ROCKET
         desc: ""
-        id: 0x06
+        number: 0x06
       - name: TELEMETRY
         desc: ""
-        id: 0x07
+        number: 0x07
       - name: CAMERA_SIDE_LOOKING_POWER
         desc: ""
-        id: 0x08
+        number: 0x08
       - name: CAMERA_DOWN_LOOKING_POWER
         desc: ""
-        id: 0x09
+        number: 0x09
       - name: CAMERA_RECOVERY_POWER
         desc: ""
-        id: 0x0A
+        number: 0x0A
       - name: CAMERA_SIDE_LOOKING_RECORD
         desc: ""
-        id: 0x0B
+        number: 0x0B
       - name: CAMERA_DOWN_LOOKING_RECORD
         desc: ""
-        id: 0x0C
+        number: 0x0C
       - name: CAMERA_RECOVERY_RECORD
         desc: ""
-        id: 0x0D
+        number: 0x0D
       - name: CANARD_PAD_FILTER
         desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
-        id: 0x0E
+        number: 0x0E
       - name: CANARD_5V_OUTPUT
         desc: Enable Canard Board's 5V output to payload
-        id: 0x0F
+        number: 0x0F
       - name: CANARD_LIPO_ON
         desc: Enable Canard board draw power from LiPo
-        id: 0x10
+        number: 0x10
       - name: SRAD_ALT_ESTIMATOR_INIT
         desc: Actuator command to start SRAD Altimeter state estimation
-        id: 0x11
+        number: 0x11
       - name: SRAD_ALT_GPS_RESET
         desc: Actuator command to reset GPS Receiver on SRAD Altimeter
-        id: 0x12
+        number: 0x12
       - name: CAMERA_CAPTURE
         desc: ""
-        id: 0x13
+        number: 0x13
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
-        id: 0x14
+        number: 0x14
       - name: INJECTOR_BOARD_ACTUATOR_1
         desc: Injector board actuator channel 1
-        id: 0x15
+        number: 0x15
       - name: INJECTOR_BOARD_ACTUATOR_2
         desc: Injector board actuator channel 2
-        id: 0x16
+        number: 0x16
       - name: RLCS_RELAY_POWER
         desc: RLCS Relay Board Power Relay
-        id: 0x17
+        number: 0x17
       - name: RLCS_RELAY_SELECT
         desc: RLCS Relay Board Select Relay(Limit switch state feedback)
-        id: 0x18
+        number: 0x18
       - name: PAYLOAD_ACCEL_ARM
         desc: Payload accelerometer arming
-        id: 0x19
+        number: 0x19
       - name: PAYLOAD_PZT_ARM
         desc: Payload PZT phase biasing arming
-        id: 0x1A
+        number: 0x1A
       - name: LOGGER_FLASH_ERASE
         desc: Erase logger board flash
-        id: 0x1B
+        number: 0x1B
       - name: CANARD_FLASH_ERASE
         desc: Erase canard board flash
-        id: 0x1C
+        number: 0x1C
       - name: CANARD_MOTOR_CALIBRATION
         desc: Start canard motor calibration routine
-        id: 0x1D
+        number: 0x1D
       - name: LOGGER_SD_CLEAR
         desc: Clear logger board SD card
-        id: 0x1E
+        number: 0x1E
       - name: CANARD_SD_CLEAR
         desc: Clear canard board SD card
-        id: 0x1F
+        number: 0x1F
       - name: PAYLOAD_SD_CLEAR
         desc: Clear payload board SD card
-        id: 0x20
+        number: 0x20
 
   - name: actuator_state
     desc: Actuator State
@@ -779,16 +779,16 @@ enums:
     value:
       - name: ON
         desc: Actuator is in ON state, or Open
-        id: 0x00
+        number: 0x00
       - name: OFF
         desc: Actuator is in OFF state, or Close
-        id: 0x01
+        number: 0x01
       - name: UNK
         desc: Unknown state, for example when ball valve is turning
-        id: 0x02
+        number: 0x02
       - name: ILLEGAL
         desc: Illegal state, for example when limit switch of both state being triggered
-        id: 0x03
+        number: 0x03
 
   - name: altimeter_id
     desc: Altimeter ID for uniquely indentify each altimeter
@@ -796,13 +796,13 @@ enums:
     value:
       - name: RAVEN
         desc: Raven4 Altimeter
-        id: 0x00
+        number: 0x00
       - name: STRATOLOGGER
         desc: StratoLoggerCF
-        id: 0x01
+        number: 0x01
       - name: SRAD
         desc: SRAD Altimeter
-        id: 0x02
+        number: 0x02
 
   - name: alt_arm_state
     desc: Altimiter Arm State
@@ -810,10 +810,10 @@ enums:
     value:
       - name: DISARMED
         desc: Disarmed
-        id: 0x00
+        number: 0x00
       - name: ARMED
         desc: Armed
-        id: 0x01
+        number: 0x01
 
   - name: analog_sensor_id
     desc: Sensor ID for Sensor Messages
@@ -821,247 +821,247 @@ enums:
     value:
       - name: 5V_VOLT
         desc: Voltage of 5V rail in mV
-        id: 0x00
+        number: 0x00
       - name: 5V_CURR
         desc: Current of 5V rail in mA
-        id: 0x01
+        number: 0x01
       - name: 12V_VOLT
         desc: Voltage of 12V rail in mV
-        id: 0x02
+        number: 0x02
       - name: 12V_CURR
         desc: Current of 12V rail in mA
-        id: 0x03
+        number: 0x03
       - name: CHARGE_VOLT
         desc: LiPo charging voltage in mV
-        id: 0x04
+        number: 0x04
       - name: CHARGE_CURR
         desc: LiPo charging current in mA  
-        id: 0x05
+        number: 0x05
       - name: BATT_VOLT
         desc: Battery Voltage in mV
-        id: 0x06
+        number: 0x06
       - name: ALTERNATE_BATT_VOLT
         desc: Secondary Battery Voltage in mV
-        id: 0x07
+        number: 0x07
       - name: BATT_CURR
         desc: Battery Current in mA
-        id: 0x08
+        number: 0x08
       - name: RADIO_CURR
         desc: Radio current in mA
-        id: 0x09
+        number: 0x09
       - name: GPS_CURR
         desc: GPS Receiver current in mA
-        id: 0x0A
+        number: 0x0A
       - name: CAMERA_CURR
         desc: Camera current in mA
-        id: 0x0B
+        number: 0x0B
       - name: LOCAL_RAIL_CURR
         desc: Local power rail (e.g. 3.3V) current in mA
-        id: 0x0C
+        number: 0x0C
       - name: PT_CHANNEL_1
         desc: Pressure Transducer Channel 1
-        id: 0x0D
+        number: 0x0D
       - name: PT_CHANNEL_2
         desc: Pressure Transducer Channel 2
-        id: 0x0E
+        number: 0x0E
       - name: PT_CHANNEL_3
         desc: Pressure Transducer Channel 3
-        id: 0x0F
+        number: 0x0F
       - name: PT_CHANNEL_4
         desc: Pressure Transducer Channel 4
-        id: 0x10
+        number: 0x10
       - name: PT_CHANNEL_5
         desc: Pressure Transducer Channel 5
-        id: 0x11
+        number: 0x11
       - name: PT_CHANNEL_6
         desc: Pressure Transducer Channel 6
-        id: 0x12
+        number: 0x12
       - name: PT_CHANNEL_7
         desc: Pressure Transducer Channel 7
-        id: 0x13
+        number: 0x13
       - name: PT_CHANNEL_8
         desc: Pressure Transducer Channel 8
-        id: 0x14
+        number: 0x14
       - name: PT_CHANNEL_9
         desc: Pressure Transducer Channel 9
-        id: 0x15
+        number: 0x15
       - name: PT_CHANNEL_10
         desc: Pressure Transducer Channel 10
-        id: 0x16
+        number: 0x16
       - name: HALL_CHANNEL_1
         desc: Hall-Effect Sensor Channel 1
-        id: 0x17
+        number: 0x17
       - name: HALL_CHANNEL_2
         desc: Hall-Effect Sensor Channel 2
-        id: 0x18
+        number: 0x18
       - name: HALL_CHANNEL_3
         desc: Hall-Effect Sensor Channel 3
-        id: 0x19
+        number: 0x19
       - name: RA_BATT_VOLT_1
         desc: ""
-        id: 0x1A
+        number: 0x1A
       - name: RA_BATT_VOLT_2
         desc: ""
-        id: 0x1B
+        number: 0x1B
       - name: RA_BATT_CURR_1
         desc: ""
-        id: 0x1C
+        number: 0x1C
       - name: RA_BATT_CURR_2
         desc: ""
-        id: 0x1D
+        number: 0x1D
       - name: RA_MAG_VOLT_1
         desc: ""
-        id: 0x1E
+        number: 0x1E
       - name: RA_MAG_VOLT_2
         desc: ""
-        id: 0x1F
+        number: 0x1F
       - name: FPS
         desc: Camera framerate
-        id: 0x20
+        number: 0x20
       - name: PAYLOAD_LIM_1
         desc: Payload Motor Board Limit Switch 1
-        id: 0x21
+        number: 0x21
       - name: PAYLOAD_LIM_2
         desc: Payload Motor Board Limit Switch 2
-        id: 0x22
+        number: 0x22
       - name: PAYLOAD_SERVO_DIRECTION
         desc: Payload Servo Direction
-        id: 0x23
+        number: 0x23
       - name: PAYLOAD_INFRARED
         desc: Payload Infrared Sensor Reading
-        id: 0x24
+        number: 0x24
       - name: INJECTOR_BOARD_TEMP_1
         desc: Injector board temperature channel 1
-        id: 0x25
+        number: 0x25
       - name: INJECTOR_BOARD_TEMP_2
         desc: Injector board temperature channel 2
-        id: 0x26
+        number: 0x26
       - name: INJECTOR_BOARD_TEMP_3
         desc: Injector board temperature channel 3
-        id: 0x27
+        number: 0x27
       - name: RLCS_RELAY_OUTPUT_VOLT_A
         desc: RLCS Relay Board channel A output voltage
-        id: 0x28
+        number: 0x28
       - name: RLCS_RELAY_OUTPUT_VOLT_B
         desc: RLCS Relay Board channel B output voltage
-        id: 0x29
+        number: 0x29
       - name: RLCS_RELAY_OUTPUT_CURR_A
         desc: RLCS Relay Board channel A output current
-        id: 0x2A
+        number: 0x2A
       - name: RLCS_RELAY_OUTPUT_CURR_B
         desc: RLCS Relay Board channel B output current
-        id: 0x2B
+        number: 0x2B
       - name: RLCS_RELAY_LIM_VOLT_A
         desc: RLCS Relay Board limit switch A voltage
-        id: 0x2C
+        number: 0x2C
       - name: RLCS_RELAY_LIM_VOLT_B
         desc: RLCS Relay Board limit switch B voltage
-        id: 0x2D
+        number: 0x2D
       - name: LOG_WRITTEN_SIZE
         desc: Number of bytes written to log file(reset to 0 when a new file is created)
-        id: 0x2E
+        number: 0x2E
       - name: SD_LOG_FILE_NAME
         desc: SD Card log file name(the number part only)
-        id: 0x2F
+        number: 0x2F
       - name: SD_USED
         desc: SD Card used space size, in MiB
-        id: 0x30
+        number: 0x30
       - name: SD_FREE
         desc: SD Card free space size, in MiB
-        id: 0x31
+        number: 0x31
       - name: FLASH_LOG_FILE_NAME
         desc: Flash log file name(the number part only)
-        id: 0x32
+        number: 0x32
       - name: FLASH_USED
         desc: Flash used space size, in MiB
-        id: 0x33
+        number: 0x33
       - name: FLASH_FREE
         desc: FLash free space size, in MiB
-        id: 0x34
+        number: 0x34
       - name: CANARD_CTRL_CMD_ANGLE
         desc: Canard Controller Commanded Angle
-        id: 0x35
+        number: 0x35
       - name: CANARD_CTRL_COEFF_LIFT
         desc: Canard Controller Coefficient of Lift
-        id: 0x36
+        number: 0x36
       - name: CANARD_MTI630_BARO_0
         desc: Canard MTI-630 Movella barometer reading 0
-        id: 0x37
+        number: 0x37
       - name: CANARD_MTI630_BARO_1
         desc: Canard MTI-630 Movella barometer reading 1
-        id: 0x38
+        number: 0x38
       - name: CANARD_MTI630_EST_ALT
         desc: Canard MTI-630 Movella Estimation altitude
-        id: 0x39
+        number: 0x39
       - name: CANARD_ADXRS649_GYRO
         desc: Canard ADXRS649 1-Axis Gyroscope angular velocity reading
-        id: 0x3A
+        number: 0x3A
       - name: CANARD_SERVO_ANGLE
         desc: Canard Servo encoder angle reading
-        id: 0x3B
+        number: 0x3B
       - name: CANARD_SERVO_CURR
         desc: Canard Servo current reading (in mA)
-        id: 0x3C
+        number: 0x3C
       - name: CANARD_SERVO_TEMP
         desc: Canard Servo temperature reading (in Celcius)
-        id: 0x3D
+        number: 0x3D
       - name: PAYLOAD_SENSOR_CURR_READING
         desc: Payload Sensor Current Reading
-        id: 0x3E
+        number: 0x3E
       - name: ALTITUDE
         desc: Altitude in ft
-        id: 0x3F
+        number: 0x3F
       - name: PAYLOAD_TEMP
         desc: Payload temperature
-        id: 0x40
+        number: 0x40
       - name: TC_0
         desc: TC 0
-        id: 0x41
+        number: 0x41
       - name: TC_1
         desc: TC 1
-        id: 0x42
+        number: 0x42
       - name: TC_2
         desc: TC 2
-        id: 0x43
+        number: 0x43
       - name: TC_3
         desc: TC 3
-        id: 0x44
+        number: 0x44
       - name: TC_4
         desc: TC 4
-        id: 0x45
+        number: 0x45
       - name: TC_5
         desc: TC 5
-        id: 0x46
+        number: 0x46
       - name: TC_6
         desc: TC 6
-        id: 0x47
+        number: 0x47
       - name: TC_7
         desc: TC 7
-        id: 0x48
+        number: 0x48
       - name: TC_8
         desc: TC 8
-        id: 0x49
+        number: 0x49
       - name: TC_9
         desc: TC 9
-        id: 0x4A
+        number: 0x4A
       - name: TC_10
         desc: TC 10
-        id: 0x4B
+        number: 0x4B
       - name: TC_11
         desc: TC 11
-        id: 0x4C
+        number: 0x4C
       - name: TC_12
         desc: TC 12
-        id: 0x4D
+        number: 0x4D
       - name: TC_13
         desc: TC 13
-        id: 0x4E
+        number: 0x4E
       - name: TC_14
         desc: TC 14
-        id: 0x4F
+        number: 0x4F
       - name: TC_15
         desc: TC 15
-        id: 0x50
+        number: 0x50
 
   - name: dem_2d_sensor_id
     desc: 2 Dimensional Sensor ID
@@ -1069,22 +1069,22 @@ enums:
     value:
       - name: CANARD_NAV_VEL_ANGLE_VEL_X
         desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on X-axis
-        id: 0x00
+        number: 0x00
       - name: CANARD_NAV_VEL_ANGLE_VEL_Y
         desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Y-axis
-        id: 0x01
+        number: 0x01
       - name: CANARD_NAV_VEL_ANGLE_VEL_Z
         desc: Canard Navigation Velocity(X) and Angular Velocity(Y) on Z-axis
-        id: 0x02
+        number: 0x02
       - name: CANARD_MS5611_BARO_TEMP
         desc: Canard MS5611 Barometer Pressure(X) and Temperature(Y) reading
-        id: 0x03
+        number: 0x03
       - name: CANARD_MTI630_EST_ORI_QW_QX
         desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QW and QX demension
-        id: 0x04
+        number: 0x04
       - name: CANARD_MTI630_EST_ORI_QY_QZ
         desc: Canard MTI-630 Movella Estimation Orientation (Euler) - QY and QZ demension
-        id: 0x05
+        number: 0x05
 
   - name: dem_3d_sensor_id
     desc: 3 Dimensional Sensor ID
@@ -1092,67 +1092,67 @@ enums:
     value:
       - name: CANARD_NAV_ORI_QX_QY_QZ
         desc: Canard Navigation Orientation QX, QY, QZ
-        id: 0x00
+        number: 0x00
       - name: CANARD_NAV_ORI_QW_ALT_VARNORM
         desc: Canard Navigation Orientation QW(X), Altitude(Y), Variance Norm(Z)
-        id: 0x01
+        number: 0x01
       - name: CANARD_LSM6DSV32X_ACCEL
         desc: Canard LSM6DSV32X 32G IMU Acceleration
-        id: 0x02
+        number: 0x02
       - name: CANARD_LSM6DSV32X_GYRO
         desc: Canard LSM6DSV32X 32G IMU Angular Velocity
-        id: 0x03
+        number: 0x03
       - name: CANARD_IIS2MDC_ACCEL
         desc: Canard IIS2MDC Compass Acceleration
-        id: 0x04
+        number: 0x04
       - name: CANARD_IIS2MDC_MAG
         desc: Canard IIS2MDC Magnetometer Reading
-        id: 0x05
+        number: 0x05
       - name: CANARD_MTI630_ACCEL
         desc: Canard MTI-630 Movella Acceleration
-        id: 0x06
+        number: 0x06
       - name: CANARD_MTI630_GYRO
         desc: Canard MTI-630 Movella Angular Velocity
-        id: 0x07
+        number: 0x07
       - name: CANARD_MTI630_MAG
         desc: Canard MTI-630 Movella Magnetometer Reading
-        id: 0x08
+        number: 0x08
       - name: RESERVED_0
         desc: Reserved 0
-        id: 0x09
+        number: 0x09
       - name: CANARD_MTI630_EST_ANGLE_VEL
         desc: Canard MTI-630 Movella Estimation Angular Velocity
-        id: 0x0A
+        number: 0x0A
       - name: CANARD_MTI630_EST_VEL
         desc: Canard MTI-630 Movella Estimation Velocity
-        id: 0x0B
+        number: 0x0B
       - name: CANARD_ADXL380_ACCEL
         desc: Canard ADXL380 Accelerometer Acceleration
-        id: 0x0C
+        number: 0x0C
       - name: PAYLOAD_ACCEL_0
         desc: Payload Accelerometer 0
-        id: 0x0D
+        number: 0x0D
       - name: PAYLOAD_ACCEL_1
         desc: Payload Accelerometer 1
-        id: 0x0E
+        number: 0x0E
       - name: PAYLOAD_ACCEL_2
         desc: Payload Accelerometer 2
-        id: 0x0F
+        number: 0x0F
       - name: PAYLOAD_ACCEL_3
         desc: Payload Accelerometer 3
-        id: 0x10
+        number: 0x10
       - name: PAYLOAD_ACCEL_4
         desc: Payload Accelerometer 4
-        id: 0x11
+        number: 0x11
       - name: PAYLOAD_ACCEL_5
         desc: Payload Accelerometer 5
-        id: 0x12
+        number: 0x12
       - name: PAYLOAD_ACCEL_6
         desc: Payload Accelerometer 6
-        id: 0x13
+        number: 0x13
       - name: PAYLOAD_ACCEL_7
         desc: Payload Accelerometer 7
-        id: 0x14
+        number: 0x14
 
   - name: canards_health_severity
     desc: Canards Health Severity
@@ -1160,13 +1160,13 @@ enums:
     value:
       - name: HEALTH_OK
         desc: No issues
-        id: 0x00
+        number: 0x00
       - name: HEALTH_ERROR
         desc: Something is wrong, but can still fly safely
-        id: 0x01
+        number: 0x01
       - name: HEALTH_FATAL
         desc: Unrecoverable failure, unsafe flight
-        id: 0x02
+        number: 0x02
 
   - name: canards_module_id
     desc: Canards Module ID
@@ -1174,70 +1174,70 @@ enums:
     value:
       - name: ADC
         desc: ""
-        id: 0x00
+        number: 0x00
       - name: ADXL380
         desc: ""
-        id: 0x01
+        number: 0x01
       - name: ADXRS649
         desc: ""
-        id: 0x02
+        number: 0x02
       - name: AK45
         desc: ""
-        id: 0x03
+        number: 0x03
       - name: CAN_HANDLER
         desc: ""
-        id: 0x04
+        number: 0x04
       - name: CONTROLLER
         desc: ""
-        id: 0x05
+        number: 0x05
       - name: FLIGHT_PHASE
         desc: ""
-        id: 0x06
+        number: 0x06
       - name: FSM
         desc: ""
-        id: 0x07
+        number: 0x07
       - name: GPIO
         desc: ""
-        id: 0x08
+        number: 0x08
       - name: I2C
         desc: ""
-        id: 0x09
+        number: 0x09
       - name: IIS2MDC
         desc: ""
-        id: 0x0A
+        number: 0x0A
       - name: LOGGER
         desc: ""
-        id: 0x0B
+        number: 0x0B
       - name: LSM6DSV32X
         desc: ""
-        id: 0x0C
+        number: 0x0C
       - name: MOVELLA
         desc: ""
-        id: 0x0D
+        number: 0x0D
       - name: MS5611
         desc: ""
-        id: 0x0E
+        number: 0x0E
       - name: NAVIGATOR
         desc: ""
-        id: 0x0F
+        number: 0x0F
       - name: POWER_HANDLER
         desc: ""
-        id: 0x10
+        number: 0x10
       - name: SD_CARD
         desc: ""
-        id: 0x11
+        number: 0x11
       - name: SENSOR_HANDLER
         desc: ""
-        id: 0x12
+        number: 0x12
       - name: TELEMETRY
         desc: ""
-        id: 0x13
+        number: 0x13
       - name: TIMER
         desc: ""
-        id: 0x14
+        number: 0x14
       - name: UART
         desc: ""
-        id: 0x15
+        number: 0x15
 
 bitfields:
   - name: board_error_bitfield

@@ -28,20 +28,14 @@ messages:
   - name: UNDEFINED
     desc: Undefined message, do not use
     id: 0x000
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
 
   - name: GENERAL_BOARD_STATUS
     desc: Board status broadcast
     id: 0x001
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: BOARD_ERROR_BITFIELD
@@ -53,10 +47,7 @@ messages:
   - name: RESET_CMD
     desc: Command to reset boards
     id: 0x002
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: TARGET_BOARD_TYPE_ID
@@ -73,10 +64,7 @@ messages:
   - name: DEBUG_RAW
     desc: 6-bytes of raw data
     id: 0x003
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: RAW_DATA
@@ -87,10 +75,7 @@ messages:
   - name: CONFIG_SET
     desc: Set board specific configuration
     id: 0x004
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: TARGET_BOARD_TYPE_ID
@@ -115,10 +100,7 @@ messages:
   - name: CONFIG_STATUS
     desc: Broadcast board specific configuration, for verify CONFIG_SET success
     id: 0x005
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: CONFIG_ID
@@ -285,10 +267,7 @@ messages:
 
   - name: GPS_TIMESTAMP
     id: 0x0E
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: UTC_HOURS
@@ -310,10 +289,7 @@ messages:
 
   - name: GPS_LATITUDE
     id: 0x0F
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: DEGREES
@@ -335,10 +311,7 @@ messages:
 
   - name: GPS_LONGITUDE
     id: 0x10
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: DEGREES
@@ -360,10 +333,7 @@ messages:
 
   - name: GPS_ALTITUDE
     id: 0x11
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: ALT
@@ -377,10 +347,7 @@ messages:
 
   - name: GPS_INFO
     id: 0x12
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: NUM_SAT
@@ -394,10 +361,7 @@ messages:
 
   - name: STREAM_STATUS
     id: 0x13
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
       - name: TOTAL_SIZE
@@ -481,19 +445,13 @@ messages:
 
   - name: LEDS_ON
     id: 0x19
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
 
   - name: LEDS_OFF
     id: 0x20
-    metadata:
-      - name: UNUSED
-        desc: Unused metadata byte
-        type: uint
+    metadata: null
     field:
       - ref: timestamp
 

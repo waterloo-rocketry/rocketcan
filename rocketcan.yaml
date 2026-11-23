@@ -1,19 +1,24 @@
 sid:
   fields:
     - name: prio
+      index: 1
       bits: 2
       enum: prio
     # Uses 'messages', which is separate from the rest of enums
     - name: message_type
+      index: 2
       bits: 7
     - name: board_type
+      index: 3
       bits: 6
       enum: board_type
     - name: board_inst
+      index: 4
       bits: 6
       enum: board_inst
     # Uses 'message.metadata', an arbitrary extra byte of data for every message
     - name: metadata
+      index: 5
       bits: 8
 
 message_fields:
@@ -31,6 +36,7 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
 
   - name: GENERAL_BOARD_STATUS
     desc: Board status broadcast
@@ -38,7 +44,9 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: BOARD_ERROR_BITFIELD
+        index: 2
         desc: Board error code bitfield
         bytes: 4
         type: bitfield
@@ -50,12 +58,15 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: TARGET_BOARD_TYPE_ID
+        index: 2
         desc: Board Type ID of board to reset, set to 0 to reset all boards on bus
         bytes: 1
         type: enum
         enum: board_type
       - name: TARGET_BOARD_INST_ID
+        index: 3
         desc: Board Inst ID of board to reset, set to 0 to reset all board of specific type
         bytes: 1
         type: enum
@@ -67,7 +78,9 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: RAW_DATA
+        index: 2
         desc: Raw data, 6 bytes
         bytes: 6
         type: raw
@@ -78,21 +91,26 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: TARGET_BOARD_TYPE_ID
+        index: 2
         desc: Board Type ID of target board, cannot be zero
         bytes: 1
         type: enum
         enum: board_type
       - name: TARGET_BOARD_INST_ID
+        index: 3
         desc: Board Inst ID of target board, set to 0 to set all board of specific type
         bytes: 1
         type: enum
         enum: board_inst
       - name: CONFIG_ID
+        index: 4
         desc: Configuration ID, Board Specific
         bytes: 2
         type: uint
       - name: CONFIG_VALUE
+        index: 5
         desc: Configuration Value, Board and Config ID specific
         bytes: 2
         type: uint
@@ -103,11 +121,14 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: CONFIG_ID
+        index: 2
         desc: Configuration ID, Board Specific
         bytes: 2
         type: uint
       - name: CONFIG_VALUE
+        index: 3
         desc: Configuration Value, Board and Config ID specific
         bytes: 2
         type: uint
@@ -122,7 +143,9 @@ messages:
         enum: actuator_id
     field:
       - ref: timestamp
+        index: 1
       - name: ACTUATOR_CMD_STATE
+        index: 2
         desc: Actuator Commanded State
         bytes: 1
         type: enum
@@ -138,12 +161,15 @@ messages:
         enum: actuator_id
     field:
       - ref: timestamp
+        index: 1
       - name: ACTUATOR_CMD_STATE
+        index: 2
         desc: Actuator Commanded State
         bytes: 1
         type: enum
         enum: actuator_state
       - name: ACTUATOR_CURR_STATE
+        index: 3
         desc: Actuator Current State
         bytes: 1
         type: enum
@@ -159,7 +185,9 @@ messages:
         enum: altimeter_id
     field:
       - ref: timestamp
+        index: 1
       - name: ALT_ARM_STATE
+        index: 2
         desc: Altimeter set arm state
         bytes: 1
         type: enum
@@ -175,16 +203,20 @@ messages:
         enum: altimeter_id
     field:
       - ref: timestamp
+        index: 1
       - name: ALT_ARM_STATE
+        index: 2
         desc: Altimeter current arm state
         bytes: 1
         type: enum
         enum: alt_arm_state
       - name: DROGUE_V
+        index: 3
         desc: Drogue Pyro Voltage
         bytes: 2
         type: uint
       - name: MAIN_V
+        index: 4
         desc: Main Pyro Voltage
         bytes: 2
         type: uint
@@ -200,7 +232,9 @@ messages:
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
+        index: 1
       - name: VALUE
+        index: 2
         desc: Analog sensor value
         bytes: 2
         type: uint
@@ -216,7 +250,9 @@ messages:
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
+        index: 1
       - name: VALUE
+        index: 2
         desc: Analog sensor value
         bytes: 4
         type: uint
@@ -232,11 +268,14 @@ messages:
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
+        index: 1
       - name: VALUE_X
+        index: 2
         desc: Analog sensor value X
         bytes: 3
         type: uint
       - name: VALUE_Y
+        index: 3
         desc: Analog sensor value Y
         bytes: 3
         type: uint
@@ -252,15 +291,19 @@ messages:
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     field:
       - ref: timestamp
+        index: 1
       - name: VALUE_X
+        index: 2
         desc: Analog sensor value X
         bytes: 2
         type: uint
       - name: VALUE_Y
+        index: 3
         desc: Analog sensor value Y
         bytes: 2
         type: uint
       - name: VALUE_Z
+        index: 4
         desc: Analog sensor value Z
         bytes: 2
         type: uint
@@ -270,19 +313,24 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: UTC_HOURS
+        index: 2
         desc: Hour
         bytes: 1
         type: uint
       - name: UTC_MINUTES
+        index: 3
         desc: Minutes
         bytes: 1
         type: uint
       - name: UTC_SECONDS
+        index: 4
         desc: Seconds
         bytes: 1
         type: uint
       - name: UTC_DSECONDS
+        index: 5
         desc: Decisecond
         bytes: 1
         type: uint
@@ -292,19 +340,24 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: DEGREES
+        index: 2
         desc: Degrees
         bytes: 1
         type: uint
       - name: MINUTES
+        index: 3
         desc: Minutes
         bytes: 1
         type: uint
       - name: DMINUTES_H
+        index: 4
         desc: No description
         bytes: 2
         type: uint
       - name: DIR_NS
+        index: 5
         desc: North/South
         bytes: 1
         type: ascii
@@ -314,19 +367,24 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: DEGREES
+        index: 2
         desc: Degrees
         bytes: 1
         type: uint
       - name: MINUTES
+        index: 3
         desc: Minutes
         bytes: 1
         type: uint
       - name: DMINUTES_H
+        index: 4
         desc: No description
         bytes: 2
         type: uint
       - name: DIR_EW
+        index: 5
         desc: East/West
         bytes: 1
         type: ascii
@@ -336,11 +394,14 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: ALT
+        index: 2
         desc: Altitude in ft
         bytes: 4
         type: uint
       - name: DALT
+        index: 3
         desc: No description
         bytes: 1
         type: uint
@@ -350,11 +411,14 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: NUM_SAT
+        index: 2
         desc: Number of satellite
         bytes: 1
         type: uint
       - name: QUALITY
+        index: 3
         desc: Quality
         bytes: 1
         type: uint
@@ -364,11 +428,14 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
       - name: TOTAL_SIZE
+        index: 2
         desc: Total transfer size in bytes
         bytes: 3
         type: uint
       - name: TX_SIZE
+        index: 3
         desc: Transfered size in bytes
         bytes: 3
         type: uint
@@ -381,7 +448,9 @@ messages:
         type: uint
     field:
       - ref: timestamp
+        index: 1
       - name: DATA
+        index: 2
         desc: Data payload
         bytes: 6
         type: raw
@@ -394,6 +463,7 @@ messages:
         type: uint
     field:
       - ref: timestamp
+        index: 1
 
   - name: TELEMETRY_INFO
     id: 0x16
@@ -404,11 +474,14 @@ messages:
         enum: board_inst
     field:
       - ref: timestamp
+        index: 1
       - name: LQI
+        index: 2
         desc: Link Quality Indicator
         bytes: 1
         type: uint
       - name: RSSI
+        index: 3
         desc: Received Signal Strength Indicator(2s complement signed)
         bytes: 1
         type: int
@@ -422,6 +495,7 @@ messages:
         enum: board_inst
     field:
       - ref: timestamp
+        index: 1
 
   - name: CANARD_FIRMWARE_ERROR
     id: 0x18
@@ -432,12 +506,15 @@ messages:
         enum: canards_module_id
     field:
       - ref: timestamp
+        index: 1
       - name: ERROR_CODE
+        index: 2
         desc: Error Code Bitfield
         bytes: 4
         type: bitfield
         bitfield: canards_module_error_bitfield
       - name: SEVERITY
+        index: 3
         desc: Severity
         bytes: 1
         type: enum
@@ -448,12 +525,14 @@ messages:
     metadata: null
     field:
       - ref: timestamp
+        index: 1
 
   - name: LEDS_OFF
     id: 0x20
     metadata: null
     field:
       - ref: timestamp
+        index: 1
 
 enums:
   - name: prio

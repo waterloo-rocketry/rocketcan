@@ -3,23 +3,28 @@ sid:
     - name: prio
       index: 1
       bits: 2
+      type: enum
       enum: prio
     # Uses 'messages', which is separate from the rest of enums
     - name: message_type
       index: 2
       bits: 7
+      type: message_type
     - name: board_type
       index: 3
       bits: 6
+      type: enum
       enum: board_type
     - name: board_inst
       index: 4
       bits: 6
+      type: enum
       enum: board_inst
     # Uses 'message.metadata', an arbitrary extra byte of data for every message
     - name: metadata
       index: 5
       bits: 8
+      type: metadata
 
 message_fields:
   - id: timestamp

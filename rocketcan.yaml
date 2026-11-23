@@ -689,31 +689,22 @@ enums:
         desc: Rocket Injector Section Ground-side Charging Enable
         number: 0x04
       - name: 5V_RAIL_ROCKET
-        desc: ""
         number: 0x05
       - name: 12V_RAIL_ROCKET
-        desc: ""
         number: 0x06
       - name: TELEMETRY
-        desc: ""
         number: 0x07
       - name: CAMERA_SIDE_LOOKING_POWER
-        desc: ""
         number: 0x08
       - name: CAMERA_DOWN_LOOKING_POWER
-        desc: ""
         number: 0x09
       - name: CAMERA_RECOVERY_POWER
-        desc: ""
         number: 0x0A
       - name: CAMERA_SIDE_LOOKING_RECORD
-        desc: ""
         number: 0x0B
       - name: CAMERA_DOWN_LOOKING_RECORD
-        desc: ""
         number: 0x0C
       - name: CAMERA_RECOVERY_RECORD
-        desc: ""
         number: 0x0D
       - name: CANARD_PAD_FILTER
         desc: Switch Canard to Pad Filter when commanded ACT_STATE_ON
@@ -731,7 +722,6 @@ enums:
         desc: Actuator command to reset GPS Receiver on SRAD Altimeter
         number: 0x12
       - name: CAMERA_CAPTURE
-        desc: ""
         number: 0x13
       - name: PAYLOAD_LOGGING_ENABLE
         desc: Payload Sensor Board Logging Enable Control
@@ -898,22 +888,16 @@ enums:
         desc: Hall-Effect Sensor Channel 3
         number: 0x19
       - name: RA_BATT_VOLT_1
-        desc: ""
         number: 0x1A
       - name: RA_BATT_VOLT_2
-        desc: ""
         number: 0x1B
       - name: RA_BATT_CURR_1
-        desc: ""
         number: 0x1C
       - name: RA_BATT_CURR_2
-        desc: ""
         number: 0x1D
       - name: RA_MAG_VOLT_1
-        desc: ""
         number: 0x1E
       - name: RA_MAG_VOLT_2
-        desc: ""
         number: 0x1F
       - name: FPS
         desc: Camera framerate
@@ -1173,70 +1157,48 @@ enums:
     prefix: CANARDS_MODULE_ID
     value:
       - name: ADC
-        desc: ""
         number: 0x00
       - name: ADXL380
-        desc: ""
         number: 0x01
       - name: ADXRS649
-        desc: ""
         number: 0x02
       - name: AK45
-        desc: ""
         number: 0x03
       - name: CAN_HANDLER
-        desc: ""
         number: 0x04
       - name: CONTROLLER
-        desc: ""
         number: 0x05
       - name: FLIGHT_PHASE
-        desc: ""
         number: 0x06
       - name: FSM
-        desc: ""
         number: 0x07
       - name: GPIO
-        desc: ""
         number: 0x08
       - name: I2C
-        desc: ""
         number: 0x09
       - name: IIS2MDC
-        desc: ""
         number: 0x0A
       - name: LOGGER
-        desc: ""
         number: 0x0B
       - name: LSM6DSV32X
-        desc: ""
         number: 0x0C
       - name: MOVELLA
-        desc: ""
         number: 0x0D
       - name: MS5611
-        desc: ""
         number: 0x0E
       - name: NAVIGATOR
-        desc: ""
         number: 0x0F
       - name: POWER_HANDLER
-        desc: ""
         number: 0x10
       - name: SD_CARD
-        desc: ""
         number: 0x11
       - name: SENSOR_HANDLER
-        desc: ""
         number: 0x12
       - name: TELEMETRY
-        desc: ""
         number: 0x13
       - name: TIMER
-        desc: ""
         number: 0x14
       - name: UART
-        desc: ""
         number: 0x15
 
 bitfields:
@@ -1245,52 +1207,36 @@ bitfields:
     prefix: E
     bits:
       - name: 5V_OVER_CURR
-        desc: ""
         bit: 0
       - name: 5V_OVER_VOLT
-        desc: ""
         bit: 1
       - name: 5V_UNDER_VOLT
-        desc: ""
         bit: 2
       - name: 12V_OVER_CURR
-        desc: ""
         bit: 3
       - name: 12V_OVER_VOLT
-        desc: ""
         bit: 4
       - name: 12V_UNDER_VOLT
-        desc: ""
         bit: 5
       - name: BATT_OVER_CURR
-        desc: ""
         bit: 6
       - name: BATT_OVER_VOLT
-        desc: ""
         bit: 7
       - name: BATT_UNDER_VOLT
-        desc: ""
         bit: 8
       - name: MOTOR_OVER_CURR
-        desc: ""
         bit: 9
       - name: IO_ERROR
-        desc: ""
         bit: 10
       - name: FS_ERROR
-        desc: ""
         bit: 11
       - name: WATCHDOG_TIMEOUT
-        desc: ""
         bit: 12
       - name: 12V_EFUSE_FAULT
-        desc: ""
         bit: 13
       - name: 5V_EFUSE_FAULT
-        desc: ""
         bit: 14
       - name: PT_OUT_OF_RANGE
-        desc: ""
         bit: 15
       - name: CANARD_MODULE_FAILURE
         desc: Canard firmware application module error

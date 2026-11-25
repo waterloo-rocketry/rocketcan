@@ -18,3 +18,12 @@ Medium:
 Low:
 - Rest of the messages:
     - Sensor data, non-critical system states…
+
+### Principles
+- Readability over size. Optimization is not a concern in the yaml.
+- Be explicit everywhere
+
+### SID (29 bits)
+- `type: message_type` picks the message from `messages`.
+- `type: metadata` is decoded with that message's own `metadata` spec.
+- `metadata: null` means the byte is unused. Treated as a numeric in Parsley and whatever is sent is just ignored.

@@ -39,7 +39,7 @@ messages:
     desc: Undefined message, do not use
     id: 0x000
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
 
@@ -47,7 +47,7 @@ messages:
     desc: Board status broadcast
     id: 0x001
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: BOARD_ERROR_BITFIELD
@@ -61,7 +61,7 @@ messages:
     desc: Command to reset boards
     id: 0x002
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: TARGET_BOARD_TYPE_ID
@@ -81,7 +81,7 @@ messages:
     desc: 6-bytes of raw data
     id: 0x003
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: RAW_DATA
@@ -94,7 +94,7 @@ messages:
     desc: Set board specific configuration
     id: 0x004
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: TARGET_BOARD_TYPE_ID
@@ -124,7 +124,7 @@ messages:
     desc: Broadcast board specific configuration, for verify CONFIG_SET success
     id: 0x005
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: CONFIG_ID
@@ -146,7 +146,7 @@ messages:
         desc: Acturator ID
         type: enum
         enum: actuator_id
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: ACTUATOR_CMD_STATE
@@ -164,7 +164,7 @@ messages:
         desc: Acturator ID
         type: enum
         enum: actuator_id
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: ACTUATOR_CMD_STATE
@@ -188,7 +188,7 @@ messages:
         desc: Altimeter ID
         type: enum
         enum: altimeter_id
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: ALT_ARM_STATE
@@ -206,7 +206,7 @@ messages:
         desc: Altimeter ID
         type: enum
         enum: altimeter_id
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: ALT_ARM_STATE
@@ -235,7 +235,7 @@ messages:
         type: enum
         enum: analog_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: VALUE
@@ -253,7 +253,7 @@ messages:
         type: enum
         enum: analog_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: VALUE
@@ -271,7 +271,7 @@ messages:
         type: enum
         enum: dem_2d_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: VALUE_X
@@ -294,7 +294,7 @@ messages:
         type: enum
         enum: dem_3d_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: VALUE_X
@@ -316,7 +316,7 @@ messages:
   - name: GPS_TIMESTAMP
     id: 0x0E
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: UTC_HOURS
@@ -343,7 +343,7 @@ messages:
   - name: GPS_LATITUDE
     id: 0x0F
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: DEGREES
@@ -370,7 +370,7 @@ messages:
   - name: GPS_LONGITUDE
     id: 0x10
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: DEGREES
@@ -397,7 +397,7 @@ messages:
   - name: GPS_ALTITUDE
     id: 0x11
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: ALT
@@ -414,7 +414,7 @@ messages:
   - name: GPS_INFO
     id: 0x12
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: NUM_SAT
@@ -431,7 +431,7 @@ messages:
   - name: STREAM_STATUS
     id: 0x13
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: TOTAL_SIZE
@@ -451,7 +451,7 @@ messages:
       - name: SEQ_ID
         desc: Sequence ID
         type: uint
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: DATA
@@ -466,7 +466,7 @@ messages:
       - name: SEQ_ID
         desc: Sequence ID of data packet need to be resend
         type: uint
-    field:
+    fields:
       - ref: timestamp
         index: 1
 
@@ -477,7 +477,7 @@ messages:
         desc: Channel ID which is the LTT board instance ID
         type: enum
         enum: board_inst
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: LQI
@@ -498,7 +498,7 @@ messages:
         desc: Channel ID which is the LTT board instance ID
         type: enum
         enum: board_inst
-    field:
+    fields:
       - ref: timestamp
         index: 1
 
@@ -509,7 +509,7 @@ messages:
         desc: Module ID
         type: enum
         enum: canards_module_id
-    field:
+    fields:
       - ref: timestamp
         index: 1
       - name: ERROR_CODE
@@ -528,14 +528,14 @@ messages:
   - name: LEDS_ON
     id: 0x19
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
 
   - name: LEDS_OFF
     id: 0x20
     metadata: null
-    field:
+    fields:
       - ref: timestamp
         index: 1
 

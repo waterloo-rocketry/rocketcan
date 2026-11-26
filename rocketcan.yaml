@@ -20,7 +20,7 @@ sid:
       bits: 6
       type: enum
       enum: board_inst
-    # Uses 'message.metadata', an arbitrary extra byte of data for every message
+    # Data stored here is message-type-specific, specified in metadata field of messages
     - name: metadata
       index: 5
       bits: 8

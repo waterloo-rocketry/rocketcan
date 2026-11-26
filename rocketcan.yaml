@@ -142,10 +142,10 @@ messages:
     desc: Set actuator commanded state
     id: 0x006
     metadata:
-      - name: ACTUATOR_ID
-        desc: Acturator ID
-        type: enum
-        enum: actuator_id
+      name: ACTUATOR_ID
+      desc: Acturator ID
+      type: enum
+      enum: actuator_id
     fields:
       - ref: timestamp
         index: 1
@@ -160,10 +160,10 @@ messages:
     desc: Actuator Status Message
     id: 0x007
     metadata:
-      - name: ACTUATOR_ID
-        desc: Acturator ID
-        type: enum
-        enum: actuator_id
+      name: ACTUATOR_ID
+      desc: Acturator ID
+      type: enum
+      enum: actuator_id
     fields:
       - ref: timestamp
         index: 1
@@ -184,10 +184,10 @@ messages:
     desc: Command to arm altimeter
     id: 0x008
     metadata:
-      - name: ALT_ID
-        desc: Altimeter ID
-        type: enum
-        enum: altimeter_id
+      name: ALT_ID
+      desc: Altimeter ID
+      type: enum
+      enum: altimeter_id
     fields:
       - ref: timestamp
         index: 1
@@ -202,10 +202,10 @@ messages:
     desc: Altimeter Arm Status
     id: 0x009
     metadata:
-      - name: ALT_ID
-        desc: Altimeter ID
-        type: enum
-        enum: altimeter_id
+      name: ALT_ID
+      desc: Altimeter ID
+      type: enum
+      enum: altimeter_id
     fields:
       - ref: timestamp
         index: 1
@@ -230,10 +230,10 @@ messages:
     desc: 16-bits analog sensor
     id: 0x0A
     metadata:
-      - name: SENSOR_ID
-        desc: Sensor ID
-        type: enum
-        enum: analog_sensor_id
+      name: SENSOR_ID
+      desc: Sensor ID
+      type: enum
+      enum: analog_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     fields:
       - ref: timestamp
@@ -248,10 +248,10 @@ messages:
     desc: 32-bits analog sensor
     id: 0x0B
     metadata:
-      - name: SENSOR_ID
-        desc: Sensor ID
-        type: enum
-        enum: analog_sensor_id
+      name: SENSOR_ID
+      desc: Sensor ID
+      type: enum
+      enum: analog_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     fields:
       - ref: timestamp
@@ -266,10 +266,10 @@ messages:
     desc: 2-Dimensional 24-bit analog sensor value message
     id: 0x0C
     metadata:
-      - name: SENSOR_ID
-        desc: 2 Dimensional sensor ID
-        type: enum
-        enum: dem_2d_sensor_id
+      name: SENSOR_ID
+      desc: 2 Dimensional sensor ID
+      type: enum
+      enum: dem_2d_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     fields:
       - ref: timestamp
@@ -289,10 +289,10 @@ messages:
     desc: 3-Dimensional 16-bit analog sensor value message
     id: 0x0D
     metadata:
-      - name: SENSOR_ID
-        desc: 3 Dimensional sensor ID
-        type: enum
-        enum: dem_3d_sensor_id
+      name: SENSOR_ID
+      desc: 3 Dimensional sensor ID
+      type: enum
+      enum: dem_3d_sensor_id
     # VALUE fields are sent as uint; offset and scale depend on SENSOR_ID (see cansw_canards can_telemetry_scaling.h)
     fields:
       - ref: timestamp
@@ -448,9 +448,9 @@ messages:
   - name: STREAM_DATA
     id: 0x14
     metadata:
-      - name: SEQ_ID
-        desc: Sequence ID
-        type: uint
+      name: SEQ_ID
+      desc: Sequence ID
+      type: uint
     fields:
       - ref: timestamp
         index: 1
@@ -463,9 +463,9 @@ messages:
   - name: STREAM_RETRY
     id: 0x15
     metadata:
-      - name: SEQ_ID
-        desc: Sequence ID of data packet need to be resend
-        type: uint
+      name: SEQ_ID
+      desc: Sequence ID of data packet need to be resend
+      type: uint
     fields:
       - ref: timestamp
         index: 1
@@ -473,10 +473,10 @@ messages:
   - name: TELEMETRY_INFO
     id: 0x16
     metadata:
-      - name: CHANNEL_ID
-        desc: Channel ID which is the LTT board instance ID
-        type: enum
-        enum: board_inst
+      name: CHANNEL_ID
+      desc: Channel ID which is the LTT board instance ID
+      type: enum
+      enum: board_inst
     fields:
       - ref: timestamp
         index: 1
@@ -494,10 +494,10 @@ messages:
   - name: TELEMETRY_STATE_SWITCH
     id: 0x17
     metadata:
-      - name: CHANNEL_ID
-        desc: Channel ID which is the LTT board instance ID
-        type: enum
-        enum: board_inst
+      name: CHANNEL_ID
+      desc: Channel ID which is the LTT board instance ID
+      type: enum
+      enum: board_inst
     fields:
       - ref: timestamp
         index: 1
@@ -505,10 +505,10 @@ messages:
   - name: CANARD_FIRMWARE_ERROR
     id: 0x18
     metadata:
-      - name: MODULE_ID
-        desc: Module ID
-        type: enum
-        enum: canards_module_id
+      name: MODULE_ID
+      desc: Module ID
+      type: enum
+      enum: canards_module_id
     fields:
       - ref: timestamp
         index: 1
